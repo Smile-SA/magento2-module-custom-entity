@@ -1,0 +1,43 @@
+{
+    "name": "smile/module-custom-entity",
+    "type": "magento2-module",
+    "description": "Smile - Custom Entity Module",
+    "keywords": ["magento2", "custom", "entity"],
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://repo.magento.com/"
+        }
+    ],
+    "require": {
+        "php": "~7.1.3||~7.2.0",
+        "smile/module-scoped-eav": "dev-master"
+    },
+    "require-dev": {
+        "smile/magento2-smilelab-quality-suite": "^1.0.5"
+    },
+    "suggest": {
+        "smile/module-custom-entity-product-link": "Possibility to add product attribute for link product to custom entities"
+    },
+    "license": "OSL-3.0",
+    "authors": [
+        {
+            "name": "Aurélien FOUCRET",
+            "email": "aurelien.foucret@smile.fr"
+        },
+        {
+            "name": "Maxime LECLERCQ",
+            "email": "maxime.leclercq@smile.fr"
+        }
+    ],
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Smile\\CustomEntity\\" : ""
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}

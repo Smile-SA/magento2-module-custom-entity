@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Smile Custom Entity module to newer
+ * versions in the future.
+ *
+ *
+ * @category  Smile
+ * @package   Smile\CustomEntity
+ * @author    Aurelien FOUCRET <aurelien.foucret@smile.fr>
+ * @author    Maxime LECLERCQ <maxime.leclercq@smile.fr>
+ * @copyright 2019 Smile
+ * @license   Open Software License ("OSL") v. 3.0
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Smile_CustomEntity::attributes" title="Custom Entities" translate="title" module="Smile_CustomEntity" sortOrder="100" parent="Magento_Backend::content" resource="Smile_CustomEntity::attributes"/>
+        <add id="Smile_CustomEntity::entities" title="Entities" translate="title" module="Smile_CustomEntity" sortOrder="10" parent="Smile_CustomEntity::attributes" action="custom_entity/entity" resource="Smile_CustomEntity::entity" />
+        <add id="Smile_CustomEntity::attributes_set" title="Entity types" translate="title" module="Smile_CustomEntity" sortOrder="20" parent="Smile_CustomEntity::attributes" action="custom_entity/set" resource="Smile_CustomEntity::attributes_set" />
+        <add id="Smile_CustomEntity::attributes_attributes" title="Custom Entities" translate="title" module="Smile_CustomEntity" sortOrder="100" parent="Magento_Backend::stores_attributes" action="custom_entity/attribute" resource="Smile_CustomEntity::attributes_attributes" />
+    </menu>
+</config>

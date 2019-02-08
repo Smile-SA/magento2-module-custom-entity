@@ -1,0 +1,94 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Smile Custom Entity module to newer
+ * versions in the future.
+ *
+ *
+ * @category  Smile
+ * @package   Smile\CustomEntity
+ * @author    Aurelien FOUCRET <aurelien.foucret@smile.fr>
+ * @copyright 2019 Smile
+ * @license   Open Software License ("OSL") v. 3.0
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <virtualType name="Smile\CustomEntity\Ui\Component\Entity\Edit\Button\Save" type="Smile\ScopedEav\Ui\Component\Entity\Edit\Button\Save">
+        <arguments>
+            <argument name="formName" xsi:type="string">custom_entity_entity_form.custom_entity_entity_form</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="Smile\CustomEntity\Ui\DataProvider\CustomEntity\Form\Modifier\Pool" type="Magento\Ui\DataProvider\Modifier\Pool">
+        <arguments>
+            <argument name="modifiers" xsi:type="array">
+                <item name="eav" xsi:type="array">
+                    <item name="class" xsi:type="string">Smile\ScopedEav\Ui\DataProvider\Entity\Form\Modifier\Eav</item>
+                    <item name="sortOrder" xsi:type="number">10</item>
+                </item>
+                <item name="attribute_set_id" xsi:type="array">
+                    <item name="class" xsi:type="string">Smile\CustomEntity\Ui\DataProvider\CustomEntity\Form\Modifier\AttributeSet</item>
+                    <item name="sortOrder" xsi:type="number">20</item>
+                </item>
+                <item name="system" xsi:type="array">
+                    <item name="class" xsi:type="string">Smile\ScopedEav\Ui\DataProvider\Entity\Form\Modifier\System</item>
+                    <item name="sortOrder" xsi:type="number">30</item>
+                </item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <type name="Smile\CustomEntity\Ui\DataProvider\CustomEntity\Form\CustomEntityDataProvider">
+        <arguments>
+            <argument name="pool" xsi:type="object">Smile\CustomEntity\Ui\DataProvider\CustomEntity\Form\Modifier\Pool</argument>
+        </arguments>
+    </type>
+
+    <type name="Smile\CustomEntity\Controller\Adminhtml\Entity\Index">
+        <arguments>
+            <argument name="entityBuilder" xsi:type="object">Smile\CustomEntity\Controller\Adminhtml\Entity\Builder</argument>
+        </arguments>
+    </type>
+
+    <type name="Smile\CustomEntity\Controller\Adminhtml\Entity\NewAction">
+        <arguments>
+            <argument name="entityBuilder" xsi:type="object">Smile\CustomEntity\Controller\Adminhtml\Entity\Builder</argument>
+        </arguments>
+    </type>
+    
+    <type name="Smile\CustomEntity\Controller\Adminhtml\Entity\Edit">
+        <arguments>
+            <argument name="entityBuilder" xsi:type="object">Smile\CustomEntity\Controller\Adminhtml\Entity\Builder</argument>
+        </arguments>
+    </type>
+    
+    <type name="Smile\CustomEntity\Controller\Adminhtml\Entity\Delete">
+        <arguments>
+            <argument name="entityBuilder" xsi:type="object">Smile\CustomEntity\Controller\Adminhtml\Entity\Builder</argument>
+        </arguments>
+    </type>
+    
+    <type name="Smile\CustomEntity\Controller\Adminhtml\Entity\Reload">
+        <arguments>
+            <argument name="entityBuilder" xsi:type="object">Smile\CustomEntity\Controller\Adminhtml\Entity\Builder</argument>
+        </arguments>
+    </type>
+    
+    <type name="Smile\CustomEntity\Controller\Adminhtml\Entity\Save">
+        <arguments>
+            <argument name="entityBuilder" xsi:type="object">Smile\CustomEntity\Controller\Adminhtml\Entity\Builder</argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\Ui\DataProvider\Mapper\FormElement">
+        <arguments>
+            <argument name="mappings" xsi:type="array">
+                <item name="smile_custom_entity" xsi:type="string">input</item>
+            </argument>
+        </arguments>
+    </type>
+
+</config>

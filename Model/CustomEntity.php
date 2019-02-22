@@ -62,6 +62,8 @@ class CustomEntity extends \Smile\ScopedEav\Model\AbstractEntity implements Iden
         self::UPDATED_AT,
         self::NAME,
         self::IS_ACTIVE,
+        self::IMAGE,
+        self::DESCRIPTION,
     ];
 
     /**

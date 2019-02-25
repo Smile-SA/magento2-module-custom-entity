@@ -7,6 +7,10 @@
         {
             "type": "composer",
             "url": "https://repo.magento.com/"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/delyriand/magento2-module-scoped-eav.git"
         }
     ],
     "require": {

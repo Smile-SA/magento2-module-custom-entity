@@ -14,6 +14,8 @@
 
 namespace Smile\CustomEntity\Controller\Adminhtml\Entity;
 
+use Smile\ScopedEav\Controller\Adminhtml\Entity\BuilderInterface;
+
 /**
  * Admin controller custom entity builder.
  *
@@ -21,7 +23,7 @@ namespace Smile\CustomEntity\Controller\Adminhtml\Entity;
  * @package  Smile\CustomEntity
  * @author   Aurelien FOUCRET <aurelien.foucret@smile.fr>
  */
-class Builder implements \Smile\ScopedEav\Controller\Adminhtml\Entity\BuilderInterface
+class Builder implements BuilderInterface
 {
     /**
      * @var \Smile\CustomEntity\Api\Data\CustomEntityInterfaceFactory
@@ -47,9 +49,9 @@ class Builder implements \Smile\ScopedEav\Controller\Adminhtml\Entity\BuilderInt
      * Constructor.
      *
      * @param \Smile\CustomEntity\Api\Data\CustomEntityInterfaceFactory $customEntityFactory Custom entity factory.
-     * @param \Magento\Store\Model\StoreManagerInterface                            $storeManager        Store manager.
-     * @param \Magento\Framework\Registry                                           $registry            Registry.
-     * @param \Magento\Cms\Model\Wysiwyg\Config                                     $wysiwygConfig       Wysiwyg config.
+     * @param \Magento\Store\Model\StoreManagerInterface                $storeManager        Store manager.
+     * @param \Magento\Framework\Registry                               $registry            Registry.
+     * @param \Magento\Cms\Model\Wysiwyg\Config                         $wysiwygConfig       Wysiwyg config.
      */
     public function __construct(
         \Smile\CustomEntity\Api\Data\CustomEntityInterfaceFactory $customEntityFactory,
@@ -66,6 +68,7 @@ class Builder implements \Smile\ScopedEav\Controller\Adminhtml\Entity\BuilderInt
     /**
      * {@inheritDoc}
      */
+    // @codingStandardsIgnoreLine Move class into Model folder (MEQP2.Classes.PublicNonInterfaceMethods.PublicMethodFound)
     public function build(\Magento\Framework\App\RequestInterface $request)
     {
         $entityId = (int) $request->getParam('id');

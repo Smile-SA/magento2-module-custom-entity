@@ -120,6 +120,8 @@ class CustomEntityRepository implements CustomEntityRepositoryInterface
 
     /**
      * {@inheritdoc}
+     * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
+     * @SuppressWarnings(PHPMD.StaticAccess)
      */
     public function get($entityId, $storeId = null, $forceReload = false)
     {
@@ -165,5 +167,14 @@ class CustomEntityRepository implements CustomEntityRepositoryInterface
         $entity = $this->get($entityId);
 
         return $this->delete($entity);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getList(\Magento\Framework\Api\SearchCriteriaInterface $searchCriteria)
+    {
+        // TODO: Implement getList() method.
+        throw new \BadMethodCallException('Not implemented');
     }
 }

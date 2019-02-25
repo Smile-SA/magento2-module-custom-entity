@@ -14,6 +14,8 @@
 
 namespace Smile\CustomEntity\Ui\DataProvider\CustomEntity\Listing;
 
+use \Smile\CustomEntity\Model\ResourceModel\CustomEntity\CollectionFactory;
+
 /**
  * Custom entity listing form dataprovider.
  *
@@ -23,18 +25,19 @@ namespace Smile\CustomEntity\Ui\DataProvider\CustomEntity\Listing;
  */
 class CustomEntityDataProvider extends \Smile\ScopedEav\Ui\DataProvider\Entity\Listing\EntityDataProvider
 {
-/**
+    /**
      * Constructor.
      *
-     * @param string                                                                             $name                Name.
-     * @param string                                                                             $primaryFieldName    Primary field name.
-     * @param string                                                                             $requestFieldName    Request field name.
-     * @param \Smile\CustomEntity\Model\ResourceModel\CustomEntity\CollectionFactory $collectionFactory   Collection factory.
-     * @param \Magento\Ui\DataProvider\AddFieldToCollectionInterface[]                           $addFieldStrategies  Field add stategies.
-     * @param \Magento\Ui\DataProvider\AddFilterToCollectionInterface[]                          $addFilterStrategies Filter strategies.
-     * @param array                                                                              $meta                Meta.
-     * @param array                                                                              $data                Data.
+     * @param string                                                    $name                Name.
+     * @param string                                                    $primaryFieldName    Primary field name.
+     * @param string                                                    $requestFieldName    Request field name.
+     * @param CollectionFactory                                         $collectionFactory   Collection factory.
+     * @param \Magento\Ui\DataProvider\AddFieldToCollectionInterface[]  $addFieldStrategies  Field add stategies.
+     * @param \Magento\Ui\DataProvider\AddFilterToCollectionInterface[] $addFilterStrategies Filter strategies.
+     * @param array                                                     $meta                Meta.
+     * @param array                                                     $data                Data.
      */
+    // @codingStandardsIgnoreLine Use the factory (MEQP2.Classes.ConstructorOperations.CustomOperationsFound)
     public function __construct(
         $name,
         $primaryFieldName,

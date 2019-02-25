@@ -125,11 +125,12 @@ class CustomEntity extends \Smile\ScopedEav\Model\ResourceModel\AbstractResource
         }
 
         if (!empty($delete)) {
+            $websiteIdsForDelete = [];
             foreach ($delete as $websiteId) {
-                $condition = ['entity_id = ?' => (int) $entity->getEntityId(), 'website_id = ?' => (int) $websiteId];
-
-                $connection->delete($this->getCustomEntityWebsiteTable(), $condition);
+                $websiteIdsForDelete[] = (int) $websiteId;
             }
+            $condition = ['entity_id = ?' => (int) $entity->getEntityId(), 'website_id in (?)' => $websiteIdsForDelete];
+            $connection->delete($this->getCustomEntityWebsiteTable(), $condition);
         }
 
         if (!empty($insert) || !empty($delete)) {

@@ -47,6 +47,7 @@ class InstallData implements InstallDataInterface
     /**
      * {@inheritdoc}
      */
+    // @codingStandardsIgnoreLine Context param not used (Generic.CodeAnalysis.UnusedFunctionParameter.Found)
     public function install(ModuleDataSetupInterface $setup, ModuleContextInterface $context)
     {
         /** @var CustomEntitySetup$categorySetup */

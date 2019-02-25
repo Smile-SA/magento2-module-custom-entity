@@ -14,6 +14,8 @@
 
 namespace Smile\CustomEntity\Controller\Adminhtml\Attribute;
 
+use Magento\Framework\DataObjectFactory;
+
 /**
  * Custom entity attribute validation controller.
  *
@@ -35,13 +37,16 @@ class Validate extends \Smile\ScopedEav\Controller\Adminhtml\Attribute\Validate
      * @param \Smile\ScopedEav\Helper\Data                     $entityHelper      Entity helper.
      * @param Builder                                          $attributeBuilder  Attribute builder.
      * @param \Magento\Framework\Controller\Result\JsonFactory $resultJsonFactory JSON response factory.
+     * @param DataObjectFactory                                $dataObjectFactory Data object factory.
      */
+    // @codingStandardsIgnoreLine Override builder attribute (Generic.CodeAnalysis.UselessOverridingMethod.Found)
     public function __construct(
         \Magento\Backend\App\Action\Context $context,
         \Smile\ScopedEav\Helper\Data $entityHelper,
         Builder $attributeBuilder,
-        \Magento\Framework\Controller\Result\JsonFactory $resultJsonFactory
+        \Magento\Framework\Controller\Result\JsonFactory $resultJsonFactory,
+        DataObjectFactory $dataObjectFactory
     ) {
-        parent::__construct($context, $entityHelper, $attributeBuilder, $resultJsonFactory);
+        parent::__construct($context, $entityHelper, $attributeBuilder, $resultJsonFactory, $dataObjectFactory);
     }
 }

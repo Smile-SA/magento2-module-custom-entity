@@ -1,0 +1,4 @@
+phpcs:
+  standard: phpcs.xml
+phpmd:
+  standard: phpmd.xml

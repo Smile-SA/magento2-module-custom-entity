@@ -49,8 +49,8 @@ class AttributeSet extends \Smile\ScopedEav\Ui\DataProvider\Entity\Form\Modifier
     /**
      * Constructor.
      *
-     * @param \Smile\ScopedEav\Model\Locator\LocatorInterface                         $locator             Entity locator.
-     * @param \Magento\Framework\UrlInterface                                         $urlBuilder          URL builder.
+     * @param \Smile\ScopedEav\Model\Locator\LocatorInterface             $locator             Entity locator.
+     * @param \Magento\Framework\UrlInterface                             $urlBuilder          URL builder.
      * @param \Smile\CustomEntity\Model\CustomEntity\AttributeSet\Options $attributeSetOptions Attribute set source model.
      */
     public function __construct(

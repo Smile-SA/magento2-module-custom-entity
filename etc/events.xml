@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Smile Custom Entity module to newer
+ * versions in the future.
+ *
+ *
+ * @category  Smile
+ * @package   Smile\CustomEntity
+ * @author    Maxime LECLERCQ <maxime.leclercq@smile.fr>
+ * @copyright 2019 Smile
+ * @license   Open Software License ("OSL") v. 3.0
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="smile_customentity_api_data_customentityinterface_save_before">
+        <observer name="legacy_smile_customentity_save_before" instance="Magento\Framework\EntityManager\Observer\BeforeEntitySave" />
+    </event>
+    <event name="smile_customentity_api_data_customentityinterface_save_after">
+        <observer name="legacy_smile_customentity_save_after" instance="Magento\Framework\EntityManager\Observer\AfterEntitySave" />
+    </event>
+    <event name="smile_customentity_api_data_customentityinterface_delete_before">
+        <observer name="legacy_smile_customentity_delete_before" instance="Magento\Framework\EntityManager\Observer\BeforeEntityDelete" />
+    </event>
+    <event name="smile_customentity_api_data_customentityinterface_delete_after">
+        <observer name="legacy_smile_customentity_delete_after" instance="Magento\Framework\EntityManager\Observer\AfterEntityDelete" />
+    </event>
+    <event name="smile_customentity_api_data_customentityinterface_load_after">
+        <observer name="legacy_smile_customentity_load_after" instance="Magento\Framework\EntityManager\Observer\AfterEntityLoad" />
+    </event>
+</config>

@@ -35,6 +35,7 @@ class Edit extends \Smile\ScopedEav\Controller\Adminhtml\Attribute\Edit
      * @param \Smile\ScopedEav\Helper\Data        $entityHelper     Entity helper.
      * @param Builder                             $attributeBuilder Attribute builder.
      */
+    // @codingStandardsIgnoreLine Override builder attribute (Generic.CodeAnalysis.UselessOverridingMethod.Found)
     public function __construct(
         \Magento\Backend\App\Action\Context $context,
         \Smile\ScopedEav\Helper\Data $entityHelper,

@@ -14,7 +14,9 @@
 
 namespace Smile\CustomEntity\Controller\Adminhtml\Attribute;
 
+use Smile\CustomEntity\Api\CustomEntityAttributeRepositoryInterface;
 use Smile\CustomEntity\Api\Data\CustomEntityAttributeInterface;
+use Smile\CustomEntity\Api\Data\CustomEntityAttributeInterfaceFactory;
 
 /**
  * Custom entity attribute builder
@@ -26,27 +28,28 @@ use Smile\CustomEntity\Api\Data\CustomEntityAttributeInterface;
 class Builder extends \Smile\ScopedEav\Controller\Adminhtml\Attribute\AbstractBuilder
 {
     /**
-     * @var \Smile\CustomEntity\Api\Data\CustomEntityAttributeInterfaceFactory
+     * @var CustomEntityAttributeInterfaceFactory
      */
     private $attributeFactory;
 
     /**
-     * @var \Smile\CustomEntity\Api\CustomEntityAttributeRepositoryInterface
+     * @var CustomEntityAttributeRepositoryInterface
      */
     private $attributeRepository;
 
     /**
+     * Constructor.
      *
-     * @param \Magento\Framework\Registry                                                    $registry            Registry.
-     * @param \Magento\Eav\Model\Config                                                      $eavConfig           EAV config.
-     * @param \Smile\CustomEntity\Api\Data\CustomEntityAttributeInterfaceFactory $attributeFactory    Attribute factory.
-     * @param \Smile\CustomEntity\Api\CustomEntityAttributeRepositoryInterface   $attributeRepository Attribute repository.
+     * @param \Magento\Framework\Registry              $registry            Registry.
+     * @param \Magento\Eav\Model\Config                $eavConfig           EAV config.
+     * @param CustomEntityAttributeInterfaceFactory    $attributeFactory    Attribute factory.
+     * @param CustomEntityAttributeRepositoryInterface $attributeRepository Attribute repository.
      */
     public function __construct(
         \Magento\Framework\Registry $registry,
         \Magento\Eav\Model\Config $eavConfig,
-        \Smile\CustomEntity\Api\Data\CustomEntityAttributeInterfaceFactory $attributeFactory,
-        \Smile\CustomEntity\Api\CustomEntityAttributeRepositoryInterface $attributeRepository
+        CustomEntityAttributeInterfaceFactory $attributeFactory,
+        CustomEntityAttributeRepositoryInterface $attributeRepository
     ) {
         parent::__construct($registry, $eavConfig);
 

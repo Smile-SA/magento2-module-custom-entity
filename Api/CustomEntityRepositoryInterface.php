@@ -48,6 +48,7 @@ interface CustomEntityRepositoryInterface
      * @return \Smile\CustomEntity\Api\Data\CustomEntityInterface
      *
      * @throws \Magento\Framework\Exception\NoSuchEntityException
+     * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
      */
     public function get($entityId, $storeId = null, $forceReload = false);
 
@@ -74,13 +75,12 @@ interface CustomEntityRepositoryInterface
      */
     public function deleteById($entityId);
 
-//    /**
-//     * Get custom entity list.
-//     *
-//     * @param \Magento\Framework\Api\SearchCriteriaInterface $searchCriteria Search criteria.
-//     *
-//     * @return \Smile\CustomEntity\Api\Data\CustomEntitySearchResultInterface
-//     */
-    // TODO
-    // public function getList(\Magento\Framework\Api\SearchCriteriaInterface $searchCriteria);
+    /**
+     * Get custom entity list.
+     *
+     * @param \Magento\Framework\Api\SearchCriteriaInterface $searchCriteria Search criteria.
+     *
+     * @return \Smile\CustomEntity\Api\Data\CustomEntitySearchResultInterface
+     */
+    public function getList(\Magento\Framework\Api\SearchCriteriaInterface $searchCriteria);
 }

@@ -25,5 +25,4 @@ use Smile\CustomEntity\Api\Data\CustomEntityAttributeInterface;
  */
 class Attribute extends \Smile\ScopedEav\Model\Entity\Attribute implements CustomEntityAttributeInterface
 {
-
 }

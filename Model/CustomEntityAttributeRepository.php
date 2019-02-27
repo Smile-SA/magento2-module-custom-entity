@@ -83,6 +83,7 @@ class CustomEntityAttributeRepository implements CustomEntityAttributeRepository
     public function getList(\Magento\Framework\Api\SearchCriteriaInterface $searchCriteria)
     {
         // TODO: Implement getList() method.
+        throw new \BadMethodCallException('Not implemented');
     }
 
     /**
@@ -91,6 +92,7 @@ class CustomEntityAttributeRepository implements CustomEntityAttributeRepository
     public function getCustomAttributesMetadata($dataObjectClassName = null)
     {
         // TODO: Implement getCustomAttributesMetadata() method.
+        throw new \BadMethodCallException('Not implemented');
     }
 
     /**

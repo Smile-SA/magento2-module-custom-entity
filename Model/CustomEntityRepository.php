@@ -15,6 +15,7 @@
 namespace Smile\CustomEntity\Model;
 
 use Magento\Framework\Api\ExtensibleDataObjectConverter;
+use Magento\Framework\Api\SearchCriteria\CollectionProcessorInterface;
 use Magento\Framework\EntityManager\MetadataPool;
 use Magento\Framework\Exception\CouldNotSaveException;
 use Magento\Framework\Exception\NoSuchEntityException;
@@ -22,8 +23,11 @@ use Magento\Framework\Exception\StateException;
 use Magento\Store\Model\StoreManagerInterface;
 use Smile\CustomEntity\Api\CustomEntityRepositoryInterface;
 use Smile\CustomEntity\Api\Data\CustomEntityInterface;
-use \Smile\CustomEntity\Model\CustomEntityFactory;
+use Smile\CustomEntity\Api\Data\CustomEntitySearchResultsInterface;
+use Smile\CustomEntity\Api\Data\CustomEntitySearchResultsInterfaceFactory;
+use Magento\Framework\Api\ExtensionAttribute\JoinProcessorInterface;
 use \Smile\CustomEntity\Model\ResourceModel\CustomEntity as CustomEntityResource;
+use \Smile\CustomEntity\Model\ResourceModel\CustomEntity\CollectionFactory as CustomEntityCollectionFactory;
 
 /**
  * Custom entity repository implementation.
@@ -31,6 +35,8 @@ use \Smile\CustomEntity\Model\ResourceModel\CustomEntity as CustomEntityResource
  * @category Smile
  * @package  Smile\CustomEntity
  * @author   Aurelien FOUCRET <aurelien.foucret@smile.fr>
+ *
+ * @SuppressWarnings(PHPMD.CouplingBetweenObjects) getList method require multiple class.
  */
 class CustomEntityRepository implements CustomEntityRepositoryInterface
 {
@@ -65,26 +71,62 @@ class CustomEntityRepository implements CustomEntityRepositoryInterface
     private $extensibleDataObjectConverter;
 
     /**
+     * @var CustomEntityCollectionFactory
+     */
+    private $customEntityCollectionFactory;
+
+    /**
+     * @var CollectionProcessorInterface
+     */
+    private $collectionProcessor;
+
+    /**
+     * @var CustomEntitySearchResultsInterfaceFactory
+     */
+    private $customEntitySearchResultsFactory;
+
+    /**
+     * @var JoinProcessorInterface
+     */
+    private $joinProcessor;
+
+    /**
      * Constructor.
      *
-     * @param CustomEntityFactory           $customEntityFactory           Custom entity factory.
-     * @param CustomEntityResource          $customEntityResource          Custom entity resource model.
-     * @param StoreManagerInterface         $storeManager                  Store manager.
-     * @param MetadataPool                  $metadataPool                  Metadata pool.
-     * @param ExtensibleDataObjectConverter $extensibleDataObjectConverter Converter.
+     * @param CustomEntityFactory                       $customEntityFactory              Custom entity factory.
+     * @param CustomEntityResource                      $customEntityResource             Custom entity resource model.
+     * @param StoreManagerInterface                     $storeManager                     Store manager.
+     * @param MetadataPool                              $metadataPool                     Metadata pool.
+     * @param ExtensibleDataObjectConverter             $extensibleDataObjectConverter    Converter.
+     * @param CustomEntityCollectionFactory             $customEntityCollectionFactory    Custom entity collection
+     *                                                                                    factory.
+     * @param CollectionProcessorInterface              $collectionProcessor              Search criteria collection
+     *                                                                                    processor.
+     * @param JoinProcessorInterface                    $joinProcessor                    Extension attriubute join
+     *                                                                                    processor.
+     * @param CustomEntitySearchResultsInterfaceFactory $customEntitySearchResultsFactory Custom entity search results
+     *                                                                                    factory.
      */
     public function __construct(
         CustomEntityFactory $customEntityFactory,
         CustomEntityResource $customEntityResource,
         StoreManagerInterface $storeManager,
         MetadataPool $metadataPool,
-        ExtensibleDataObjectConverter $extensibleDataObjectConverter
+        ExtensibleDataObjectConverter $extensibleDataObjectConverter,
+        CustomEntityCollectionFactory $customEntityCollectionFactory,
+        CollectionProcessorInterface $collectionProcessor,
+        JoinProcessorInterface $joinProcessor,
+        CustomEntitySearchResultsInterfaceFactory $customEntitySearchResultsFactory
     ) {
         $this->customEntityFactory           = $customEntityFactory;
         $this->customEntityResource          = $customEntityResource;
         $this->storeManager                  = $storeManager;
         $this->metadataPool                  = $metadataPool;
         $this->extensibleDataObjectConverter = $extensibleDataObjectConverter;
+        $this->customEntityCollectionFactory = $customEntityCollectionFactory;
+        $this->collectionProcessor           = $collectionProcessor;
+        $this->joinProcessor = $joinProcessor;
+        $this->customEntitySearchResultsFactory = $customEntitySearchResultsFactory;
     }
 
     /**
@@ -174,7 +216,18 @@ class CustomEntityRepository implements CustomEntityRepositoryInterface
      */
     public function getList(\Magento\Framework\Api\SearchCriteriaInterface $searchCriteria)
     {
-        // TODO: Implement getList() method.
-        throw new \BadMethodCallException('Not implemented');
+        /** @var \Smile\CustomEntity\Model\ResourceModel\CustomEntity\Collection $collection */
+        $collection = $this->customEntityCollectionFactory->create();
+        $this->joinProcessor->process($collection);
+        $collection->addAttributeToSelect('*');
+        $this->collectionProcessor->process($searchCriteria, $collection);
+
+        /** @var CustomEntitySearchResultsInterface $searchResults */
+        $searchResults = $this->customEntitySearchResultsFactory->create();
+        $searchResults->setSearchCriteria($searchCriteria);
+        $searchResults->setItems($collection->getItems());
+        $searchResults->setTotalCount($collection->getSize());
+
+        return $searchResults;
     }
 }

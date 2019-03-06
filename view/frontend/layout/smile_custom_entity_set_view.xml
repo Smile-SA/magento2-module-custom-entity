@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this module to newer
+ * versions in the future.
+ *
+ *
+ * @category  Smile
+ * @package   Smile\CustomEntity
+ * @author    Maxime LECLERCQ <maxime.leclercq@smile.fr>
+ * @copyright 2019 Smile
+ * @license   Open Software License ("OSL") v. 3.0
+ */
+ -->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="smile_custom_entity_entity_renderers"/>
+    <body>
+        <attribute name="itemtype" value="http://schema.org/Thing" />
+        <attribute name="itemscope" value="itemscope"/>
+        <referenceBlock name="page.main.title">
+            <arguments>
+                <argument name="add_base_attribute" xsi:type="string">itemprop="name"</argument>
+            </arguments>
+        </referenceBlock>
+        <referenceBlock name="root">
+            <arguments>
+                <argument name="add_attribute" xsi:type="string">itemscope itemtype="http://schema.org/Thing"</argument>
+            </arguments>
+        </referenceBlock>
+        <referenceContainer name="content">
+            <container name="smile_custom_entity_set_content">
+                <block name="smile_custom_entity_set_view" class="Smile\CustomEntity\Block\Set\View" template="set/view.phtml">
+                    <block class="Smile\CustomEntity\Block\Html\Pager" as="pager" name="custom_entity_list_pager">
+                        <action method="setAvailableLimit">
+                            <argument name="availableLimit" xsi:type="array">
+                                <item name="9" xsi:type="string">9</item>
+                                <item name="15" xsi:type="string">15</item>
+                                <item name="30" xsi:type="string">30</item>
+                            </argument>
+                        </action>
+                    </block>
+                    <block class="Magento\Framework\View\Element\RendererList" name="custom_entity.set.entity.renderers" as="renderer.list"/>
+                </block>
+            </container>
+        </referenceContainer>
+    </body>
+</page>

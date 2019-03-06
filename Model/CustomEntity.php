@@ -15,6 +15,7 @@
 namespace Smile\CustomEntity\Model;
 
 use Magento\Framework\DataObject\IdentityInterface;
+use Magento\Framework\Filter\FilterManager;
 use Smile\CustomEntity\Api\Data\CustomEntityInterface;
 
 /**
@@ -65,6 +66,11 @@ class CustomEntity extends \Smile\ScopedEav\Model\AbstractEntity implements Iden
     ];
 
     /**
+     * @var FilterManager
+     */
+    private $filterManager;
+
+    /**
      * Constructor.
      *
      * @param \Magento\Framework\Model\Context                             $context                Context.
@@ -73,9 +79,12 @@ class CustomEntity extends \Smile\ScopedEav\Model\AbstractEntity implements Iden
      * @param \Magento\Framework\Api\AttributeValueFactory                 $customAttributeFactory Custom attribute factory.
      * @param \Magento\Store\Model\StoreManagerInterface                   $storeManager           Store manager.
      * @param \Magento\Framework\Api\MetadataServiceInterface              $metadataService        Metadata service.
+     * @param FilterManager                                                $filterManager          Filter Manager.
      * @param \Magento\Framework\Model\ResourceModel\AbstractResource|null $resource               Resource model.
      * @param \Magento\Framework\Data\Collection\AbstractDb|null           $resourceCollection     Collection.
      * @param array                                                        $data                   Additional data.
+     *
+     * @SuppressWarnings(PHPMD.ExcessiveParameterList)
      */
     public function __construct(
         \Magento\Framework\Model\Context $context,
@@ -84,6 +93,7 @@ class CustomEntity extends \Smile\ScopedEav\Model\AbstractEntity implements Iden
         \Magento\Framework\Api\AttributeValueFactory $customAttributeFactory,
         \Magento\Store\Model\StoreManagerInterface $storeManager,
         \Magento\Framework\Api\MetadataServiceInterface $metadataService,
+        FilterManager $filterManager,
         \Magento\Framework\Model\ResourceModel\AbstractResource $resource = null,
         \Magento\Framework\Data\Collection\AbstractDb $resourceCollection = null,
         array $data = []
@@ -99,6 +109,7 @@ class CustomEntity extends \Smile\ScopedEav\Model\AbstractEntity implements Iden
             $data
         );
         $this->metadataService = $metadataService;
+        $this->filterManager = $filterManager;
     }
 
     /**
@@ -111,6 +122,40 @@ class CustomEntity extends \Smile\ScopedEav\Model\AbstractEntity implements Iden
         $identities = [self::CACHE_TAG . '_' . $this->getId()];
 
         return array_unique($identities);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getUrlKey()
+    {
+        $urlKey = $this->getData(self::URL_KEY);
+        if ($urlKey === '' || $urlKey === null) {
+            $urlKey = $this->filterManager->translitUrl($this->getName());
+        }
+
+        return $urlKey;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setUrlKey($urlKey)
+    {
+        return $this->setData(self::URL_KEY, $urlKey);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function beforeSave()
+    {
+        $urlKey = $this->getData(self::URL_KEY);
+        if ($urlKey === '' || $urlKey === null) {
+            $this->setUrlKey($this->filterManager->translitUrl($this->getName()));
+        }
+
+        return parent::beforeSave();
     }
 
     /**

@@ -32,6 +32,28 @@ interface CustomEntityInterface extends \Smile\ScopedEav\Api\Data\EntityInterfac
      */
     const ENTITY = 'smile_custom_entity';
 
+    /**#@+
+     * Constants defined for keys of data array
+     */
+    const URL_KEY = 'url_key';
+    /**#@-*/
+
+    /**
+     * Returns custom entity url key.
+     *
+     * @return string
+     */
+    public function getUrlKey();
+
+    /**
+     * Set custom entity url key.
+     *
+     * @param string $urlKey Url key
+     *
+     * @return $this
+     */
+    public function setUrlKey($urlKey);
+
     /**
      * Retrieve existing extension attributes object or create a new one.
      *

@@ -23,6 +23,8 @@
     <preference for="Smile\CustomEntity\Api\CustomEntityRepositoryInterface" type="Smile\CustomEntity\Model\CustomEntityRepository" />
     <preference for="Smile\CustomEntity\Api\CustomEntityAttributeRepositoryInterface" type="Smile\CustomEntity\Model\CustomEntityAttributeRepository" />
 
+    <preference for="Smile\CustomEntity\Api\Data\CustomEntitySearchResultsInterface" type="Magento\Framework\Api\SearchResults" />
+
     <type name="Magento\Framework\Model\Entity\RepositoryFactory">
         <arguments>
             <argument name="entities" xsi:type="array">
@@ -114,6 +116,21 @@
                     <item name="smile_custom_entity" xsi:type="string">smile_custom_entity</item>
                 </item>
             </argument>
+        </arguments>
+    </type>
+
+    <virtualType name="Smile\CustomEntity\Model\Api\SearchCriteria\CustomEntityCollectionProcessor" type="Magento\Eav\Model\Api\SearchCriteria\CollectionProcessor">
+        <arguments>
+            <argument name="processors" xsi:type="array">
+                <item name="filters" xsi:type="object">Magento\Eav\Model\Api\SearchCriteria\CollectionProcessor\FilterProcessor</item>
+                <item name="sorting" xsi:type="object">Magento\Framework\Api\SearchCriteria\CollectionProcessor\SortingProcessor</item>
+                <item name="pagination" xsi:type="object">Magento\Framework\Api\SearchCriteria\CollectionProcessor\PaginationProcessor</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="Smile\CustomEntity\Model\CustomEntityRepository">
+        <arguments>
+            <argument name="collectionProcessor" xsi:type="object">Smile\CustomEntity\Model\Api\SearchCriteria\CustomEntityCollectionProcessor</argument>
         </arguments>
     </type>
 </config>

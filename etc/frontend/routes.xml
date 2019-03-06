@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Smile Custom Entity module to newer
+ * versions in the future.
+ *
+ *
+ * @category  Smile
+ * @package   Smile\CustomEntity
+ * @author    Maxime LECLERCQ <maxime.leclercq@smile.fr>
+ * @copyright 2019 Smile
+ * @license   Open Software License ("OSL") v. 3.0
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:App/etc/routes.xsd">
+    <router id="standard">
+        <route id="smile_custom_entity" frontName="custom_entity">
+            <module name="Smile_CustomEntity" />
+        </route>
+    </router>
+</config>

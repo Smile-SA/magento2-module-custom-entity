@@ -1,0 +1,36 @@
+<?php
+/**
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this module to newer
+ * versions in the future.
+ *
+ *
+ * @category  Smile
+ * @package   Smile\CustomEntity
+ * @author    Maxime LECLERCQ <maxime.leclercq@smile.fr>
+ * @copyright 2019 Smile
+ * @license   Open Software License ("OSL") v. 3.0
+ */
+/**
+ * Template for default custom entity renderer into set.
+ *
+ * @var $block \Smile\CustomEntity\Block\Set\Entity\Renderer
+ */
+?>
+<?php
+$entity = $block->getEntity();
+?>
+<div class="product-item-info">
+    <?= /* @escapeNotVerified */ $block->getImage(); ?>
+    <div class="product details product-item-details">
+        <strong class="product name product-item-name"><?= $block->escapeHtml($entity->getName()) ?></strong>
+        <div class="product-item-inner">
+            <div class="product actions product-item-actions">
+                <div class="actions-primary">
+                    <a class="action primary" href="#"><span><?= $block->escapeHtml(__('Show detail')) ?></span></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

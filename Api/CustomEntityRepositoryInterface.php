@@ -80,7 +80,7 @@ interface CustomEntityRepositoryInterface
      *
      * @param \Magento\Framework\Api\SearchCriteriaInterface $searchCriteria Search criteria.
      *
-     * @return \Smile\CustomEntity\Api\Data\CustomEntitySearchResultInterface
+     * @return \Smile\CustomEntity\Api\Data\CustomEntitySearchResultsInterface
      */
     public function getList(\Magento\Framework\Api\SearchCriteriaInterface $searchCriteria);
 }

@@ -22,13 +22,17 @@
 $entity = $block->getEntity();
 ?>
 <div class="product-item-info">
-    <?= /* @escapeNotVerified */ $block->getImage(); ?>
+    <a href="<?= $block->escapeUrl($block->getEntityUrl()); ?>"?>
+        <?= /* @escapeNotVerified */ $block->getImage(); ?>
+    </a>
     <div class="product details product-item-details">
-        <strong class="product name product-item-name"><?= $block->escapeHtml($entity->getName()) ?></strong>
+        <strong class="product name product-item-name">
+            <a href="<?= $block->escapeUrl($block->getEntityUrl()); ?>"><?= $block->escapeHtml($entity->getName()) ?></a>
+        </strong>
         <div class="product-item-inner">
             <div class="product actions product-item-actions">
                 <div class="actions-primary">
-                    <a class="action primary" href="#"><span><?= $block->escapeHtml(__('Show detail')) ?></span></a>
+                    <a class="action primary" href="<?= $block->escapeUrl($block->getEntityUrl()); ?>"><span><?= $block->escapeHtml(__('Show detail')) ?></span></a>
                 </div>
             </div>
         </div>

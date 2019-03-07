@@ -17,6 +17,8 @@ use Magento\Framework\App\ActionInterface;
 use Magento\Framework\App\RequestInterface;
 use Magento\Framework\App\RouterInterface;
 use Magento\Framework\App\Request\Http as HttpRequest;
+use Smile\CustomEntity\Api\Data\CustomEntityInterface;
+use Smile\CustomEntity\Model\CustomEntity;
 use Smile\CustomEntity\Model\CustomEntity\AttributeSet\Url;
 
 /**
@@ -39,17 +41,25 @@ class Router implements RouterInterface
     private $actionFactory;
 
     /**
+     * @var CustomEntity
+     */
+    private $customEntity;
+
+    /**
      * Router constructor.
      *
      * @param \Magento\Framework\App\ActionFactory $actionFactory Action factory.
      * @param Url                                  $urlSetModel   Attribute set url model.
+     * @param CustomEntityInterface                $customEntity  Custom entity model.
      */
     public function __construct(
         \Magento\Framework\App\ActionFactory $actionFactory,
-        Url $urlSetModel
+        Url $urlSetModel,
+        CustomEntityInterface $customEntity
     ) {
         $this->urlSetModel = $urlSetModel;
         $this->actionFactory = $actionFactory;
+        $this->customEntity = $customEntity;
     }
 
     /**
@@ -98,8 +108,7 @@ class Router implements RouterInterface
     {
         $entityId = $customEntitySetId = $this->urlSetModel->checkIdentifier(array_shift($requestPathArray));
         if (!empty($requestPathArray) && $customEntitySetId) {
-            // @todo Implement checkIdentifier for entity
-            throw new \BadMethodCallException('Not implemented');
+            $entityId = $this->customEntity->checkIdentifier(current($requestPathArray), $entityId);
         }
 
         return $entityId;

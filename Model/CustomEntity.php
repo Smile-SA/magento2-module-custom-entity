@@ -14,7 +14,10 @@
 
 namespace Smile\CustomEntity\Model;
 
+use Magento\Eav\Api\AttributeSetRepositoryInterface;
+use Magento\Eav\Api\Data\AttributeSetInterface;
 use Magento\Framework\DataObject\IdentityInterface;
+use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Framework\Filter\FilterManager;
 use Smile\CustomEntity\Api\Data\CustomEntityInterface;
 
@@ -24,6 +27,9 @@ use Smile\CustomEntity\Api\Data\CustomEntityInterface;
  * @category Smile
  * @package  Smile\CustomEntity
  * @author   Aurelien FOUCRET <aurelien.foucret@smile.fr>
+ * @author   Maxime LECLERCQ <maxime.leclercq@smile.fr>
+ *
+ * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
  */
 class CustomEntity extends \Smile\ScopedEav\Model\AbstractEntity implements IdentityInterface, CustomEntityInterface
 {
@@ -71,6 +77,16 @@ class CustomEntity extends \Smile\ScopedEav\Model\AbstractEntity implements Iden
     private $filterManager;
 
     /**
+     * @var AttributeSetRepositoryInterface
+     */
+    private $attributeSetRepository;
+
+    /**
+     * @var AttributeSetInterface
+     */
+    private $attributeSet;
+
+    /**
      * Constructor.
      *
      * @param \Magento\Framework\Model\Context                             $context                Context.
@@ -80,6 +96,7 @@ class CustomEntity extends \Smile\ScopedEav\Model\AbstractEntity implements Iden
      * @param \Magento\Store\Model\StoreManagerInterface                   $storeManager           Store manager.
      * @param \Magento\Framework\Api\MetadataServiceInterface              $metadataService        Metadata service.
      * @param FilterManager                                                $filterManager          Filter Manager.
+     * @param AttributeSetRepositoryInterface                              $attributeSetRepository Attribute set repository.
      * @param \Magento\Framework\Model\ResourceModel\AbstractResource|null $resource               Resource model.
      * @param \Magento\Framework\Data\Collection\AbstractDb|null           $resourceCollection     Collection.
      * @param array                                                        $data                   Additional data.
@@ -94,6 +111,7 @@ class CustomEntity extends \Smile\ScopedEav\Model\AbstractEntity implements Iden
         \Magento\Store\Model\StoreManagerInterface $storeManager,
         \Magento\Framework\Api\MetadataServiceInterface $metadataService,
         FilterManager $filterManager,
+        AttributeSetRepositoryInterface $attributeSetRepository,
         \Magento\Framework\Model\ResourceModel\AbstractResource $resource = null,
         \Magento\Framework\Data\Collection\AbstractDb $resourceCollection = null,
         array $data = []
@@ -110,6 +128,7 @@ class CustomEntity extends \Smile\ScopedEav\Model\AbstractEntity implements Iden
         );
         $this->metadataService = $metadataService;
         $this->filterManager = $filterManager;
+        $this->attributeSetRepository = $attributeSetRepository;
     }
 
     /**
@@ -143,6 +162,43 @@ class CustomEntity extends \Smile\ScopedEav\Model\AbstractEntity implements Iden
     public function setUrlKey($urlKey)
     {
         return $this->setData(self::URL_KEY, $urlKey);
+    }
+
+    /**
+     * {@inheritdoc}
+     * @throws \Magento\Framework\Exception\NoSuchEntityException
+     */
+    public function getUrlPath()
+    {
+        return $this->getAttributeSetUrlKey() . '/' . $this->getUrlKey();
+    }
+
+    /**
+     * Return attribute set.
+     *
+     * @return AttributeSetInterface
+     * @throws \Magento\Framework\Exception\NoSuchEntityException
+     */
+    public function getAttributeSet()
+    {
+        if (!$this->attributeSet) {
+            $this->attributeSet = $this->attributeSetRepository->get($this->getAttributeSetId());
+        }
+
+        return $this->attributeSet;
+    }
+
+    /**
+     * Return attribute set url key.
+     *
+     * @return string
+     * @throws \Magento\Framework\Exception\NoSuchEntityException
+     */
+    public function getAttributeSetUrlKey()
+    {
+        $attributeSetName = $this->getAttributeSet()->getAttributeSetName();
+
+        return $this->filterManager->translitUrl($attributeSetName);
     }
 
     /**
@@ -233,6 +289,34 @@ class CustomEntity extends \Smile\ScopedEav\Model\AbstractEntity implements Iden
     public function setExtensionAttributes(\Smile\CustomEntity\Api\Data\CustomEntityExtensionInterface $extensionAttributes)
     {
         return $this->_setExtensionAttributes($extensionAttributes);
+    }
+
+    /**
+     * Returns custom entity ids math with url key and attribute set id.
+     *
+     * @param string   $urlKey         Url key.
+     * @param null|int $attributeSetId Attribute set id.
+     *
+     * @return int
+     * @throws NoSuchEntityException
+     * @SuppressWarnings(PHPMD.StaticAccess)
+     */
+    public function checkIdentifier(string $urlKey, $attributeSetId = null)
+    {
+        $collection = $this->getCollection()
+            ->addFieldToSelect('entity_id')
+            ->addFieldToFilter('url_key', $urlKey)
+            ->addFieldToFilter('is_active', 1)
+            ->setPageSize(1);
+        if ($attributeSetId !== null) {
+            $collection->addFieldToSelect('attribute_set_id', $attributeSetId);
+        }
+        if (!$collection->getSize()) {
+            throw NoSuchEntityException::doubleField('url_key', $urlKey, 'attribute_set_id', $attributeSetId);
+        }
+
+        // @codingStandardsIgnoreLine add setPageSize MEQP1.Performance.InefficientMethods.FoundGetFirstItem
+        return $collection->getFirstItem()->getId();
     }
 
     /**

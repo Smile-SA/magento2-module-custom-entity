@@ -13,6 +13,8 @@
  */
 namespace Smile\CustomEntity\Block\Set\Entity;
 
+use Magento\Eav\Api\AttributeSetRepositoryInterface;
+use Magento\Framework\Filter\FilterManager;
 use Magento\Framework\View\Element\Template;
 use Smile\CustomEntity\Api\Data\CustomEntityInterface;
 use Smile\CustomEntity\Block\CustomEntity\ImageFactory;
@@ -58,5 +60,15 @@ class Renderer extends Template
     public function getImage()
     {
         return $this->imageFactory->create($this->getEntity())->toHtml();
+    }
+
+    /**
+     * Return entity url.
+     *
+     * @return string
+     */
+    public function getEntityUrl()
+    {
+        return $this->_urlBuilder->getDirectUrl($this->getEntity()->getUrlPath());
     }
 }

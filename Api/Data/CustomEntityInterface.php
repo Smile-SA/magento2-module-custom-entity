@@ -55,6 +55,13 @@ interface CustomEntityInterface extends \Smile\ScopedEav\Api\Data\EntityInterfac
     public function setUrlKey($urlKey);
 
     /**
+     * Returns custom entity url path.
+     *
+     * @return string
+     */
+    public function getUrlPath();
+
+    /**
      * Retrieve existing extension attributes object or create a new one.
      *
      * @return \Smile\CustomEntity\Api\Data\CustomEntityExtensionInterface|null

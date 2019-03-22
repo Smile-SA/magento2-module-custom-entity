@@ -17,11 +17,13 @@
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
         <referenceContainer name="content">
-            <container name="smile.custom_entity.info.main" htmlTag="div" htmlClass="product-info-main" before="-">
-                <block name="smile.custom_entity.info.main.description" class="Smile\CustomEntity\Block\CustomEntity\View" template="custom_entity/view.phtml" />
-            </container>
-            <container name="smile.custom_entity.info.media" htmlTag="div" htmlClass="product media" after="smile.custom_entity.info.main">
-                <block name="smile.custom_entity.info.media.image" class="Smile\CustomEntity\Block\CustomEntity\View" template="custom_entity/view/image.phtml" />
+            <container name="smile.custom_entity.info" htmlTag="div" htmlClass="abs-add-clearfix" before="-">
+                <container name="smile.custom_entity.info.main" htmlTag="div" htmlClass="product-info-main" before="-">
+                    <block name="smile.custom_entity.info.main.description" class="Smile\CustomEntity\Block\CustomEntity\View" template="custom_entity/view.phtml" />
+                </container>
+                <container name="smile.custom_entity.info.media" htmlTag="div" htmlClass="product media" after="smile.custom_entity.info.main">
+                    <block name="smile.custom_entity.info.media.image" class="Smile\CustomEntity\Block\CustomEntity\View" template="custom_entity/view/image.phtml" />
+                </container>
             </container>
         </referenceContainer>
         <move element="page.main.title" destination="smile.custom_entity.info.main" before="-"/>

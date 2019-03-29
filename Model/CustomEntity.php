@@ -38,6 +38,8 @@ class CustomEntity extends \Smile\ScopedEav\Model\AbstractEntity implements Iden
      */
     const CACHE_TAG = 'smile_custom_entity';
 
+    const CACHE_CUSTOM_ENTITY_SET_TAG = 'smile_custom_entity_set';
+
     /**
      * @var string
      */
@@ -139,6 +141,9 @@ class CustomEntity extends \Smile\ScopedEav\Model\AbstractEntity implements Iden
     public function getIdentities()
     {
         $identities = [self::CACHE_TAG . '_' . $this->getId()];
+        if ($this->dataHasChangedFor(self::IS_ACTIVE) && $this->getIsActive()) {
+            $identities[] = self::CACHE_CUSTOM_ENTITY_SET_TAG . '_' . $this->getAttributeSetId();
+        }
 
         return array_unique($identities);
     }

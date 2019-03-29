@@ -23,6 +23,7 @@ use Smile\CustomEntity\Api\CustomEntityRepositoryInterface;
 use Magento\Framework\Api\SearchCriteriaBuilder;
 use Smile\CustomEntity\Api\Data\CustomEntityInterface;
 use Smile\CustomEntity\Block\Html\Pager;
+use Smile\CustomEntity\Model\CustomEntity;
 
 /**
  * Attribute set view block.
@@ -89,6 +90,10 @@ class View extends Template implements IdentityInterface
                 'attribute_set_id',
                 $this->getAttributeSet()->getAttributeSetId()
             );
+            $searchCriteriaBuilder->addFilter(
+                'is_active',
+                true
+            );
             $this->getPager()->addCriteria($searchCriteriaBuilder);
             $searchResult = $this->customEntityRepository->getList($searchCriteriaBuilder->create());
             $this->getPager()->setSearchResult($searchResult);
@@ -132,6 +137,7 @@ class View extends Template implements IdentityInterface
         foreach ($this->getEntities() as $entity) {
             $identities = array_merge($identities, $entity->getIdentities());
         }
+        $identities[] = CustomEntity::CACHE_CUSTOM_ENTITY_SET_TAG.'_'.$this->getAttributeSet()->getAttributeSetId();
 
         return $identities;
     }

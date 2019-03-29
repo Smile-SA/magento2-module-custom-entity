@@ -23,17 +23,20 @@
             <item name="deps" xsi:type="string">custom_entity_entity_form.custom_entity_entity_form_data_source</item>
             <item name="namespace" xsi:type="string">custom_entity_entity_form</item>
         </item>
-        <item name="buttons" xsi:type="array">
-            <item name="back" xsi:type="string">Smile\ScopedEav\Ui\Component\Entity\Edit\Button\Back</item>
-            <item name="delete" xsi:type="string">Smile\ScopedEav\Ui\Component\Entity\Edit\Button\Delete</item>
-            <item name="save" xsi:type="string">Smile\CustomEntity\Ui\Component\Entity\Edit\Button\Save</item>
-        </item>
         <item name="template" xsi:type="string">templates/form/collapsible</item>
-        <item name="config" xsi:type="array">
-            <item name="reloadItem" xsi:type="string">general-information.attribute_set_id:value</item>
-        </item>
         <item name="childrenFromMeta" xsi:type="boolean">true</item>
     </argument>
+    <settings>
+        <reloadItem>general.attribute_set_id:value</reloadItem>
+        <buttons>
+            <button name="save" class="Smile\CustomEntity\Ui\Component\Entity\Edit\Button\Save"/>
+            <button name="delete" class="Smile\ScopedEav\Ui\Component\Entity\Edit\Button\Delete"/>
+            <button name="back" class="Smile\ScopedEav\Ui\Component\Entity\Edit\Button\Back"/>
+        </buttons>
+        <deps>
+            <dep>custom_entity_entity_form.custom_entity_entity_form_data_source</dep>
+        </deps>
+    </settings>
     <dataSource name="custom_entity_entity_form_data_source">
         <argument name="dataProvider" xsi:type="configurableObject">
             <argument name="class" xsi:type="string">Smile\CustomEntity\Ui\DataProvider\CustomEntity\Form\CustomEntityDataProvider</argument>

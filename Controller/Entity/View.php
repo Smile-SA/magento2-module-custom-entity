@@ -101,7 +101,7 @@ class View extends Action
     public function execute()
     {
         $entity = $this->initEntity();
-        if (!$entity) {
+        if (!$entity || !$entity->getIsActive()) {
             return $this->resultForwardFactory->create()->forward('noroute');
         }
 

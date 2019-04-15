@@ -85,7 +85,7 @@ class Router implements RouterInterface
                 ->setModuleName('custom_entity')
                 ->setControllerName($this->getControllerName($requestPathArray))
                 ->setActionName('view')
-                ->setParam('id', $entityId);
+                ->setParam('entity_id', $entityId);
         } catch (\Exception $e) {
             // Continuing with processing of this URL.
             return null;

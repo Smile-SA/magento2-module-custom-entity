@@ -108,7 +108,7 @@ class View extends Action
      */
     private function initSet()
     {
-        $attributeSetId = (int) $this->getRequest()->getParam('id', false);
+        $attributeSetId = (int) $this->getRequest()->getParam('entity_id', false);
         if (!$attributeSetId) {
             return false;
         }

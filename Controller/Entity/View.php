@@ -119,7 +119,7 @@ class View extends Action
      */
     private function initEntity()
     {
-        $entityId = (int) $this->getRequest()->getParam('id', false);
+        $entityId = (int) $this->getRequest()->getParam('entity_id', false);
         if (!$entityId) {
             return false;
         }

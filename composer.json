@@ -11,7 +11,7 @@
     ],
     "require": {
         "php": "~7.1.3||~7.2.0",
-        "smile/module-scoped-eav": "dev-master"
+        "smile/module-scoped-eav": "~1.0.0"
     },
     "require-dev": {
         "smile/magento2-smilelab-quality-suite": "^1.0.5",

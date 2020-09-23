@@ -10,7 +10,7 @@
         }
     ],
     "require": {
-        "smile/module-scoped-eav": "~1.1.0"
+        "smile/module-scoped-eav": "~1.2.0"
     },
     "require-dev": {
         "smile/magento2-smilelab-quality-suite": "^1.0.5",

@@ -21,7 +21,7 @@
             <resource id="Magento_Backend::admin">
                 <resource id="Magento_Backend::content">
                     <resource id="Smile_CustomEntity::attributes" title="Manage Custom Entities" sortOrder="100" >
-                        <resource id="Smile_CustomEntity::entities" title="Entities" sortOrder="10" />
+                        <resource id="Smile_CustomEntity::entity" title="Entities" sortOrder="10" />
                         <resource id="Smile_CustomEntity::attributes_set" title="Custom Entities Attribute Set" sortOrder="20" />
                     </resource>
                 </resource>

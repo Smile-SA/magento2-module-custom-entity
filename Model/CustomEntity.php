@@ -314,7 +314,7 @@ class CustomEntity extends \Smile\ScopedEav\Model\AbstractEntity implements Iden
             ->addFieldToFilter('is_active', 1)
             ->setPageSize(1);
         if ($attributeSetId !== null) {
-            $collection->addFieldToSelect('attribute_set_id', $attributeSetId);
+            $collection->addFieldToFilter('attribute_set_id', $attributeSetId);
         }
         if (!$collection->getSize()) {
             throw NoSuchEntityException::doubleField('url_key', $urlKey, 'attribute_set_id', $attributeSetId);

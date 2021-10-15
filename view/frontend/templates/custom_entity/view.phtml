@@ -21,11 +21,13 @@ $customEntity = $block->getEntity();
 /** @var \Smile\CustomEntity\Helper\Output $helper */
 $helper = $this->helper(\Smile\CustomEntity\Helper\Output::class);
 ?>
-<div class="custom_entity attribute description">
-    <div class="value">
-        <?= $helper->customEntityAttribute($customEntity, $customEntity->getDescription(), 'description') ?>
+<?php if ($customEntity->getDescription()): ?>
+    <div class="custom_entity attribute description">
+        <div class="value">
+            <?= $helper->customEntityAttribute($customEntity, $customEntity->getDescription(), 'description') ?>
+        </div>
     </div>
-</div>
+<?php endif; ?>
 
 <div class="actions">
     <a href="<?= $block->getUrl($customEntity->getAttributeSetUrlKey()) ?>" title="<?= __('Back to %1', $customEntity->getAttributeSet()->getAttributeSetName()) ?>" class="action">

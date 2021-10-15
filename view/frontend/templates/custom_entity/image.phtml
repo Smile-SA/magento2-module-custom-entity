@@ -16,4 +16,6 @@
  * @var $block \Smile\CustomEntity\Block\CustomEntity\Image
  */
 ?>
-<img src="<?= /* @escapeNotVerified */ $block->getImageUrl() ?>" alt="<?= /* @escapeNotVerified */ $block->getImageAlt() ?>" />
+<?php if ($block->getImageUrl()): ?>
+  <img src="<?= /* @escapeNotVerified */ $block->getImageUrl() ?>" alt="<?= /* @escapeNotVerified */ $block->getImageAlt() ?>" />
+<?php endif; ?>

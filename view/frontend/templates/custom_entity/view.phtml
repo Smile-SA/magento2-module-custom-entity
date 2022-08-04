@@ -23,7 +23,7 @@ $helper = $this->helper(\Smile\CustomEntity\Helper\Output::class);
 ?>
 <div class="custom_entity attribute description">
     <div class="value">
-        <?= $helper->customEntityAttribute($customEntity, $customEntity->getDescription(), 'description') ?>
+        <?= $helper->customEntityAttribute($customEntity, (string) $customEntity->getDescription(), 'description') ?>
     </div>
 </div>
 

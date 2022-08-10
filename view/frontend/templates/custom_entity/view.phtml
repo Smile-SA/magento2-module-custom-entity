@@ -22,11 +22,11 @@ $customEntity = $block->getEntity();
 $helper = $this->helper(\Smile\CustomEntity\Helper\Output::class);
 ?>
 <?php if ($customEntity->getDescription()): ?>
-    <div class="custom_entity attribute description">
-        <div class="value">
-            <?= $helper->customEntityAttribute($customEntity, $customEntity->getDescription(), 'description') ?>
-        </div>
-    </div>
+  <div class="custom_entity attribute description">
+      <div class="value">
+          <?= $helper->customEntityAttribute($customEntity, (string) $customEntity->getDescription(), 'description') ?>
+      </div>
+  </div>
 <?php endif; ?>
 
 <div class="actions">

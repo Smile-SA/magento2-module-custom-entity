@@ -2,11 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
-## [1.2.1] - 2022-08-04
-[1.2.1]: https://github.com/Smile-SA/magento2-module-custom-entity/compare/1.2.0...1.2.1
+## [1.3.0] - 2022-08-10
+[1.3.0]: https://github.com/Smile-SA/magento2-module-custom-entity/compare/1.2.0...1.3.0
 
 - Add compatibility version for Magento 2.4.4 and Php 8
 - Add CHANGELOG.md file
+- Check empty values before rendering in templates
+- Fitler by attribute set id when the identifier is being checked
 
 ## [1.2.0] - 2020-09-30
 [1.2.0]: https://github.com/Smile-SA/magento2-module-custom-entity/compare/1.1.0...1.2.0

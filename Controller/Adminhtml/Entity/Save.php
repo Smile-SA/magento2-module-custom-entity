@@ -26,5 +26,5 @@ class Save extends \Smile\ScopedEav\Controller\Adminhtml\Entity\Save
     /**
      * @var string
      */
-    const ADMIN_RESOURCE = 'Smile_CustomEntity::entity';
+    const ADMIN_RESOURCE = 'Smile_CustomEntity::entities';
 }

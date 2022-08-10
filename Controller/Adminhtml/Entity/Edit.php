@@ -26,5 +26,5 @@ class Edit extends \Smile\ScopedEav\Controller\Adminhtml\Entity\Edit
     /**
      * @var string
      */
-    const ADMIN_RESOURCE = 'Smile_CustomEntity::entity';
+    const ADMIN_RESOURCE = 'Smile_CustomEntity::entities';
 }

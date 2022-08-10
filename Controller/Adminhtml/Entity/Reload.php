@@ -26,5 +26,5 @@ class Reload extends \Smile\ScopedEav\Controller\Adminhtml\Entity\Reload
     /**
      * @var string
      */
-    const ADMIN_RESOURCE = 'Smile_CustomEntity::entity';
+    const ADMIN_RESOURCE = 'Smile_CustomEntity::entities';
 }

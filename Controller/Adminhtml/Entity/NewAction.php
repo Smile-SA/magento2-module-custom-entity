@@ -26,5 +26,5 @@ class NewAction extends \Smile\ScopedEav\Controller\Adminhtml\Entity\NewAction
     /**
      * @var string
      */
-    const ADMIN_RESOURCE = 'Smile_CustomEntity::entity';
+    const ADMIN_RESOURCE = 'Smile_CustomEntity::entities';
 }

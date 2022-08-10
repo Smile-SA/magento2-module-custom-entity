@@ -1,16 +1,7 @@
 <?php
-/**
- * DISCLAIMER
- *
- * Do not edit or add to this file if you wish to upgrade this module to newer
- * versions in the future.
- *
- * @category  Smile
- * @package   Smile\CustomEntity
- * @author    Maxime Leclercq <maxime.leclercq@smile.fr>
- * @copyright 2019 Smile
- * @license   Open Software License ("OSL") v. 3.0
- */
+
+declare(strict_types=1);
+
 namespace Smile\CustomEntity\Controller\Entity;
 
 use Magento\Eav\Api\AttributeSetRepositoryInterface;
@@ -24,10 +15,6 @@ use Smile\CustomEntity\Api\Data\CustomEntityInterface;
 
 /**
  * Custom entity view controller.
- *
- * @category Smile
- * @package  Smile\CustomEntity
- * @author   Maxime Leclercq <maxime.leclercq@smile.fr>
  */
 class View extends Action
 {

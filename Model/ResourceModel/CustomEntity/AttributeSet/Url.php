@@ -1,16 +1,7 @@
 <?php
-/**
- * DISCLAIMER
- *
- * Do not edit or add to this file if you wish to upgrade this module to newer
- * versions in the future.
- *
- * @category  Smile
- * @package   Smile\CustomEntity
- * @author    Maxime Leclercq <maxime.leclercq@smile.fr>
- * @copyright 2019 Smile
- * @license   Open Software License ("OSL") v. 3.0
- */
+
+declare(strict_types=1);
+
 namespace Smile\CustomEntity\Model\ResourceModel\CustomEntity\AttributeSet;
 
 use Magento\Framework\Exception\NotFoundException;
@@ -19,10 +10,6 @@ use Magento\Framework\Model\ResourceModel\Db\Context;
 
 /**
  * Attribute set url resource model.
- *
- * @category Smile
- * @package  Smile\CustomEntity
- * @author   Maxime Leclercq <maxime.leclercq@smile.fr>
  */
 class Url extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
 {

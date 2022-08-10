@@ -1,28 +1,12 @@
 <?xml version="1.0"?>
-<!--
-/**
- * DISCLAIMER
- *
- * Do not edit or add to this file if you wish to upgrade Smile Custom Entity module to newer
- * versions in the future.
- *
- *
- * @category  Smile
- * @package   Smile\CustomEntity
- * @author    Aurelien FOUCRET <aurelien.foucret@smile.fr>
- * @copyright 2019 Smile
- * @license   Open Software License ("OSL") v. 3.0
- */
- -->
- 
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd" layout="admin-2columns-left">
-    
+
     <!-- Custom entity attribute backend common layout. -->
     <update handle="custom_entity_attribute" />
-    
+
     <!-- Generic attribute edit form (declared in the Smile_ScopedEav module). -->
     <update handle="scoped_eav_attribute_edit_form" />
-    
+
     <body>
         <referenceContainer name="main">
             <!-- Append custom entity specifics fields. -->

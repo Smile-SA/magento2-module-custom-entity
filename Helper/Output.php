@@ -1,16 +1,7 @@
 <?php
-/**
- * DISCLAIMER
- *
- * Do not edit or add to this file if you wish to upgrade this module to newer
- * versions in the future.
- *
- * @category  Smile
- * @package   Smile\CustomEntity
- * @author    Maxime Leclercq <maxime.leclercq@smile.fr>
- * @copyright 2019 Smile
- * @license   Open Software License ("OSL") v. 3.0
- */
+
+declare(strict_types=1);
+
 namespace Smile\CustomEntity\Helper;
 
 use Smile\CustomEntity\Api\Data\CustomEntityInterface;
@@ -18,10 +9,6 @@ use Smile\CustomEntity\Model\CustomEntity;
 
 /**
  * Custom entity output helper.
- *
- * @category Smile
- * @package  Smile\CustomEntity
- * @author   Maxime Leclercq <maxime.leclercq@smile.fr>
  */
 class Output extends \Magento\Catalog\Helper\Output
 {

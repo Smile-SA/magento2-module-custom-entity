@@ -55,6 +55,16 @@ Documentation is available [here](https://github.com/Smile-SA/magento2-module-cu
 
 The User Guide is also available on PDF format [here](https://github.com/Smile-SA/magento2-module-custom-entity/wiki/static/UserGuide.pdf)
 
+## Contributing
+
+You can contribute to this module by submitting issues or pull requests.
+
+For more details, please take a look at the [contribution guidelines](CONTRIBUTING.md).
+
+## Changelog
+
+All notable changes are recorded in this [changelog](CHANGELOG.md).
+
 ## Standards & Code Quality
 
 Built on top of Magento2, our module respects all its prerequisites and code quality rules.

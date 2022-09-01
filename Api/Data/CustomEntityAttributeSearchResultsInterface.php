@@ -4,26 +4,28 @@ declare(strict_types=1);
 
 namespace Smile\CustomEntity\Api\Data;
 
+use Magento\Framework\Api\SearchResultsInterface;
+
 /**
  * Custom entity attribute search result interface.
  *
  * @api
  */
-interface CustomEntityAttributeSearchResultsInterface extends \Magento\Framework\Api\SearchResultsInterface
+interface CustomEntityAttributeSearchResultsInterface extends SearchResultsInterface
 {
     /**
      * Get attributes list.
      *
-     * @return \Smile\CustomEntity\Api\Data\CustomEntityAttributeInterface[]
+     * @return CustomEntityAttributeInterface[]|null
      */
-    public function getItems();
+    public function getItems(): ?array;
 
     /**
      * Set attributes list.
      *
-     * @param \Smile\CustomEntity\Api\Data\CustomEntityAttributeInterface[] $items Items.
+     * @param CustomEntityAttributeInterface[] $items Items.
      *
      * @return $this
      */
-    public function setItems(array $items);
+    public function setItems(array $items): self;
 }

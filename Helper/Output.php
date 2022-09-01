@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Smile\CustomEntity\Helper;
 
+use Magento\Framework\Exception\LocalizedException;
 use Smile\CustomEntity\Api\Data\CustomEntityInterface;
 use Smile\CustomEntity\Model\CustomEntity;
 
@@ -19,15 +20,15 @@ class Output extends \Magento\Catalog\Helper\Output
      * @param string                $attributeHtml Attribute html value.
      * @param string                $attributeName Attribute name.
      *
-     * @return string
-     * @throws \Magento\Framework\Exception\LocalizedException
+     * @return string|null
+     * @throws LocalizedException
      * @SuppressWarnings(PHPMD.CyclomaticComplexity)
      */
     public function customEntityAttribute(
         CustomEntityInterface $customEntity,
         string $attributeHtml,
         string $attributeName
-    ) {
+    ): ?string {
         $attribute = $this->_eavConfig->getAttribute(CustomEntity::ENTITY, $attributeName);
         if ($attribute &&
             $attribute->getId() &&

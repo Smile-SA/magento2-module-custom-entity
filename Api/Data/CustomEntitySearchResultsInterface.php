@@ -16,9 +16,9 @@ interface CustomEntitySearchResultsInterface extends SearchResultsInterface
     /**
      * Get custom entities list.
      *
-     * @return CustomEntityInterface[]
+     * @return CustomEntityInterface[]|null
      */
-    public function getItems();
+    public function getItems(): ?array;
 
     /**
      * Set custom entities list.
@@ -27,5 +27,5 @@ interface CustomEntitySearchResultsInterface extends SearchResultsInterface
      *
      * @return $this
      */
-    public function setItems(array $items);
+    public function setItems(array $items): self;
 }

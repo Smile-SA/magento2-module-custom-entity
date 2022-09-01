@@ -4,6 +4,14 @@ declare(strict_types=1);
 
 namespace Smile\CustomEntity\Controller\Adminhtml\Entity;
 
+use Magento\Cms\Model\Wysiwyg\Config;
+use Magento\Framework\App\RequestInterface;
+use Magento\Framework\Exception\NoSuchEntityException;
+use Magento\Framework\Registry;
+use Magento\Store\Model\StoreManagerInterface;
+use Smile\CustomEntity\Api\Data\CustomEntityInterface;
+use Smile\CustomEntity\Api\Data\CustomEntityInterfaceFactory;
+use Smile\ScopedEav\Api\Data\EntityInterface;
 use Smile\ScopedEav\Controller\Adminhtml\Entity\BuilderInterface;
 
 /**
@@ -12,38 +20,38 @@ use Smile\ScopedEav\Controller\Adminhtml\Entity\BuilderInterface;
 class Builder implements BuilderInterface
 {
     /**
-     * @var \Smile\CustomEntity\Api\Data\CustomEntityInterfaceFactory
+     * @var CustomEntityInterfaceFactory
      */
     private $customEntityFactory;
 
     /**
-     * @var \Magento\Store\Model\StoreManagerInterface
+     * @var StoreManagerInterface
      */
     private $storeManager;
 
     /**
-     * @var \Magento\Cms\Model\Wysiwyg\Config
+     * @var Config
      */
     private $wysiwygConfig;
 
     /**
-     * @var \Magento\Framework\Registry
+     * @var Registry
      */
     private $registry;
 
     /**
      * Constructor.
      *
-     * @param \Smile\CustomEntity\Api\Data\CustomEntityInterfaceFactory $customEntityFactory Custom entity factory.
-     * @param \Magento\Store\Model\StoreManagerInterface                $storeManager        Store manager.
-     * @param \Magento\Framework\Registry                               $registry            Registry.
-     * @param \Magento\Cms\Model\Wysiwyg\Config                         $wysiwygConfig       Wysiwyg config.
+     * @param CustomEntityInterfaceFactory $customEntityFactory Custom entity factory.
+     * @param StoreManagerInterface $storeManager Store manager.
+     * @param Registry $registry Registry.
+     * @param Config $wysiwygConfig Wysiwyg config.
      */
     public function __construct(
-        \Smile\CustomEntity\Api\Data\CustomEntityInterfaceFactory $customEntityFactory,
-        \Magento\Store\Model\StoreManagerInterface $storeManager,
-        \Magento\Framework\Registry $registry,
-        \Magento\Cms\Model\Wysiwyg\Config $wysiwygConfig
+        CustomEntityInterfaceFactory $customEntityFactory,
+        StoreManagerInterface $storeManager,
+        Registry $registry,
+        Config $wysiwygConfig
     ) {
         $this->customEntityFactory = $customEntityFactory;
         $this->storeManager        = $storeManager;
@@ -52,10 +60,12 @@ class Builder implements BuilderInterface
     }
 
     /**
-     * {@inheritDoc}
+     * @param RequestInterface $request
+     * @return CustomEntityInterface|EntityInterface
+     * @throws NoSuchEntityException
      */
     // @codingStandardsIgnoreLine Move class into Model folder (MEQP2.Classes.PublicNonInterfaceMethods.PublicMethodFound)
-    public function build(\Magento\Framework\App\RequestInterface $request)
+    public function build(RequestInterface $request): ?EntityInterface
     {
         $entityId = (int) $request->getParam('id');
         $entity   = $this->customEntityFactory->create();

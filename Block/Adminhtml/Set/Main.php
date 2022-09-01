@@ -4,7 +4,13 @@ declare(strict_types=1);
 
 namespace Smile\CustomEntity\Block\Adminhtml\Set;
 
+use Magento\Backend\Block\Template\Context;
 use Magento\Catalog\Model\Entity\Product\Attribute\Group\AttributeMapperInterface;
+use Magento\Catalog\Model\ResourceModel\Product\Attribute\CollectionFactory;
+use Magento\Eav\Model\Entity\Attribute\GroupFactory;
+use Magento\Eav\Model\Entity\TypeFactory;
+use Magento\Framework\Json\EncoderInterface;
+use Magento\Framework\Registry;
 use Smile\CustomEntity\Model\ResourceModel\CustomEntity\Attribute\CollectionFactory as AttributeCollectionFactory;
 
 /**
@@ -14,24 +20,23 @@ class Main extends \Smile\ScopedEav\Block\Adminhtml\Set\Main
 {
     /**
      *
-     * @param \Magento\Backend\Block\Template\Context                                  $context                    Block context.
-     * @param \Magento\Framework\Json\EncoderInterface                                 $jsonEncoder                JSON encoder.
-     * @param \Magento\Eav\Model\Entity\TypeFactory                                    $typeFactory                Entity type factory.
-     * @param \Magento\Eav\Model\Entity\Attribute\GroupFactory                         $groupFactory               Attribute group factory.
-     * @param \Magento\Catalog\Model\ResourceModel\Product\Attribute\CollectionFactory $collectionFactory          Unused (compat only).
-     * @param \Magento\Framework\Registry                                              $registry                   Registry.
-     * @param AttributeMapperInterface                                                 $attributeMapper            Attribute mapper.
-     * @param AttributeCollectionFactory                                               $attributeCollectionFactory Attribute collection
-     *                                                                                                             factory.
-     * @param array                                                                    $data                       Additional data.
+     * @param Context $context Block context.
+     * @param EncoderInterface $jsonEncoder JSON encoder.
+     * @param TypeFactory $typeFactory Entity type factory.
+     * @param GroupFactory $groupFactory Attribute group factory.
+     * @param CollectionFactory $collectionFactory Unused (compat only).
+     * @param Registry $registry Registry.
+     * @param AttributeMapperInterface $attributeMapper Attribute mapper.
+     * @param AttributeCollectionFactory $attributeCollectionFactory Attribute collection factory.
+     * @param array $data Additional data.
      */
     public function __construct(
-        \Magento\Backend\Block\Template\Context $context,
-        \Magento\Framework\Json\EncoderInterface $jsonEncoder,
-        \Magento\Eav\Model\Entity\TypeFactory $typeFactory,
-        \Magento\Eav\Model\Entity\Attribute\GroupFactory $groupFactory,
-        \Magento\Catalog\Model\ResourceModel\Product\Attribute\CollectionFactory $collectionFactory,
-        \Magento\Framework\Registry $registry,
+        Context $context,
+        EncoderInterface $jsonEncoder,
+        TypeFactory $typeFactory,
+        GroupFactory $groupFactory,
+        CollectionFactory $collectionFactory,
+        Registry $registry,
         AttributeMapperInterface $attributeMapper,
         AttributeCollectionFactory $attributeCollectionFactory,
         array $data = []

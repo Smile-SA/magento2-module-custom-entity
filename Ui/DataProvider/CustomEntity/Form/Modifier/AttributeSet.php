@@ -4,13 +4,17 @@ declare(strict_types=1);
 
 namespace Smile\CustomEntity\Ui\DataProvider\CustomEntity\Form\Modifier;
 
+use Magento\Framework\UrlInterface;
 use Magento\Ui\Component\Form\Field;
 use Smile\CustomEntity\Api\Data\CustomEntityInterface;
+use Smile\CustomEntity\Model\CustomEntity\AttributeSet\Options;
+use Smile\ScopedEav\Model\Locator\LocatorInterface;
+use Smile\ScopedEav\Ui\DataProvider\Entity\Form\Modifier\AbstractModifier;
 
 /**
  * Custom entity attribute set edit field management.
  */
-class AttributeSet extends \Smile\ScopedEav\Ui\DataProvider\Entity\Form\Modifier\AbstractModifier
+class AttributeSet extends AbstractModifier
 {
     /**
      * @var int
@@ -18,35 +22,35 @@ class AttributeSet extends \Smile\ScopedEav\Ui\DataProvider\Entity\Form\Modifier
     const ATTRIBUTE_SET_FIELD_ORDER = 30;
 
     /**
-     * @var \Smile\CustomEntity\Model\CustomEntity\AttributeSet\Options
+     * @var Options
      */
     private $attributeSetOptions;
 
     /**
-     * @var \Magento\Framework\UrlInterface
+     * @var UrlInterface
      */
     private $urlBuilder;
 
     /**
-     * @var \Smile\ScopedEav\Model\Locator\LocatorInterface
+     * @var LocatorInterface
      */
     private $locator;
 
     /**
      * Constructor.
      *
-     * @param \Smile\ScopedEav\Model\Locator\LocatorInterface             $locator             Entity locator.
-     * @param \Magento\Framework\UrlInterface                             $urlBuilder          URL builder.
-     * @param \Smile\CustomEntity\Model\CustomEntity\AttributeSet\Options $attributeSetOptions Attribute set source model.
+     * @param LocatorInterface $locator Entity locator.
+     * @param UrlInterface $urlBuilder URL builder.
+     * @param Options $attributeSetOptions Attribute set source model.
      */
     public function __construct(
-        \Smile\ScopedEav\Model\Locator\LocatorInterface $locator,
-        \Magento\Framework\UrlInterface $urlBuilder,
-        \Smile\CustomEntity\Model\CustomEntity\AttributeSet\Options $attributeSetOptions
+        LocatorInterface $locator,
+        UrlInterface $urlBuilder,
+        Options $attributeSetOptions
     ) {
         $this->attributeSetOptions = $attributeSetOptions;
-        $this->urlBuilder          = $urlBuilder;
-        $this->locator             = $locator;
+        $this->urlBuilder = $urlBuilder;
+        $this->locator = $locator;
     }
 
     /**

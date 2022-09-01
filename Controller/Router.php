@@ -4,10 +4,13 @@ declare(strict_types=1);
 
 namespace Smile\CustomEntity\Controller;
 
+use Magento\Framework\App\ActionFactory;
 use Magento\Framework\App\ActionInterface;
 use Magento\Framework\App\RequestInterface;
 use Magento\Framework\App\RouterInterface;
 use Magento\Framework\App\Request\Http as HttpRequest;
+use Magento\Framework\Exception\NoSuchEntityException;
+use Magento\Framework\Exception\NotFoundException;
 use Smile\CustomEntity\Api\Data\CustomEntityInterface;
 use Smile\CustomEntity\Model\CustomEntity;
 use Smile\CustomEntity\Model\CustomEntity\AttributeSet\Url;
@@ -23,7 +26,7 @@ class Router implements RouterInterface
     private $urlSetModel;
 
     /**
-     * @var \Magento\Framework\App\ActionFactory
+     * @var ActionFactory
      */
     private $actionFactory;
 
@@ -35,12 +38,12 @@ class Router implements RouterInterface
     /**
      * Router constructor.
      *
-     * @param \Magento\Framework\App\ActionFactory $actionFactory Action factory.
-     * @param Url                                  $urlSetModel   Attribute set url model.
-     * @param CustomEntityInterface                $customEntity  Custom entity model.
+     * @param ActionFactory $actionFactory Action factory.
+     * @param Url $urlSetModel Attribute set url model.
+     * @param CustomEntityInterface $customEntity Custom entity model.
      */
     public function __construct(
-        \Magento\Framework\App\ActionFactory $actionFactory,
+        ActionFactory $actionFactory,
         Url $urlSetModel,
         CustomEntityInterface $customEntity
     ) {
@@ -88,10 +91,11 @@ class Router implements RouterInterface
      *
      * @param array $requestPathArray Request path array
      *
-     * @return int
-     * @throws \Magento\Framework\Exception\NotFoundException
+     * @return mixed
+     * @throws NoSuchEntityException
+     * @throws NotFoundException
      */
-    private function matchCustomEntity(array $requestPathArray): int
+    private function matchCustomEntity(array $requestPathArray)
     {
         $entityId = $customEntitySetId = $this->urlSetModel->checkIdentifier(array_shift($requestPathArray));
         if (!empty($requestPathArray) && $customEntitySetId) {
@@ -106,9 +110,9 @@ class Router implements RouterInterface
      *
      * @param array $requestPathArray Request path array.
      *
-     * @return string
+     * @return string|null
      */
-    private function getControllerName(array $requestPathArray)
+    private function getControllerName(array $requestPathArray): ?string
     {
         return $this->isCustomEntitySet($requestPathArray) ? 'set' : 'entity';
     }

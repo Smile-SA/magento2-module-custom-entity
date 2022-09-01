@@ -37,18 +37,18 @@ class View extends Template implements IdentityInterface
     private $customEntityRepository;
 
     /**
-     * @var \Smile\CustomEntity\Api\Data\CustomEntityInterface[]|null
+     * @var CustomEntityInterface[]|null
      */
     private $entities;
 
     /**
      * View constructor.
      *
-     * @param Template\Context                $context                      Context.
-     * @param Registry                        $registry                     Registry.
-     * @param CustomEntityRepositoryInterface $customEntityRepository       Custom entity repository.
-     * @param SearchCriteriaBuilderFactory    $searchCriteriaBuilderFactory Search criteria builder factory.
-     * @param array                           $data                         Block data.
+     * @param Template\Context $context Context.
+     * @param Registry $registry Registry.
+     * @param CustomEntityRepositoryInterface $customEntityRepository Custom entity repository.
+     * @param SearchCriteriaBuilderFactory $searchCriteriaBuilderFactory Search criteria builder factory.
+     * @param array $data Block data.
      */
     public function __construct(
         Template\Context $context,
@@ -66,9 +66,9 @@ class View extends Template implements IdentityInterface
     /**
      * Return custom entities.
      *
-     * @return \Smile\CustomEntity\Api\Data\CustomEntityInterface[]
+     * @return CustomEntityInterface[]|null
      */
-    public function getEntities()
+    public function getEntities(): ?array
     {
         if (!$this->entities) {
             /** @var SearchCriteriaBuilder $searchCriteriaBuilder */
@@ -96,9 +96,9 @@ class View extends Template implements IdentityInterface
      *
      * @param CustomEntityInterface $entity Custom entity.
      *
-     * @return string
+     * @return string|null
      */
-    public function getEntityHtml(CustomEntityInterface $entity)
+    public function getEntityHtml(CustomEntityInterface $entity): ?string
     {
         return $this->getEntityRenderer($this->getAttributeSet()->getAttributeSetName())->setEntity($entity)->toHtml();
     }
@@ -108,7 +108,7 @@ class View extends Template implements IdentityInterface
      *
      * @return AttributeSetInterface|null
      */
-    public function getAttributeSet()
+    public function getAttributeSet(): ?AttributeSetInterface
     {
         return $this->registry->registry('current_attribute_set');
     }

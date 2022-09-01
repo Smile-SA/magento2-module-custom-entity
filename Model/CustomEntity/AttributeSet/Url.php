@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Smile\CustomEntity\Model\CustomEntity\AttributeSet;
 
+use Magento\Framework\Exception\NotFoundException;
 use Smile\CustomEntity\Model\ResourceModel\CustomEntity\AttributeSet\Url as UrlResourceModel;
 
 /**
@@ -32,10 +33,10 @@ class Url
      *
      * @param string $urlKey Attribute set url key.
      *
-     * @return int
-     * @throws \Magento\Framework\Exception\NotFoundException
+     * @return int|null
+     * @throws NotFoundException
      */
-    public function checkIdentifier(string $urlKey): int
+    public function checkIdentifier(string $urlKey): ?int
     {
         return $this->urlResourceModel->checkIdentifier($urlKey);
     }

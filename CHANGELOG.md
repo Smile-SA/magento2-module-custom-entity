@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.3.2] - 2022-09-01
+[1.3.2]: https://github.com/Smile-SA/magento2-module-custom-entity-product-link/compare/1.3.1...1.3.2
+
+- Add strict types on php files
+- Remove disclaimer / annotation comments
+- Add .gitattributes and update .gitignore
+
 ## [1.3.1] - 2022-08-23
 [1.3.1]: https://github.com/Smile-SA/magento2-module-custom-entity/compare/1.3.0...1.3.1
 

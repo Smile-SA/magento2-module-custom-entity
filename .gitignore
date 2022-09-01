@@ -1,6 +1,7 @@
 # Standard composer ignored paths
 composer.phar
 /vendor/
+/composer.lock
 
 # Standard IDEs ignored paths
 .metadata

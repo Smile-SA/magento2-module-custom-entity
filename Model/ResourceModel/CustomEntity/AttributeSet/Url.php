@@ -6,12 +6,13 @@ namespace Smile\CustomEntity\Model\ResourceModel\CustomEntity\AttributeSet;
 
 use Magento\Framework\Exception\NotFoundException;
 use Magento\Framework\Filter\FilterManager;
+use Magento\Framework\Model\ResourceModel\Db\AbstractDb;
 use Magento\Framework\Model\ResourceModel\Db\Context;
 
 /**
  * Attribute set url resource model.
  */
-class Url extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
+class Url extends AbstractDb
 {
     /**
      * @var FilterManager
@@ -21,9 +22,9 @@ class Url extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
     /**
      * Url constructor.
      *
-     * @param Context       $context        Context.
-     * @param FilterManager $filterManager  Filter manager.
-     * @param string|null   $connectionName Connection name.
+     * @param Context $context Context.
+     * @param FilterManager $filterManager Filter manager.
+     * @param string|null $connectionName Connection name.
      */
     public function __construct(
         Context $context,
@@ -39,10 +40,10 @@ class Url extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
      *
      * @param string $urlKey Url key
      *
-     * @return int
+     * @return int|null
      * @throws NotFoundException
      */
-    public function checkIdentifier(string $urlKey): int
+    public function checkIdentifier(string $urlKey): ?int
     {
         $urlKeyArray = explode('-', $urlKey);
         $select = $this->getConnection()->select();
@@ -67,7 +68,7 @@ class Url extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
      * @return void
      */
     // @codingStandardsIgnoreLine use like (MEQP1.CodeAnalysis.EmptyBlock.DetectedFunction)
-    protected function _construct()
+    protected function _construct(): void
     {
     }
 }

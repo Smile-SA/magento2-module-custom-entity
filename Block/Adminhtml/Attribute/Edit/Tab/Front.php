@@ -4,10 +4,17 @@ declare(strict_types=1);
 
 namespace Smile\CustomEntity\Block\Adminhtml\Attribute\Edit\Tab;
 
+use Magento\Backend\Block\Template\Context;
+use Magento\Backend\Block\Widget\Form\Generic;
+use Magento\Config\Model\Config\Source\Yesno;
+use Magento\Framework\Data\FormFactory;
+use Magento\Framework\Registry;
+use Smile\CustomEntity\Api\Data\CustomEntityAttributeInterface;
+
 /**
- * Custom entity attribute store front properties form.
+ * Custom entity attribute storefront properties form.
  */
-class Front extends \Magento\Backend\Block\Widget\Form\Generic
+class Front extends Generic
 {
     /**
      * @var Yesno
@@ -17,17 +24,17 @@ class Front extends \Magento\Backend\Block\Widget\Form\Generic
     /**
      * Constructor.
      *
-     * @param \Magento\Backend\Block\Template\Context   $context     Context.
-     * @param \Magento\Framework\Registry               $registry    Registry.
-     * @param \Magento\Framework\Data\FormFactory       $formFactory Form factory.
-     * @param \Magento\Config\Model\Config\Source\Yesno $yesNo       Yes/No source model
-     * @param array                                     $data        Additional data.
+     * @param Context $context Context.
+     * @param Registry $registry Registry.
+     * @param FormFactory $formFactory Form factory.
+     * @param Yesno $yesNo Yes/No source model
+     * @param array $data Additional data.
      */
     public function __construct(
-        \Magento\Backend\Block\Template\Context $context,
-        \Magento\Framework\Registry $registry,
-        \Magento\Framework\Data\FormFactory $formFactory,
-        \Magento\Config\Model\Config\Source\Yesno $yesNo,
+        Context $context,
+        Registry $registry,
+        FormFactory $formFactory,
+        Yesno $yesNo,
         array $data = []
     ) {
         parent::__construct($context, $registry, $formFactory, $data);
@@ -73,9 +80,9 @@ class Front extends \Magento\Backend\Block\Widget\Form\Generic
     /**
      * Retrieve attribute object from registry
      *
-     * @return \Smile\CustomEntity\Api\Data\CustomEntityAttributeInterface
+     * @return CustomEntityAttributeInterface|null
      */
-    private function getAttributeObject()
+    private function getAttributeObject(): ?CustomEntityAttributeInterface
     {
         return $this->_coreRegistry->registry('entity_attribute');
     }

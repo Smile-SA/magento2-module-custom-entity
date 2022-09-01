@@ -4,10 +4,12 @@ declare(strict_types=1);
 
 namespace Smile\CustomEntity\Model\ResourceModel\CustomEntity;
 
+use Magento\Catalog\Model\ResourceModel\Collection\AbstractCollection;
+
 /**
  * Custom entity collection model.
  */
-class Collection extends \Magento\Catalog\Model\ResourceModel\Collection\AbstractCollection
+class Collection extends AbstractCollection
 {
     /**
      * Event prefix
@@ -26,7 +28,7 @@ class Collection extends \Magento\Catalog\Model\ResourceModel\Collection\Abstrac
     /**
      * {@inheritDoc}
      */
-    public function addIsActiveFilter()
+    public function addIsActiveFilter(): self
     {
         $this->addAttributeToFilter('is_active', 1);
         $this->_eventManager->dispatch($this->_eventPrefix . '_add_is_active_filter', [$this->_eventObject => $this]);
@@ -39,7 +41,7 @@ class Collection extends \Magento\Catalog\Model\ResourceModel\Collection\Abstrac
      *
      * @return void
      */
-    protected function _construct()
+    protected function _construct(): void
     {
         $this->_init(
             'Smile\CustomEntity\Model\CustomEntity',

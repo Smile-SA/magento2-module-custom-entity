@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Smile\CustomEntity\Block\Html;
 
+use Magento\Framework\Api\SearchCriteriaBuilder;
 use Magento\Framework\Api\SearchResultsInterface;
 
 /**
@@ -26,11 +27,11 @@ class Pager extends \Magento\Theme\Block\Html\Pager
     /**
      * Add current page and page size condition into search criteria builder.
      *
-     * @param \Magento\Framework\Api\SearchCriteriaBuilder $searchCriteriaBuilder Search criteria builder.
+     * @param SearchCriteriaBuilder $searchCriteriaBuilder Search criteria builder.
      *
-     * @return \Magento\Framework\Api\SearchCriteriaBuilder
+     * @return SearchCriteriaBuilder|null
      */
-    public function addCriteria(\Magento\Framework\Api\SearchCriteriaBuilder $searchCriteriaBuilder)
+    public function addCriteria(SearchCriteriaBuilder $searchCriteriaBuilder): ?SearchCriteriaBuilder
     {
         $searchCriteriaBuilder->setCurrentPage($this->getCurrentPage());
         if ((int) $this->getLimit()) {
@@ -47,7 +48,7 @@ class Pager extends \Magento\Theme\Block\Html\Pager
      *
      * @return $this
      */
-    public function setSearchResult(SearchResultsInterface $searchResult)
+    public function setSearchResult(SearchResultsInterface $searchResult): self
     {
         $this->searchResult = $searchResult;
 
@@ -57,9 +58,9 @@ class Pager extends \Magento\Theme\Block\Html\Pager
     /**
      * Return first page number.
      *
-     * @return int
+     * @return int|null
      */
-    public function getFirstNum()
+    public function getFirstNum(): ?int
     {
         return $this->getLimit() * ($this->getCurrentPage() - 1) + 1;
     }
@@ -67,9 +68,9 @@ class Pager extends \Magento\Theme\Block\Html\Pager
     /**
      * Return last page number.
      *
-     * @return int
+     * @return int|null
      */
-    public function getLastNum()
+    public function getLastNum(): ?int
     {
         return $this->getLimit() * ($this->getCurrentPage() - 1) + count($this->searchResult->getItems());
     }
@@ -77,9 +78,9 @@ class Pager extends \Magento\Theme\Block\Html\Pager
     /**
      * Retrieve total number of items.
      *
-     * @return int
+     * @return int|null
      */
-    public function getTotalNum()
+    public function getTotalNum(): ?int
     {
         return$this->searchResult->getTotalCount();
     }
@@ -89,7 +90,7 @@ class Pager extends \Magento\Theme\Block\Html\Pager
      *
      * @return bool
      */
-    public function isFirstPage()
+    public function isFirstPage(): bool
     {
         return $this->getCurrentPage() == 1;
     }
@@ -97,9 +98,9 @@ class Pager extends \Magento\Theme\Block\Html\Pager
     /**
      * Retrieve number of last page
      *
-     * @return int
+     * @return float|null
      */
-    public function getLastPageNum()
+    public function getLastPageNum(): ?float
     {
         return ceil($this->searchResult->getTotalCount() / $this->getLimit());
     }
@@ -109,7 +110,7 @@ class Pager extends \Magento\Theme\Block\Html\Pager
      *
      * @return bool
      */
-    public function isLastPage()
+    public function isLastPage(): bool
     {
         return $this->getCurrentPage() >= $this->getLastPageNum();
     }
@@ -117,9 +118,9 @@ class Pager extends \Magento\Theme\Block\Html\Pager
     /**
      * Return pages range.
      *
-     * @return array
+     * @return array|null
      */
-    public function getPages()
+    public function getPages(): ?array
     {
         list($start, $finish) = $this->getPagesInterval();
 
@@ -129,9 +130,9 @@ class Pager extends \Magento\Theme\Block\Html\Pager
     /**
      * Return previous page url.
      *
-     * @return string
+     * @return string|null
      */
-    public function getPreviousPageUrl()
+    public function getPreviousPageUrl(): ?string
     {
         return $this->getPageUrl($this->getCurrentPage() - 1);
     }
@@ -139,9 +140,9 @@ class Pager extends \Magento\Theme\Block\Html\Pager
     /**
      * Return next page url.
      *
-     * @return string
+     * @return string|null
      */
-    public function getNextPageUrl()
+    public function getNextPageUrl(): ?string
     {
         return $this->getPageUrl($this->getCurrentPage() + 1);
     }
@@ -149,9 +150,9 @@ class Pager extends \Magento\Theme\Block\Html\Pager
     /**
      * Retrieve last page URL.
      *
-     * @return string
+     * @return string|null
      */
-    public function getLastPageUrl()
+    public function getLastPageUrl(): ?string
     {
         return $this->getPageUrl($this->getLastPageNum());
     }
@@ -161,7 +162,7 @@ class Pager extends \Magento\Theme\Block\Html\Pager
      *
      * @return $this
      */
-    protected function _initFrame()
+    protected function _initFrame(): self
     {
         if (!$this->isFrameInitialized()) {
             list($start, $end) = $this->getPagesInterval();
@@ -176,9 +177,9 @@ class Pager extends \Magento\Theme\Block\Html\Pager
     /**
      * Return start and end pages number.
      *
-     * @return array
+     * @return array|null
      */
-    private function getPagesInterval(): array
+    private function getPagesInterval(): ?array
     {
         if ($this->getLastPageNum() <= $this->_displayPages) {
             return [1, $this->getLastPageNum()];

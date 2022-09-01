@@ -4,37 +4,47 @@ declare(strict_types=1);
 
 namespace Smile\CustomEntity\Model\ResourceModel\CustomEntity\Attribute;
 
+use Magento\Eav\Model\Config;
+use Magento\Eav\Model\EntityFactory;
+use Magento\Framework\Data\Collection\Db\FetchStrategyInterface;
+use Magento\Framework\Data\Collection\EntityFactoryInterface;
+use Magento\Framework\DB\Adapter\AdapterInterface;
+use Magento\Framework\Event\ManagerInterface;
+use Magento\Framework\Model\ResourceModel\Db\AbstractDb;
+use Psr\Log\LoggerInterface;
+use Smile\CustomEntity\Model\ResourceModel\CustomEntity\Attribute\Collection as SmileCustomEntityCollection;
+
 /**
  * Custom entity attribute collection.
  */
 class Collection extends \Magento\Eav\Model\ResourceModel\Entity\Attribute\Collection
 {
     /**
-     * @var \Magento\Eav\Model\EntityFactory
+     * @var EntityFactory
      */
     private $eavEntityFactory;
 
     /**
      * Constructor.
      *
-     * @param \Magento\Framework\Data\Collection\EntityFactoryInterface    $entityFactory    Entity factory.
-     * @param \Psr\Log\LoggerInterface                                     $logger           Logger.
-     * @param \Magento\Framework\Data\Collection\Db\FetchStrategyInterface $fetchStrategy    Fetch strategy
-     * @param \Magento\Framework\Event\ManagerInterface                    $eventManager     Event manager.
-     * @param \Magento\Eav\Model\Config                                    $eavConfig        EAV configuration .
-     * @param \Magento\Eav\Model\EntityFactory                             $eavEntityFactory EAV entity factory
-     * @param \Magento\Framework\DB\Adapter\AdapterInterface|null          $connection       DB connection.
-     * @param \Magento\Framework\Model\ResourceModel\Db\AbstractDb|null    $resource         Resource model.
+     * @param EntityFactoryInterface $entityFactory Entity factory.
+     * @param LoggerInterface $logger Logger.
+     * @param FetchStrategyInterface $fetchStrategy Fetch strategy
+     * @param ManagerInterface $eventManager Event manager.
+     * @param Config $eavConfig EAV configuration .
+     * @param EntityFactory $eavEntityFactory EAV entity factory
+     * @param AdapterInterface|null $connection DB connection.
+     * @param AbstractDb|null $resource Resource model.
      */
     public function __construct(
-        \Magento\Framework\Data\Collection\EntityFactoryInterface $entityFactory,
-        \Psr\Log\LoggerInterface $logger,
-        \Magento\Framework\Data\Collection\Db\FetchStrategyInterface $fetchStrategy,
-        \Magento\Framework\Event\ManagerInterface $eventManager,
-        \Magento\Eav\Model\Config $eavConfig,
-        \Magento\Eav\Model\EntityFactory $eavEntityFactory,
-        \Magento\Framework\DB\Adapter\AdapterInterface $connection = null,
-        \Magento\Framework\Model\ResourceModel\Db\AbstractDb $resource = null
+        EntityFactoryInterface $entityFactory,
+        LoggerInterface $logger,
+        FetchStrategyInterface $fetchStrategy,
+        ManagerInterface $eventManager,
+        Config $eavConfig,
+        EntityFactory $eavEntityFactory,
+        AdapterInterface $connection = null,
+        AbstractDb $resource = null
     ) {
         parent::__construct($entityFactory, $logger, $fetchStrategy, $eventManager, $eavConfig, $connection, $resource);
         $this->eavEntityFactory = $eavEntityFactory;
@@ -45,7 +55,7 @@ class Collection extends \Magento\Eav\Model\ResourceModel\Entity\Attribute\Colle
      *
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
-    public function setEntityTypeFilter($typeId)
+    public function setEntityTypeFilter($typeId): self
     {
         return $this;
     }
@@ -54,9 +64,9 @@ class Collection extends \Magento\Eav\Model\ResourceModel\Entity\Attribute\Colle
      * Method implemented to allow attribute set management through standard blocks.
      * Does nothing. Allow to be compatible with product attribute collection.
      *
-     * @return \Smile\CustomEntity\Model\ResourceModel\CustomEntity\Attribute\Collection
+     * @return SmileCustomEntityCollection|null
      */
-    public function addVisibleFilter()
+    public function addVisibleFilter(): ?SmileCustomEntityCollection
     {
         return $this;
     }
@@ -79,7 +89,7 @@ class Collection extends \Magento\Eav\Model\ResourceModel\Entity\Attribute\Colle
      *
      * @SuppressWarnings(PHPMD.CamelCaseMethodName)
      */
-    protected function _initSelect()
+    protected function _initSelect(): self
     {
         $entityTypeId = $this->eavConfig->getEntityType(
             \Smile\CustomEntity\Model\CustomEntity\Attribute::ENTITY_TYPE_CODE

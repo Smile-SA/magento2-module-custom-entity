@@ -4,48 +4,56 @@ declare(strict_types=1);
 
 namespace Smile\CustomEntity\Api;
 
+use Magento\Framework\Api\MetadataServiceInterface;
+use Magento\Framework\Api\SearchCriteriaInterface;
+use Magento\Framework\Exception\InputException as InputExceptionAlias;
+use Magento\Framework\Exception\NoSuchEntityException;
+use Magento\Framework\Exception\StateException;
+use Smile\CustomEntity\Api\Data\CustomEntityAttributeInterface;
+use Smile\CustomEntity\Api\Data\CustomEntityAttributeSearchResultsInterface;
+
 /**
  * Custom entity attribute repository interface.
  *
  * @api
  */
-interface CustomEntityAttributeRepositoryInterface extends \Magento\Framework\Api\MetadataServiceInterface
+interface CustomEntityAttributeRepositoryInterface extends MetadataServiceInterface
 {
     /**
      * Retrieve specific attribute.
      *
      * @param string $attributeCode Attribute code.
      *
-     * @return \Smile\CustomEntity\Api\Data\CustomEntityAttributeInterface
+     * @return CustomEntityAttributeInterface|null
      *
-     * @throws \Magento\Framework\Exception\NoSuchEntityException
+     * @throws NoSuchEntityException
      */
-    public function get($attributeCode);
+    public function get(string $attributeCode): ?CustomEntityAttributeInterface;
 
     /**
      * Save attribute data.
      *
-     * @param \Smile\CustomEntity\Api\Data\CustomEntityAttributeInterface $attribute Attribute.
+     * @param CustomEntityAttributeInterface $attribute Attribute.
      *
-     * @return \Smile\CustomEntity\Api\Data\CustomEntityAttributeInterface
+     * @return CustomEntityAttributeInterface|null
      *
-     * @throws \Magento\Framework\Exception\NoSuchEntityException
-     * @throws \Magento\Framework\Exception\InputException
-     * @throws \Magento\Framework\Exception\StateException
+     * @throws NoSuchEntityException
+     * @throws InputExceptionAlias
+     * @throws StateException
      */
-    public function save(\Smile\CustomEntity\Api\Data\CustomEntityAttributeInterface $attribute);
+    public function save(CustomEntityAttributeInterface $attribute): ?CustomEntityAttributeInterface;
 
     /**
      * Delete Attribute.
      *
-     * @param \Smile\CustomEntity\Api\Data\CustomEntityAttributeInterface $attribute Attribute.
+     * @param CustomEntityAttributeInterface $attribute Attribute.
      *
      * @return bool True if the entity was deleted (always true)
      *
-     * @throws \Magento\Framework\Exception\StateException
-     * @throws \Magento\Framework\Exception\NoSuchEntityException
+     * @throws StateException
+     * @throws NoSuchEntityException
      */
-    public function delete(\Smile\CustomEntity\Api\Data\CustomEntityAttributeInterface $attribute);
+    public function delete(CustomEntityAttributeInterface $attribute): bool;
 
     /**
      * Delete Attribute by id
@@ -54,17 +62,17 @@ interface CustomEntityAttributeRepositoryInterface extends \Magento\Framework\Ap
      *
      * @return bool
      *
-     * @throws \Magento\Framework\Exception\StateException
-     * @throws \Magento\Framework\Exception\NoSuchEntityException
+     * @throws StateException
+     * @throws NoSuchEntityException
      */
-    public function deleteById($attributeCode);
+    public function deleteById(string $attributeCode): bool;
 
     /**
      * Retrieve all attributes for entity type.
      *
-     * @param \Magento\Framework\Api\SearchCriteriaInterface $searchCriteria Search criteria.
+     * @param SearchCriteriaInterface $searchCriteria Search criteria.
      *
-     * @return \Smile\CustomEntity\Api\Data\CustomEntityAttributeSearchResultsInterface
+     * @return CustomEntityAttributeSearchResultsInterface|null
      */
-    public function getList(\Magento\Framework\Api\SearchCriteriaInterface $searchCriteria);
+    public function getList(SearchCriteriaInterface $searchCriteria): ?CustomEntityAttributeSearchResultsInterface;
 }

@@ -27,9 +27,9 @@ interface CustomEntityInterface extends \Smile\ScopedEav\Api\Data\EntityInterfac
     /**
      * Returns custom entity url key.
      *
-     * @return string
+     * @return string|null
      */
-    public function getUrlKey();
+    public function getUrlKey(): ?string;
 
     /**
      * Set custom entity url key.
@@ -38,27 +38,27 @@ interface CustomEntityInterface extends \Smile\ScopedEav\Api\Data\EntityInterfac
      *
      * @return $this
      */
-    public function setUrlKey($urlKey);
+    public function setUrlKey(string $urlKey): self;
 
     /**
      * Returns custom entity url path.
      *
-     * @return string
+     * @return string|null
      */
-    public function getUrlPath();
+    public function getUrlPath(): ?string;
 
     /**
      * Retrieve existing extension attributes object or create a new one.
      *
-     * @return \Smile\CustomEntity\Api\Data\CustomEntityExtensionInterface|null
+     * @return CustomEntityExtensionInterface|null
      */
-    public function getExtensionAttributes();
+    public function getExtensionAttributes(): ?CustomEntityExtensionInterface;
 
     /**
      * Set an extension attributes object.
      *
-     * @param \Smile\CustomEntity\Api\Data\CustomEntityExtensionInterface $extensionAttributes Extension attributes.
+     * @param CustomEntityExtensionInterface $extensionAttributes Extension attributes.
      * @return $this
      */
-    public function setExtensionAttributes(\Smile\CustomEntity\Api\Data\CustomEntityExtensionInterface $extensionAttributes);
+    public function setExtensionAttributes(CustomEntityExtensionInterface $extensionAttributes): self;
 }

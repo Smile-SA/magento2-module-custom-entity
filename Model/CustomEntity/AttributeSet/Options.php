@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Smile\CustomEntity\Model\CustomEntity\AttributeSet;
 
+use Magento\Eav\Model\Config;
 use Smile\CustomEntity\Api\Data\CustomEntityInterface;
 
 /**
@@ -12,16 +13,16 @@ use Smile\CustomEntity\Api\Data\CustomEntityInterface;
 class Options extends \Magento\Catalog\Model\Product\AttributeSet\Options
 {
     /**
-     * @var \Magento\Eav\Model\Config
+     * @var Config
      */
     private $eavConfig;
 
     /**
      * Constructor.
      *
-     * @param \Magento\Eav\Model\Config $eavConfig EAV Config.
+     * @param Config $eavConfig EAV Config.
      */
-    public function __construct(\Magento\Eav\Model\Config $eavConfig)
+    public function __construct(Config $eavConfig)
     {
         $this->eavConfig = $eavConfig;
     }
@@ -31,7 +32,7 @@ class Options extends \Magento\Catalog\Model\Product\AttributeSet\Options
      */
     public function toOptionArray()
     {
-        $entityType             = $this->eavConfig->getEntityType(CustomEntityInterface::ENTITY);
+        $entityType = $this->eavConfig->getEntityType(CustomEntityInterface::ENTITY);
         $attributeSetCollection = $entityType->getAttributeSetCollection();
 
         return $attributeSetCollection->toOptionArray();

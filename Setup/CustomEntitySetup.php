@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Smile\CustomEntity\Setup;
 
+use Magento\Eav\Setup\EavSetup;
 use Smile\ScopedEav\Model\Entity\Attribute\Backend\Image;
 use Magento\Eav\Model\Entity\Attribute\ScopedAttributeInterface;
 use Magento\Eav\Model\Entity\Attribute\Source\Boolean;
@@ -14,22 +15,22 @@ use Smile\CustomEntity\Model\ResourceModel\CustomEntity\Attribute\Collection;
 /**
  * Custom Entity EAV Setup.
  */
-class CustomEntitySetup extends \Magento\Eav\Setup\EavSetup
+class CustomEntitySetup extends EavSetup
 {
     /**
      * Installed EAV entities.
      *
-     * @return array
+     * @return array|null
      */
-    public function getDefaultEntities()
+    public function getDefaultEntities(): ?array
     {
         return [
             'smile_custom_entity' => [
-                'entity_model'                => CustomEntity::class,
-                'attribute_model'             => Attribute::class,
-                'table'                       => 'smile_custom_entity',
-                'attributes'                  => $this->getDefaultAttributes(),
-                'additional_attribute_table'  => 'smile_custom_entity_eav_attribute',
+                'entity_model' => CustomEntity::class,
+                'attribute_model' => Attribute::class,
+                'table' => 'smile_custom_entity',
+                'attributes' => $this->getDefaultAttributes(),
+                'additional_attribute_table' => 'smile_custom_entity_eav_attribute',
                 'entity_attribute_collection' => Collection::class,
             ],
         ];
@@ -38,9 +39,9 @@ class CustomEntitySetup extends \Magento\Eav\Setup\EavSetup
     /**
      * List of default attributes.
      *
-     * @return array
+     * @return array|null
      */
-    private function getDefaultAttributes()
+    private function getDefaultAttributes(): ?array
     {
         return [
             'name' => [

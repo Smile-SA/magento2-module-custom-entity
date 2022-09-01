@@ -4,12 +4,17 @@ declare(strict_types=1);
 
 namespace Smile\CustomEntity\Controller\Set;
 
+use Magento\Eav\Api\AttributeSetRepositoryInterface;
 use Magento\Eav\Api\Data\AttributeSetInterface;
 use Magento\Framework\App\Action\Action;
 use Magento\Framework\App\Action\Context;
 use Magento\Framework\App\ResponseInterface;
+use Magento\Framework\Controller\Result\ForwardFactory;
+use Magento\Framework\Controller\ResultInterface;
 use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Framework\Filter\FilterManager;
+use Magento\Framework\Registry;
+use Magento\Framework\View\Result\PageFactory;
 
 /**
  * Attribute set view controller.
@@ -17,22 +22,22 @@ use Magento\Framework\Filter\FilterManager;
 class View extends Action
 {
     /**
-     * @var \Magento\Eav\Api\AttributeSetRepositoryInterface
+     * @var AttributeSetRepositoryInterface
      */
     private $attributeSetRepository;
 
     /**
-     * @var \Magento\Framework\Registry
+     * @var Registry
      */
     private $registry;
 
     /**
-     * @var \Magento\Framework\View\Result\PageFactory
+     * @var PageFactory
      */
     private $resultPageFactory;
 
     /**
-     * @var \Magento\Framework\Controller\Result\ForwardFactory
+     * @var ForwardFactory
      */
     private $resultForwardFactory;
 
@@ -44,19 +49,19 @@ class View extends Action
     /**
      * View constructor.
      *
-     * @param Context                                             $context                Context.
-     * @param \Magento\Eav\Api\AttributeSetRepositoryInterface    $attributeSetRepository Attribute set repository.
-     * @param \Magento\Framework\Registry                         $registry               Registry.
-     * @param \Magento\Framework\View\Result\PageFactory          $resultPageFactory      Result page factory.
-     * @param \Magento\Framework\Controller\Result\ForwardFactory $resultForwardFactory   Result forward factory.
-     * @param FilterManager                                       $filterManager          Filter manager.
+     * @param Context $context Context.
+     * @param AttributeSetRepositoryInterface $attributeSetRepository Attribute set repository.
+     * @param Registry $registry Registry.
+     * @param PageFactory $resultPageFactory Result page factory.
+     * @param ForwardFactory $resultForwardFactory Result forward factory.
+     * @param FilterManager $filterManager Filter manager.
      */
     public function __construct(
         Context $context,
-        \Magento\Eav\Api\AttributeSetRepositoryInterface $attributeSetRepository,
-        \Magento\Framework\Registry $registry,
-        \Magento\Framework\View\Result\PageFactory $resultPageFactory,
-        \Magento\Framework\Controller\Result\ForwardFactory $resultForwardFactory,
+        AttributeSetRepositoryInterface $attributeSetRepository,
+        Registry $registry,
+        PageFactory $resultPageFactory,
+        ForwardFactory $resultForwardFactory,
         FilterManager $filterManager
     ) {
         parent::__construct($context);
@@ -72,7 +77,7 @@ class View extends Action
      *
      * Note: Request will be added as operation argument in future
      *
-     * @return \Magento\Framework\Controller\ResultInterface|ResponseInterface
+     * @return ResultInterface|ResponseInterface
      */
     public function execute()
     {
@@ -115,9 +120,9 @@ class View extends Action
      *
      * @param AttributeSetInterface $attributeSet Current attribute set.
      *
-     * @return string
+     * @return string|null
      */
-    private function getAttributeSetCode(AttributeSetInterface $attributeSet)
+    private function getAttributeSetCode(AttributeSetInterface $attributeSet): ?string
     {
         return $this->filterManager->translitUrl($attributeSet->getAttributeSetName());
     }

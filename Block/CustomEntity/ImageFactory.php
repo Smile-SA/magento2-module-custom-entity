@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Smile\CustomEntity\Block\CustomEntity;
 
+use Magento\Framework\ObjectManagerInterface;
 use Smile\CustomEntity\Api\Data\CustomEntityInterface;
 
 /**
@@ -12,7 +13,7 @@ use Smile\CustomEntity\Api\Data\CustomEntityInterface;
 class ImageFactory
 {
     /**
-     * @var \Magento\Framework\ObjectManagerInterface
+     * @var ObjectManagerInterface
      */
     private $objectManager;
 
@@ -24,11 +25,11 @@ class ImageFactory
     /**
      * ImageFactory constructor.
      *
-     * @param \Magento\Framework\ObjectManagerInterface $objectManager Object manager.
-     * @param string                                    $instanceName  Image instance name.
+     * @param ObjectManagerInterface $objectManager Object manager.
+     * @param string $instanceName Image instance name.
      */
     public function __construct(
-        \Magento\Framework\ObjectManagerInterface $objectManager,
+        ObjectManagerInterface $objectManager,
         $instanceName = Image::class
     ) {
         $this->objectManager = $objectManager;
@@ -40,9 +41,9 @@ class ImageFactory
      *
      * @param CustomEntityInterface $entity Current custom entity.
      *
-     * @return Image
+     * @return Image|null
      */
-    public function create(CustomEntityInterface $entity)
+    public function create(CustomEntityInterface $entity): ?Image
     {
         $data = [
             'data' => [

@@ -26,9 +26,9 @@ class Renderer extends Template
     /**
      * Renderer constructor.
      *
-     * @param Template\Context $context      Context.
-     * @param ImageFactory     $imageFactory Custom entity image block factory.
-     * @param array            $data         Block data.
+     * @param Template\Context $context Context.
+     * @param ImageFactory $imageFactory Custom entity image block factory.
+     * @param array $data Block data.
      */
     public function __construct(
         Template\Context $context,
@@ -42,9 +42,9 @@ class Renderer extends Template
     /**
      * Return custom entity image.
      *
-     * @return string
+     * @return string|null
      */
-    public function getImage()
+    public function getImage(): ?string
     {
         return $this->imageFactory->create($this->getEntity())->toHtml();
     }
@@ -52,9 +52,9 @@ class Renderer extends Template
     /**
      * Return entity url.
      *
-     * @return string
+     * @return string|null
      */
-    public function getEntityUrl()
+    public function getEntityUrl(): ?string
     {
         return $this->_urlBuilder->getDirectUrl($this->getEntity()->getUrlPath());
     }

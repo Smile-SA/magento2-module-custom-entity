@@ -4,6 +4,15 @@ declare(strict_types=1);
 
 namespace Smile\CustomEntity\Api;
 
+use Magento\Framework\Api\SearchCriteriaInterface;
+use Magento\Framework\Api\SearchResults;
+use Magento\Framework\Exception\CouldNotSaveException;
+use Magento\Framework\Exception\InputException;
+use Magento\Framework\Exception\NoSuchEntityException;
+use Magento\Framework\Exception\StateException;
+use Smile\CustomEntity\Api\Data\CustomEntityInterface;
+use Smile\CustomEntity\Api\Data\CustomEntitySearchResultsInterface;
+
 /**
  * Custom entity repository interface.
  *
@@ -14,15 +23,15 @@ interface CustomEntityRepositoryInterface
     /**
      * Save a custom entity.
      *
-     * @param \Smile\CustomEntity\Api\Data\CustomEntityInterface $entity Saved entity.
+     * @param CustomEntityInterface|null $entity Saved entity.
      *
-     * @return \\Smile\CustomEntity\Api\Data\CustomEntityInterface
+     * @return  CustomEntityInterface|null
      *
-     * @throws \Magento\Framework\Exception\InputException
-     * @throws \Magento\Framework\Exception\StateException
-     * @throws \Magento\Framework\Exception\CouldNotSaveException
+     * @throws InputException
+     * @throws StateException
+     * @throws CouldNotSaveException
      */
-    public function save(\Smile\CustomEntity\Api\Data\CustomEntityInterface $entity);
+    public function save(?CustomEntityInterface $entity): ?CustomEntityInterface;
 
     /**
      * Get custom entity by id.
@@ -31,23 +40,23 @@ interface CustomEntityRepositoryInterface
      * @param int|null $storeId     Store Id.
      * @param bool     $forceReload Force reload the entity..
      *
-     * @return \Smile\CustomEntity\Api\Data\CustomEntityInterface
+     * @return CustomEntityInterface|null
      *
-     * @throws \Magento\Framework\Exception\NoSuchEntityException
+     * @throws NoSuchEntityException
      * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
      */
-    public function get($entityId, $storeId = null, $forceReload = false);
+    public function get(int $entityId, ?int $storeId = null, bool $forceReload = false): ?CustomEntityInterface;
 
     /**
      * Delete custom entity.
      *
-     * @param \Smile\CustomEntity\Api\Data\CustomEntityInterface $entity Deleted entity.
+     * @param CustomEntityInterface $entity Deleted entity.
      *
      * @return bool Will returned True if deleted
      *
-     * @throws \Magento\Framework\Exception\StateException
+     * @throws StateException
      */
-    public function delete(\Smile\CustomEntity\Api\Data\CustomEntityInterface $entity);
+    public function delete(CustomEntityInterface $entity): bool;
 
     /**
      * Delete custom entity by id.
@@ -56,17 +65,17 @@ interface CustomEntityRepositoryInterface
      *
      * @return bool Will returned True if deleted
      *
-     * @throws \Magento\Framework\Exception\NoSuchEntityException
-     * @throws \Magento\Framework\Exception\StateException
+     * @throws NoSuchEntityException
+     * @throws StateException
      */
-    public function deleteById($entityId);
+    public function deleteById(int $entityId): bool;
 
     /**
      * Get custom entity list.
      *
-     * @param \Magento\Framework\Api\SearchCriteriaInterface $searchCriteria Search criteria.
+     * @param SearchCriteriaInterface $searchCriteria Search criteria.
      *
-     * @return \Smile\CustomEntity\Api\Data\CustomEntitySearchResultsInterface
+     * @return CustomEntitySearchResultsInterface|SearchResults
      */
-    public function getList(\Magento\Framework\Api\SearchCriteriaInterface $searchCriteria);
+    public function getList(SearchCriteriaInterface $searchCriteria);
 }

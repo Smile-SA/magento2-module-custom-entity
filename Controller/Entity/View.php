@@ -8,8 +8,12 @@ use Magento\Eav\Api\AttributeSetRepositoryInterface;
 use Magento\Framework\App\Action\Action;
 use Magento\Framework\App\Action\Context;
 use Magento\Framework\App\ResponseInterface;
+use Magento\Framework\Controller\Result\ForwardFactory;
+use Magento\Framework\Controller\ResultInterface;
 use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Framework\Filter\FilterManager;
+use Magento\Framework\Registry;
+use Magento\Framework\View\Result\PageFactory;
 use Smile\CustomEntity\Api\CustomEntityRepositoryInterface;
 use Smile\CustomEntity\Api\Data\CustomEntityInterface;
 
@@ -24,17 +28,17 @@ class View extends Action
     private $customEntityRepository;
 
     /**
-     * @var \Magento\Framework\Registry
+     * @var Registry
      */
     private $registry;
 
     /**
-     * @var \Magento\Framework\View\Result\PageFactory
+     * @var PageFactory
      */
     private $resultPageFactory;
 
     /**
-     * @var \Magento\Framework\Controller\Result\ForwardFactory
+     * @var ForwardFactory
      */
     private $resultForwardFactory;
 
@@ -51,20 +55,20 @@ class View extends Action
     /**
      * View constructor.
      *
-     * @param Context                                             $context                Context.
-     * @param CustomEntityRepositoryInterface                     $customEntityRepository Custom entity repository.
-     * @param \Magento\Framework\Registry                         $registry               Registry.
-     * @param \Magento\Framework\View\Result\PageFactory          $resultPageFactory      Result page factory.
-     * @param \Magento\Framework\Controller\Result\ForwardFactory $resultForwardFactory   Result forward factory.
-     * @param FilterManager                                       $filterManager          Filter manager.
-     * @param AttributeSetRepositoryInterface                     $attributeSetRepository Attribute set repository.
+     * @param Context $context Context.
+     * @param CustomEntityRepositoryInterface $customEntityRepository Custom entity repository.
+     * @param Registry $registry Registry.
+     * @param PageFactory $resultPageFactory Result page factory.
+     * @param ForwardFactory $resultForwardFactory Result forward factory.
+     * @param FilterManager $filterManager Filter manager.
+     * @param AttributeSetRepositoryInterface $attributeSetRepository Attribute set repository.
      */
     public function __construct(
         Context $context,
         CustomEntityRepositoryInterface $customEntityRepository,
-        \Magento\Framework\Registry $registry,
-        \Magento\Framework\View\Result\PageFactory $resultPageFactory,
-        \Magento\Framework\Controller\Result\ForwardFactory $resultForwardFactory,
+        Registry $registry,
+        PageFactory $resultPageFactory,
+        ForwardFactory $resultForwardFactory,
         FilterManager $filterManager,
         AttributeSetRepositoryInterface $attributeSetRepository
     ) {
@@ -82,7 +86,7 @@ class View extends Action
      *
      * Note: Request will be added as operation argument in future
      *
-     * @return \Magento\Framework\Controller\ResultInterface|ResponseInterface
+     * @return ResultInterface|ResponseInterface
      * @throws NoSuchEntityException
      */
     public function execute()
@@ -126,10 +130,10 @@ class View extends Action
      *
      * @param CustomEntityInterface $entity Custom entity.
      *
-     * @return string
+     * @return string|null
      * @throws NoSuchEntityException
      */
-    private function getAttributeSetCode(CustomEntityInterface $entity)
+    private function getAttributeSetCode(CustomEntityInterface $entity): ?string
     {
         $attributeSet = $this->attributeSetRepository->get($entity->getAttributeSetId());
 

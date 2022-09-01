@@ -18,7 +18,7 @@ class Image extends Template
      * Image constructor.
      *
      * @param Template\Context $context Context.
-     * @param array            $data    Block data.
+     * @param array $data Block data.
      */
     // @codingStandardsIgnoreLine Assign block template (MEQP2.Classes.ConstructorOperations.CustomOperationsFound)
     public function __construct(Template\Context $context, array $data = [])

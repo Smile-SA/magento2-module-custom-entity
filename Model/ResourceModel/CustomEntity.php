@@ -4,13 +4,19 @@ declare(strict_types=1);
 
 namespace Smile\CustomEntity\Model\ResourceModel;
 
+use Magento\Eav\Model\Entity\Attribute\SetFactory;
 use Magento\Eav\Model\Entity\Context;
+use Magento\Eav\Model\Entity\TypeFactory;
+use Magento\Framework\DataObject;
+use Magento\Framework\EntityManager\EntityManager;
 use Magento\Store\Model\StoreManagerInterface;
+use Smile\ScopedEav\Model\Entity\Attribute\DefaultAttributes;
+use Smile\ScopedEav\Model\ResourceModel\AbstractResource;
 
 /**
  * Custom entity resource model.
  */
-class CustomEntity extends \Smile\ScopedEav\Model\ResourceModel\AbstractResource
+class CustomEntity extends AbstractResource
 {
     /**
      * @var string
@@ -25,20 +31,20 @@ class CustomEntity extends \Smile\ScopedEav\Model\ResourceModel\AbstractResource
     /**
      * CustomEntity constructor.
      *
-     * @param Context                                                   $context           Context.
-     * @param \Magento\Framework\EntityManager\EntityManager            $entityManager     Entity manager.
-     * @param \Magento\Eav\Model\Entity\TypeFactory                     $typeFactory       Type factory.
-     * @param \Magento\Eav\Model\Entity\Attribute\SetFactory            $setFactory        Attribute set factory.
-     * @param \Smile\ScopedEav\Model\Entity\Attribute\DefaultAttributes $defaultAttributes Default attributes.
-     * @param StoreManagerInterface                                     $storeManager      Store manager.
-     * @param array                                                     $data              Data.
+     * @param Context $context Context.
+     * @param EntityManager $entityManager Entity manager.
+     * @param TypeFactory  $typeFactory Type factory.
+     * @param SetFactory $setFactory Attribute set factory.
+     * @param DefaultAttributes $defaultAttributes Default attributes.
+     * @param StoreManagerInterface $storeManager Store manager.
+     * @param array $data Data.
      */
     public function __construct(
         Context $context,
-        \Magento\Framework\EntityManager\EntityManager $entityManager,
-        \Magento\Eav\Model\Entity\TypeFactory $typeFactory,
-        \Magento\Eav\Model\Entity\Attribute\SetFactory $setFactory,
-        \Smile\ScopedEav\Model\Entity\Attribute\DefaultAttributes $defaultAttributes,
+        EntityManager $entityManager,
+        TypeFactory $typeFactory,
+        SetFactory $setFactory,
+        DefaultAttributes $defaultAttributes,
         StoreManagerInterface $storeManager,
         array $data = []
     ) {
@@ -62,9 +68,9 @@ class CustomEntity extends \Smile\ScopedEav\Model\ResourceModel\AbstractResource
     /**
      * Custom entity website table name getter.
      *
-     * @return string
+     * @return string|null
      */
-    public function getCustomEntityWebsiteTable()
+    public function getCustomEntityWebsiteTable(): ?string
     {
         if (!$this->customEntityWebsiteTable) {
             $this->customEntityWebsiteTable = $this->getTable('smile_custom_entity_website');
@@ -78,9 +84,9 @@ class CustomEntity extends \Smile\ScopedEav\Model\ResourceModel\AbstractResource
      *
      * @param \Smile\CustomEntity\Model\CustomEntity|int $entity Custom entity.
      *
-     * @return array
+     * @return array|null
      */
-    public function getWebsiteIds($entity)
+    public function getWebsiteIds($entity): ?array
     {
         $connection = $this->getConnection();
 
@@ -104,7 +110,7 @@ class CustomEntity extends \Smile\ScopedEav\Model\ResourceModel\AbstractResource
     /**
      * {@inheritdoc}
      */
-    protected function _afterSave(\Magento\Framework\DataObject $entity)
+    protected function _afterSave(DataObject $entity)
     {
         $this->saveWebsiteIds($entity);
 
@@ -118,7 +124,7 @@ class CustomEntity extends \Smile\ScopedEav\Model\ResourceModel\AbstractResource
      *
      * @return $this
      */
-    protected function saveWebsiteIds($entity)
+    protected function saveWebsiteIds($entity): self
     {
         if ($this->storeManager->isSingleStoreMode()) {
             $websiteId = $this->storeManager->getDefaultStoreView()->getWebsiteId();

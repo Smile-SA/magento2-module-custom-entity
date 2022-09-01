@@ -6,6 +6,7 @@ namespace Smile\CustomEntity\Model\ResourceModel\CustomEntity\Attribute\Grid;
 
 use Magento\Framework\Api\Search\AggregationInterface;
 use Magento\Framework\Api\Search\SearchResultInterface;
+use Magento\Framework\Api\SearchCriteriaInterface;
 use Smile\CustomEntity\Model\ResourceModel\CustomEntity\Attribute\Collection as AttributeCollection;
 
 /**
@@ -47,7 +48,7 @@ class Collection extends AttributeCollection implements SearchResultInterface
      * {@inheritDoc}
      * Not implemented since useless.
      */
-    public function setSearchCriteria(\Magento\Framework\Api\SearchCriteriaInterface $searchCriteria = null)
+    public function setSearchCriteria(SearchCriteriaInterface $searchCriteria = null): self
     {
         return $this;
     }
@@ -64,7 +65,7 @@ class Collection extends AttributeCollection implements SearchResultInterface
      * {@inheritDoc}
      * Not implemented since useless.
      */
-    public function setTotalCount($totalCount)
+    public function setTotalCount($totalCount): self
     {
         return $this;
     }
@@ -73,7 +74,7 @@ class Collection extends AttributeCollection implements SearchResultInterface
      * {@inheritDoc}
      * Not implemented since useless.
      */
-    public function setItems(array $items = null)
+    public function setItems(array $items = null): self
     {
         return $this;
     }

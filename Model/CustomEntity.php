@@ -17,7 +17,6 @@ use Magento\Framework\Model\Context;
 use Magento\Framework\Model\ResourceModel\AbstractResource;
 use Magento\Framework\Registry;
 use Magento\Store\Model\StoreManagerInterface;
-use Smile\CustomEntity\Api\Data\CustomEntityExtensionInterface;
 use Smile\CustomEntity\Api\Data\CustomEntityInterface;
 use Smile\ScopedEav\Model\AbstractEntity;
 
@@ -274,9 +273,9 @@ class CustomEntity extends AbstractEntity implements IdentityInterface, CustomEn
     /**
      * Retrieve existing extension attributes object or create a new one.
      *
-     * @return CustomEntityExtensionInterface|null
+     * @return \Smile\CustomEntity\Api\Data\CustomEntityExtensionInterface|null
      */
-    public function getExtensionAttributes(): ?CustomEntityExtensionInterface
+    public function getExtensionAttributes(): ?\Smile\CustomEntity\Api\Data\CustomEntityExtensionInterface
     {
         $extensionAttributes = $this->_getExtensionAttributes();
         if (!$extensionAttributes) {
@@ -289,10 +288,10 @@ class CustomEntity extends AbstractEntity implements IdentityInterface, CustomEn
     /**
      * Set an extension attributes object.
      *
-     * @param CustomEntityExtensionInterface $extensionAttributes Extension attributes.
+     * @param \Smile\CustomEntity\Api\Data\CustomEntityExtensionInterface $extensionAttributes Extension attributes.
      * @return $this
      */
-    public function setExtensionAttributes(CustomEntityExtensionInterface $extensionAttributes): self
+    public function setExtensionAttributes(\Smile\CustomEntity\Api\Data\CustomEntityExtensionInterface $extensionAttributes): self
     {
         return $this->_setExtensionAttributes($extensionAttributes);
     }

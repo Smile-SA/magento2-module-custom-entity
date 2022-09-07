@@ -5,13 +5,14 @@ declare(strict_types=1);
 namespace Smile\CustomEntity\Api\Data;
 
 use Magento\Framework\DataObject\IdentityInterface;
+use Smile\ScopedEav\Api\Data\EntityInterface;
 
 /**
  * Custom entity interface.
  *
  * @api
  */
-interface CustomEntityInterface extends \Smile\ScopedEav\Api\Data\EntityInterface, IdentityInterface
+interface CustomEntityInterface extends EntityInterface, IdentityInterface
 {
     /**
      * Entity code. Can be used as part of method name for entity processing.
@@ -50,15 +51,15 @@ interface CustomEntityInterface extends \Smile\ScopedEav\Api\Data\EntityInterfac
     /**
      * Retrieve existing extension attributes object or create a new one.
      *
-     * @return CustomEntityExtensionInterface|null
+     * @return \Smile\CustomEntity\Api\Data\CustomEntityExtensionInterface|null
      */
-    public function getExtensionAttributes(): ?CustomEntityExtensionInterface;
+    public function getExtensionAttributes(): ?\Smile\CustomEntity\Api\Data\CustomEntityExtensionInterface;
 
     /**
      * Set an extension attributes object.
      *
-     * @param CustomEntityExtensionInterface $extensionAttributes Extension attributes.
+     * @param \Smile\CustomEntity\Api\Data\CustomEntityExtensionInterface $extensionAttributes Extension attributes.
      * @return $this
      */
-    public function setExtensionAttributes(CustomEntityExtensionInterface $extensionAttributes): self;
+    public function setExtensionAttributes(\Smile\CustomEntity\Api\Data\CustomEntityExtensionInterface $extensionAttributes): self;
 }

@@ -17,6 +17,9 @@
         <referenceContainer name="content">
             <container name="smile_custom_entity_set_content">
                 <block name="smile_custom_entity_set_view" class="Smile\CustomEntity\Block\Set\View" template="set/view.phtml">
+                    <arguments>
+                        <argument name="output_view_model" xsi:type="object">Smile\CustomEntity\ViewModel\Output</argument>
+                    </arguments>
                     <block class="Smile\CustomEntity\Block\Html\Pager" as="pager" name="custom_entity_list_pager">
                         <action method="setAvailableLimit">
                             <argument name="availableLimit" xsi:type="array">

@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.3.5] - 2022-09-14
+[1.3.5]: https://github.com/Smile-SA/magento2-module-custom-entity/compare/1.3.4...1.3.5
+
+- Specify php version on composer.json
+- Use action interface on controllers
+- Add view model instead helper on template
+- Use Escaper on templates
+
 ## [1.3.4] - 2022-09-07
 [1.3.4]: https://github.com/Smile-SA/magento2-module-custom-entity/compare/1.3.3...1.3.4
 

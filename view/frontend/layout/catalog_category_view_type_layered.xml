@@ -10,6 +10,9 @@
         <attribute name="class" value="page-with-filter"/>
         <referenceContainer name="sidebar.main">
             <block class="Magento\LayeredNavigation\Block\Navigation\Category" name="catalog.leftnav" before="-" template="Magento_LayeredNavigation::layer/view.phtml">
+                <arguments>
+                    <argument name="output_view_model" xsi:type="object">Smile\CustomEntity\ViewModel\Output</argument>
+                </arguments>
                 <block class="Magento\LayeredNavigation\Block\Navigation\State" name="catalog.navigation.state" as="state" />
                 <block class="Magento\LayeredNavigation\Block\Navigation\FilterRenderer" name="catalog.navigation.renderer" as="renderer" template="Magento_LayeredNavigation::layer/filter.phtml">
                     <arguments>

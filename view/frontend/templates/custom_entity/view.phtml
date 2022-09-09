@@ -1,25 +1,26 @@
 <?php
 /**
  * Attribute set frontend view block
- *
- * @var $block \Smile\CustomEntity\Block\CustomEntity\View
  */
-?>
-<?php
+
+/** @var $block \Smile\CustomEntity\Block\CustomEntity\View */
 $customEntity = $block->getEntity();
-/** @var \Smile\CustomEntity\Helper\Output $helper */
-$helper = $this->helper(\Smile\CustomEntity\Helper\Output::class);
+
+/** @var $outputViewModel Smile\CustomEntity\ViewModel\Output */
+$outputViewModel = $block->getData('output_view_model');
 ?>
 <?php if ($customEntity->getDescription()): ?>
   <div class="custom_entity attribute description">
       <div class="value">
-          <?= $helper->customEntityAttribute($customEntity, (string) $customEntity->getDescription(), 'description') ?>
+          <?= $outputViewModel->customEntityAttribute($customEntity, (string) $customEntity->getDescription(), 'description') ?>
       </div>
   </div>
 <?php endif; ?>
 
 <div class="actions">
-    <a href="<?= $block->getUrl($customEntity->getAttributeSetUrlKey()) ?>" title="<?= __('Back to %1', $customEntity->getAttributeSet()->getAttributeSetName()) ?>" class="action">
+    <a href="<?= $block->getUrl($customEntity->getAttributeSetUrlKey()) ?>"
+       title="<?= __('Back to %1', $customEntity->getAttributeSet()->getAttributeSetName()) ?>"
+       class="action">
         <?= __('Back') ?>
     </a>
 </div>

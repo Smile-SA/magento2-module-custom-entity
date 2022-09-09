@@ -7,7 +7,7 @@ namespace Smile\CustomEntity\Controller\Adminhtml\Attribute;
 use Magento\Backend\App\Action\Context;
 use Magento\Framework\Controller\Result\JsonFactory;
 use Magento\Framework\DataObjectFactory;
-use Smile\ScopedEav\Helper\Data;
+use Smile\ScopedEav\ViewModel\Data as DataViewModel;
 
 /**
  * Custom entity attribute validation controller.
@@ -23,17 +23,17 @@ class Validate extends \Smile\ScopedEav\Controller\Adminhtml\Attribute\Validate
      * Constructor.
      *
      * @param Context $context Context.
-     * @param Data $entityHelper Entity helper.
+     * @param DataViewModel $dataViewModel Scoped EAV data view model.
      * @param Builder $attributeBuilder Attribute builder.
      */
     // @codingStandardsIgnoreLine Override builder attribute (Generic.CodeAnalysis.UselessOverridingMethod.Found)
     public function __construct(
         Context $context,
-        Data $entityHelper,
+        DataViewModel $dataViewModel,
         Builder $attributeBuilder,
         JsonFactory $resultJsonFactory,
         DataObjectFactory $dataObjectFactory
     ) {
-        parent::__construct($context, $entityHelper, $attributeBuilder, $resultJsonFactory, $dataObjectFactory);
+        parent::__construct($context, $dataViewModel, $attributeBuilder, $resultJsonFactory, $dataObjectFactory);
     }
 }

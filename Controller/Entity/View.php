@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Smile\CustomEntity\Controller\Entity;
 
 use Magento\Eav\Api\AttributeSetRepositoryInterface;
-use Magento\Framework\App\Action\Action;
-use Magento\Framework\App\Action\Context;
+use Magento\Framework\App\Action\HttpGetActionInterface;
+use Magento\Framework\App\RequestInterface;
 use Magento\Framework\App\ResponseInterface;
 use Magento\Framework\Controller\Result\ForwardFactory;
 use Magento\Framework\Controller\ResultInterface;
@@ -20,7 +20,7 @@ use Smile\CustomEntity\Api\Data\CustomEntityInterface;
 /**
  * Custom entity view controller.
  */
-class View extends Action
+class View implements HttpGetActionInterface
 {
     /**
      * @var CustomEntityRepositoryInterface
@@ -53,32 +53,37 @@ class View extends Action
     private $attributeSetRepository;
 
     /**
+     * @var RequestInterface
+     */
+    private $request;
+
+    /**
      * View constructor.
      *
-     * @param Context $context Context.
      * @param CustomEntityRepositoryInterface $customEntityRepository Custom entity repository.
      * @param Registry $registry Registry.
      * @param PageFactory $resultPageFactory Result page factory.
      * @param ForwardFactory $resultForwardFactory Result forward factory.
      * @param FilterManager $filterManager Filter manager.
      * @param AttributeSetRepositoryInterface $attributeSetRepository Attribute set repository.
+     * @param RequestInterface $request
      */
     public function __construct(
-        Context $context,
         CustomEntityRepositoryInterface $customEntityRepository,
         Registry $registry,
         PageFactory $resultPageFactory,
         ForwardFactory $resultForwardFactory,
         FilterManager $filterManager,
-        AttributeSetRepositoryInterface $attributeSetRepository
+        AttributeSetRepositoryInterface $attributeSetRepository,
+        RequestInterface $request
     ) {
-        parent::__construct($context);
         $this->customEntityRepository = $customEntityRepository;
         $this->registry = $registry;
         $this->resultPageFactory = $resultPageFactory;
         $this->resultForwardFactory = $resultForwardFactory;
         $this->filterManager = $filterManager;
         $this->attributeSetRepository = $attributeSetRepository;
+        $this->request = $request;
     }
 
     /**
@@ -110,7 +115,7 @@ class View extends Action
      */
     private function initEntity()
     {
-        $entityId = (int) $this->getRequest()->getParam('entity_id', false);
+        $entityId = (int) $this->request->getParam('entity_id', false);
         if (!$entityId) {
             return false;
         }

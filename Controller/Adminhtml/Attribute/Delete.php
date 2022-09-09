@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Smile\CustomEntity\Controller\Adminhtml\Attribute;
 
 use Magento\Backend\App\Action\Context;
-use Smile\ScopedEav\Helper\Data;
+use Smile\ScopedEav\ViewModel\Data as DataViewModel;
 
 /**
  * Custom entity attribute delete controller.
@@ -21,15 +21,15 @@ class Delete extends \Smile\ScopedEav\Controller\Adminhtml\Attribute\Delete
      * Constructor.
      *
      * @param Context $context Context.
-     * @param Data $entityHelper Entity helper.
+     * @param DataViewModel $dataViewModel Scoped EAV data view model.
      * @param Builder $attributeBuilder Attribute builder.
      */
     // @codingStandardsIgnoreLine Override builder attribute (Generic.CodeAnalysis.UselessOverridingMethod.Found)
     public function __construct(
         Context $context,
-        Data $entityHelper,
+        DataViewModel $dataViewModel,
         Builder $attributeBuilder
     ) {
-        parent::__construct($context, $entityHelper, $attributeBuilder);
+        parent::__construct($context, $dataViewModel, $attributeBuilder);
     }
 }

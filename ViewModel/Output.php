@@ -2,16 +2,18 @@
 
 declare(strict_types=1);
 
-namespace Smile\CustomEntity\Helper;
+namespace Smile\CustomEntity\ViewModel;
 
+use Magento\Catalog\Helper\Output as MagentoOutput;
 use Magento\Framework\Exception\LocalizedException;
+use Magento\Framework\View\Element\Block\ArgumentInterface;
 use Smile\CustomEntity\Api\Data\CustomEntityInterface;
 use Smile\CustomEntity\Model\CustomEntity;
 
 /**
  * Custom entity output helper.
  */
-class Output extends \Magento\Catalog\Helper\Output
+class Output extends MagentoOutput implements ArgumentInterface
 {
     /**
      * Prepare custom entity attribute html output

@@ -6,9 +6,9 @@ namespace Smile\CustomEntity\Controller\Set;
 
 use Magento\Eav\Api\AttributeSetRepositoryInterface;
 use Magento\Eav\Api\Data\AttributeSetInterface;
-use Magento\Framework\App\Action\Action;
-use Magento\Framework\App\Action\Context;
+use Magento\Framework\App\Action\HttpGetActionInterface;
 use Magento\Framework\App\ResponseInterface;
+use Magento\Framework\App\RequestInterface;
 use Magento\Framework\Controller\Result\ForwardFactory;
 use Magento\Framework\Controller\ResultInterface;
 use Magento\Framework\Exception\NoSuchEntityException;
@@ -19,7 +19,7 @@ use Magento\Framework\View\Result\PageFactory;
 /**
  * Attribute set view controller.
  */
-class View extends Action
+class View implements HttpGetActionInterface
 {
     /**
      * @var AttributeSetRepositoryInterface
@@ -47,29 +47,34 @@ class View extends Action
     private $filterManager;
 
     /**
+     * @var RequestInterface
+     */
+    private $request;
+
+    /**
      * View constructor.
      *
-     * @param Context $context Context.
      * @param AttributeSetRepositoryInterface $attributeSetRepository Attribute set repository.
      * @param Registry $registry Registry.
      * @param PageFactory $resultPageFactory Result page factory.
      * @param ForwardFactory $resultForwardFactory Result forward factory.
      * @param FilterManager $filterManager Filter manager.
+     * @param RequestInterface $request
      */
     public function __construct(
-        Context $context,
         AttributeSetRepositoryInterface $attributeSetRepository,
         Registry $registry,
         PageFactory $resultPageFactory,
         ForwardFactory $resultForwardFactory,
-        FilterManager $filterManager
+        FilterManager $filterManager,
+        RequestInterface $request
     ) {
-        parent::__construct($context);
         $this->attributeSetRepository = $attributeSetRepository;
         $this->registry = $registry;
         $this->resultPageFactory = $resultPageFactory;
         $this->resultForwardFactory = $resultForwardFactory;
         $this->filterManager = $filterManager;
+        $this->request = $request;
     }
 
     /**
@@ -100,7 +105,7 @@ class View extends Action
      */
     private function initSet()
     {
-        $attributeSetId = (int) $this->getRequest()->getParam('entity_id', false);
+        $attributeSetId = (int) $this->request->getParam('entity_id', false);
         if (!$attributeSetId) {
             return false;
         }

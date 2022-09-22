@@ -11,13 +11,7 @@ use Smile\CustomEntity\Api\Data\CustomEntityAttributeInterface;
  */
 class Delete extends \Smile\ScopedEav\Controller\Adminhtml\Set\Delete
 {
-    /**
-     * @var string
-     */
     const ADMIN_RESOURCE = 'Smile_CustomEntity::attributes_set';
 
-    /**
-     * @var string
-     */
-    protected $entityTypeCode = CustomEntityAttributeInterface::ENTITY_TYPE_CODE;
+    protected string $entityTypeCode = CustomEntityAttributeInterface::ENTITY_TYPE_CODE;
 }

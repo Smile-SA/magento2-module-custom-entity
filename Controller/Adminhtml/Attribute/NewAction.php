@@ -12,9 +12,6 @@ use Smile\ScopedEav\ViewModel\Data as DataViewModel;
  */
 class NewAction extends \Smile\ScopedEav\Controller\Adminhtml\Attribute\NewAction
 {
-    /**
-     * @var string
-     */
     const ADMIN_RESOURCE = 'Smile_CustomEntity::attributes_attributes';
 
     /**

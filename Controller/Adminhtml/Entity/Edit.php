@@ -9,8 +9,5 @@ namespace Smile\CustomEntity\Controller\Adminhtml\Entity;
  */
 class Edit extends \Smile\ScopedEav\Controller\Adminhtml\Entity\Edit
 {
-    /**
-     * @var string
-     */
     const ADMIN_RESOURCE = 'Smile_CustomEntity::entities';
 }

@@ -8,7 +8,7 @@
 <div class="page-products">
     <div class="products wrapper products-grid">
         <ol class="products list items product-items">
-            <?php foreach ($block->getEntities() as $entity) : ?>
+            <?php foreach ($block->getEntities() as $entity): ?>
             <li class="item product product-item">
                 <?= $block->getEntityHtml($entity); ?>
             </li>

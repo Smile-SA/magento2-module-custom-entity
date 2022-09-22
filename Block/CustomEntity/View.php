@@ -17,20 +17,11 @@ use Smile\CustomEntity\Model\CustomEntity;
  */
 class View extends Template implements IdentityInterface
 {
-    /**
-     * @var Registry
-     */
-    private $registry;
+    private Registry $registry;
 
-    /**
-     * @var ImageFactory
-     */
-    private $imageFactory;
+    private ImageFactory $imageFactory;
 
-    /**
-     * @var CustomEntityInterface
-     */
-    private $customEntity;
+    private CustomEntityInterface $customEntity;
 
     /**
      * View constructor.
@@ -53,8 +44,6 @@ class View extends Template implements IdentityInterface
 
     /**
      * Return current custom entity.
-     *
-     * @return CustomEntityInterface|null
      */
     public function getEntity(): ?CustomEntityInterface
     {
@@ -67,8 +56,6 @@ class View extends Template implements IdentityInterface
 
     /**
      * Return custom entity image.
-     *
-     * @return string|null
      */
     public function getImage(): ?string
     {

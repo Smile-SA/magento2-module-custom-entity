@@ -15,10 +15,8 @@ class InstallData implements InstallDataInterface
 {
     /**
      * Custom entity EAV setup factory
-     *
-     * @var CustomEntitySetupFactory
      */
-    private $customEntitySetupFactory;
+    private CustomEntitySetupFactory $customEntitySetupFactory;
 
     /**
      * Constructor.

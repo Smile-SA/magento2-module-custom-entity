@@ -12,10 +12,7 @@ use Smile\CustomEntity\Api\Data\CustomEntityInterface;
  */
 class Options extends \Magento\Catalog\Model\Product\AttributeSet\Options
 {
-    /**
-     * @var Config
-     */
-    private $eavConfig;
+    private Config $eavConfig;
 
     /**
      * Constructor.

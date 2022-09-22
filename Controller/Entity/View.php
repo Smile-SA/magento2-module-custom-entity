@@ -22,40 +22,19 @@ use Smile\CustomEntity\Api\Data\CustomEntityInterface;
  */
 class View implements HttpGetActionInterface
 {
-    /**
-     * @var CustomEntityRepositoryInterface
-     */
-    private $customEntityRepository;
+    private CustomEntityRepositoryInterface $customEntityRepository;
 
-    /**
-     * @var Registry
-     */
-    private $registry;
+    private Registry $registry;
 
-    /**
-     * @var PageFactory
-     */
-    private $resultPageFactory;
+    private PageFactory $resultPageFactory;
 
-    /**
-     * @var ForwardFactory
-     */
-    private $resultForwardFactory;
+    private ForwardFactory $resultForwardFactory;
 
-    /**
-     * @var FilterManager
-     */
-    private $filterManager;
+    private FilterManager $filterManager;
 
-    /**
-     * @var AttributeSetRepositoryInterface
-     */
-    private $attributeSetRepository;
+    private AttributeSetRepositoryInterface $attributeSetRepository;
 
-    /**
-     * @var RequestInterface
-     */
-    private $request;
+    private RequestInterface $request;
 
     /**
      * View constructor.
@@ -66,7 +45,6 @@ class View implements HttpGetActionInterface
      * @param ForwardFactory $resultForwardFactory Result forward factory.
      * @param FilterManager $filterManager Filter manager.
      * @param AttributeSetRepositoryInterface $attributeSetRepository Attribute set repository.
-     * @param RequestInterface $request
      */
     public function __construct(
         CustomEntityRepositoryInterface $customEntityRepository,
@@ -134,8 +112,6 @@ class View implements HttpGetActionInterface
      * Return attribute set code.
      *
      * @param CustomEntityInterface $entity Custom entity.
-     *
-     * @return string|null
      * @throws NoSuchEntityException
      */
     private function getAttributeSetCode(CustomEntityInterface $entity): ?string

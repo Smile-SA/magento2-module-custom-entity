@@ -19,7 +19,6 @@ use Smile\CustomEntity\Model\ResourceModel\CustomEntity\Attribute\CollectionFact
 class Main extends \Smile\ScopedEav\Block\Adminhtml\Set\Main
 {
     /**
-     *
      * @param Context $context Block context.
      * @param EncoderInterface $jsonEncoder JSON encoder.
      * @param TypeFactory $typeFactory Entity type factory.

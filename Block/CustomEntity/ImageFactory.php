@@ -12,15 +12,9 @@ use Smile\CustomEntity\Api\Data\CustomEntityInterface;
  */
 class ImageFactory
 {
-    /**
-     * @var ObjectManagerInterface
-     */
-    private $objectManager;
+    private ObjectManagerInterface $objectManager;
 
-    /**
-     * @var string
-     */
-    private $instanceName;
+    private string $instanceName;
 
     /**
      * ImageFactory constructor.
@@ -30,7 +24,7 @@ class ImageFactory
      */
     public function __construct(
         ObjectManagerInterface $objectManager,
-        $instanceName = Image::class
+        string $instanceName = Image::class
     ) {
         $this->objectManager = $objectManager;
         $this->instanceName = $instanceName;
@@ -40,8 +34,6 @@ class ImageFactory
      * Return custom entity image block.
      *
      * @param CustomEntityInterface $entity Current custom entity.
-     *
-     * @return Image|null
      */
     public function create(CustomEntityInterface $entity): ?Image
     {

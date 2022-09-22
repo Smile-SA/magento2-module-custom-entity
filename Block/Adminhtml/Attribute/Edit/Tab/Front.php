@@ -16,10 +16,7 @@ use Smile\CustomEntity\Api\Data\CustomEntityAttributeInterface;
  */
 class Front extends Generic
 {
-    /**
-     * @var Yesno
-     */
-    private $yesNo;
+    private Yesno $yesNo;
 
     /**
      * Constructor.
@@ -79,8 +76,6 @@ class Front extends Generic
 
     /**
      * Retrieve attribute object from registry
-     *
-     * @return CustomEntityAttributeInterface|null
      */
     private function getAttributeObject(): ?CustomEntityAttributeInterface
     {

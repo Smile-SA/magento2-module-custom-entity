@@ -6,7 +6,7 @@ namespace Smile\CustomEntity\Ui\DataProvider\CustomEntity\Listing;
 
 use Magento\Ui\DataProvider\AddFieldToCollectionInterface;
 use Magento\Ui\DataProvider\AddFilterToCollectionInterface;
-use \Smile\CustomEntity\Model\ResourceModel\CustomEntity\CollectionFactory;
+use Smile\CustomEntity\Model\ResourceModel\CustomEntity\CollectionFactory;
 use Smile\ScopedEav\Ui\DataProvider\Entity\Listing\EntityDataProvider;
 
 /**

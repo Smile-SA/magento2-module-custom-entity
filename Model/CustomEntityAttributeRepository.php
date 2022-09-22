@@ -18,10 +18,7 @@ use Smile\CustomEntity\Api\Data\CustomEntityAttributeSearchResultsInterface;
  */
 class CustomEntityAttributeRepository implements CustomEntityAttributeRepositoryInterface
 {
-    /**
-     * @var AttributeRepositoryInterface
-     */
-    private $eavAttributeRepository;
+    private AttributeRepositoryInterface $eavAttributeRepository;
 
     /**
      * Constructor.
@@ -38,9 +35,6 @@ class CustomEntityAttributeRepository implements CustomEntityAttributeRepository
      * Retrieve specific attribute.
      *
      * @param string $attributeCode Attribute code.
-     *
-     * @return CustomEntityAttributeInterface|null
-     *
      * @throws NoSuchEntityException
      */
     public function get(string $attributeCode): ?CustomEntityAttributeInterface
@@ -52,9 +46,7 @@ class CustomEntityAttributeRepository implements CustomEntityAttributeRepository
      * Delete Attribute.
      *
      * @param CustomEntityAttributeInterface $attribute Attribute.
-     *
      * @return bool True if the entity was deleted (always true)
-     *
      * @throws StateException
      * @throws NoSuchEntityException
      */
@@ -67,13 +59,10 @@ class CustomEntityAttributeRepository implements CustomEntityAttributeRepository
      * Delete Attribute by id
      *
      * @param string $attributeCode Attribute code.
-     *
-     * @return bool
-     *
      * @throws StateException
      * @throws NoSuchEntityException
      */
-    public function deleteById($attributeCode): bool
+    public function deleteById(string $attributeCode): bool
     {
         if (!is_numeric($attributeCode)) {
             $attributeCode = $this->eavAttributeRepository->get($this->getEntityTypeCode(), $attributeCode)->getAttributeId();
@@ -86,9 +75,6 @@ class CustomEntityAttributeRepository implements CustomEntityAttributeRepository
      * Save attribute data.
      *
      * @param CustomEntityAttributeInterface $attribute Attribute.
-     *
-     * @return CustomEntityAttributeInterface|null
-     *
      * @throws NoSuchEntityException
      * @throws InputExceptionAlias
      * @throws StateException
@@ -102,8 +88,6 @@ class CustomEntityAttributeRepository implements CustomEntityAttributeRepository
      * Retrieve all attributes for entity type.
      *
      * @param SearchCriteriaInterface $searchCriteria Search criteria.
-     *
-     * @return CustomEntityAttributeSearchResultsInterface|null
      */
     public function getList(SearchCriteriaInterface $searchCriteria): ?CustomEntityAttributeSearchResultsInterface
     {
@@ -122,8 +106,6 @@ class CustomEntityAttributeRepository implements CustomEntityAttributeRepository
 
     /**
      * Get the custom entity type code.
-     *
-     * @return string|null
      */
     private function getEntityTypeCode(): ?string
     {

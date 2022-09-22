@@ -16,15 +16,9 @@ use Smile\ScopedEav\Controller\Adminhtml\Attribute\AbstractBuilder;
  */
 class Builder extends AbstractBuilder
 {
-    /**
-     * @var CustomEntityAttributeInterfaceFactory
-     */
-    private $attributeFactory;
+    private CustomEntityAttributeInterfaceFactory $attributeFactory;
 
-    /**
-     * @var CustomEntityAttributeRepositoryInterface
-     */
-    private $attributeRepository;
+    private CustomEntityAttributeRepositoryInterface $attributeRepository;
 
     /**
      * Constructor.

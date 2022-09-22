@@ -19,10 +19,7 @@ use Smile\CustomEntity\Model\ResourceModel\CustomEntity\Attribute\Collection as 
  */
 class Collection extends \Magento\Eav\Model\ResourceModel\Entity\Attribute\Collection
 {
-    /**
-     * @var EntityFactory
-     */
-    private $eavEntityFactory;
+    private EntityFactory $eavEntityFactory;
 
     /**
      * Constructor.
@@ -43,8 +40,8 @@ class Collection extends \Magento\Eav\Model\ResourceModel\Entity\Attribute\Colle
         ManagerInterface $eventManager,
         Config $eavConfig,
         EntityFactory $eavEntityFactory,
-        AdapterInterface $connection = null,
-        AbstractDb $resource = null
+        ?AdapterInterface $connection = null,
+        ?AbstractDb $resource = null
     ) {
         parent::__construct($entityFactory, $logger, $fetchStrategy, $eventManager, $eavConfig, $connection, $resource);
         $this->eavEntityFactory = $eavEntityFactory;
@@ -63,8 +60,6 @@ class Collection extends \Magento\Eav\Model\ResourceModel\Entity\Attribute\Colle
     /**
      * Method implemented to allow attribute set management through standard blocks.
      * Does nothing. Allow to be compatible with product attribute collection.
-     *
-     * @return SmileCustomEntityCollection|null
      */
     public function addVisibleFilter(): ?SmileCustomEntityCollection
     {

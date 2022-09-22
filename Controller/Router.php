@@ -6,9 +6,9 @@ namespace Smile\CustomEntity\Controller;
 
 use Magento\Framework\App\ActionFactory;
 use Magento\Framework\App\ActionInterface;
+use Magento\Framework\App\Request\Http as HttpRequest;
 use Magento\Framework\App\RequestInterface;
 use Magento\Framework\App\RouterInterface;
-use Magento\Framework\App\Request\Http as HttpRequest;
 use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Framework\Exception\NotFoundException;
 use Smile\CustomEntity\Api\Data\CustomEntityInterface;
@@ -20,20 +20,11 @@ use Smile\CustomEntity\Model\CustomEntity\AttributeSet\Url;
  */
 class Router implements RouterInterface
 {
-    /**
-     * @var Url
-     */
-    private $urlSetModel;
+    private Url $urlSetModel;
 
-    /**
-     * @var ActionFactory
-     */
-    private $actionFactory;
+    private ActionFactory $actionFactory;
 
-    /**
-     * @var CustomEntity
-     */
-    private $customEntity;
+    private CustomEntity $customEntity;
 
     /**
      * Router constructor.
@@ -56,7 +47,6 @@ class Router implements RouterInterface
      * Match application action by request
      *
      * @param RequestInterface|HttpRequest $request Request.
-     *
      * @return ActionInterface|null
      */
     // @codingStandardsIgnoreLine Match function is allow in router (MEQP2.Classes.PublicNonInterfaceMethods.PublicMethodFound)
@@ -90,7 +80,6 @@ class Router implements RouterInterface
      * Match custom entity.
      *
      * @param array $requestPathArray Request path array
-     *
      * @return mixed
      * @throws NoSuchEntityException
      * @throws NotFoundException
@@ -109,8 +98,6 @@ class Router implements RouterInterface
      * Return controller name.
      *
      * @param array $requestPathArray Request path array.
-     *
-     * @return string|null
      */
     private function getControllerName(array $requestPathArray): ?string
     {
@@ -121,8 +108,6 @@ class Router implements RouterInterface
      * Return true if we want to see a set of custom entity.
      *
      * @param array $requestPathArray Request path array.
-     *
-     * @return bool
      */
     private function isCustomEntitySet(array $requestPathArray): bool
     {
@@ -133,8 +118,6 @@ class Router implements RouterInterface
      * Return true if current request is allow into this router.
      *
      * @param array $requestPathArray Request path array.
-     *
-     * @return bool
      */
     private function isValidPath(array $requestPathArray): bool
     {

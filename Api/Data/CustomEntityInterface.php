@@ -36,7 +36,6 @@ interface CustomEntityInterface extends EntityInterface, IdentityInterface
      * Set custom entity url key.
      *
      * @param string $urlKey Url key
-     *
      * @return $this
      */
     public function setUrlKey(string $urlKey): self;

@@ -16,25 +16,13 @@ use Smile\ScopedEav\Ui\DataProvider\Entity\Form\Modifier\AbstractModifier;
  */
 class AttributeSet extends AbstractModifier
 {
-    /**
-     * @var int
-     */
     const ATTRIBUTE_SET_FIELD_ORDER = 30;
 
-    /**
-     * @var Options
-     */
-    private $attributeSetOptions;
+    private Options $attributeSetOptions;
 
-    /**
-     * @var UrlInterface
-     */
-    private $urlBuilder;
+    private UrlInterface $urlBuilder;
 
-    /**
-     * @var LocatorInterface
-     */
-    private $locator;
+    private LocatorInterface $locator;
 
     /**
      * Constructor.

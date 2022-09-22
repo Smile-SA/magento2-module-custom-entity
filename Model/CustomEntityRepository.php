@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Smile\CustomEntity\Model;
 
 use Magento\Framework\Api\ExtensibleDataObjectConverter;
+use Magento\Framework\Api\ExtensionAttribute\JoinProcessorInterface;
 use Magento\Framework\Api\SearchCriteria\CollectionProcessorInterface;
 use Magento\Framework\Api\SearchCriteriaInterface;
 use Magento\Framework\Api\SearchResults;
@@ -18,9 +19,8 @@ use Smile\CustomEntity\Api\CustomEntityRepositoryInterface;
 use Smile\CustomEntity\Api\Data\CustomEntityInterface;
 use Smile\CustomEntity\Api\Data\CustomEntitySearchResultsInterface;
 use Smile\CustomEntity\Api\Data\CustomEntitySearchResultsInterfaceFactory;
-use Magento\Framework\Api\ExtensionAttribute\JoinProcessorInterface;
-use \Smile\CustomEntity\Model\ResourceModel\CustomEntity as CustomEntityResource;
-use \Smile\CustomEntity\Model\ResourceModel\CustomEntity\CollectionFactory as CustomEntityCollectionFactory;
+use Smile\CustomEntity\Model\ResourceModel\CustomEntity as CustomEntityResource;
+use Smile\CustomEntity\Model\ResourceModel\CustomEntity\CollectionFactory as CustomEntityCollectionFactory;
 
 /**
  * Custom entity repository implementation.
@@ -32,52 +32,25 @@ class CustomEntityRepository implements CustomEntityRepositoryInterface
     /**
      * @var CustomEntityInterface[]
      */
-    protected $instances = [];
+    protected array $instances = [];
 
-    /**
-     * @var CustomEntityResource
-     */
-    private $customEntityResource;
+    private CustomEntityResource $customEntityResource;
 
-    /**
-     * @var CustomEntityFactory
-     */
-    private $customEntityFactory;
+    private CustomEntityFactory $customEntityFactory;
 
-    /**
-     * @var StoreManagerInterface
-     */
-    private $storeManager;
+    private StoreManagerInterface $storeManager;
 
-    /**
-     * @var MetadataPool
-     */
-    private $metadataPool;
+    private MetadataPool $metadataPool;
 
-    /**
-     * @var ExtensibleDataObjectConverter
-     */
-    private $extensibleDataObjectConverter;
+    private ExtensibleDataObjectConverter $extensibleDataObjectConverter;
 
-    /**
-     * @var CustomEntityCollectionFactory
-     */
-    private $customEntityCollectionFactory;
+    private CustomEntityCollectionFactory $customEntityCollectionFactory;
 
-    /**
-     * @var CollectionProcessorInterface
-     */
-    private $collectionProcessor;
+    private CollectionProcessorInterface $collectionProcessor;
 
-    /**
-     * @var CustomEntitySearchResultsInterfaceFactory
-     */
-    private $customEntitySearchResultsFactory;
+    private CustomEntitySearchResultsInterfaceFactory $customEntitySearchResultsFactory;
 
-    /**
-     * @var JoinProcessorInterface
-     */
-    private $joinProcessor;
+    private JoinProcessorInterface $joinProcessor;
 
     /**
      * Constructor.
@@ -118,9 +91,6 @@ class CustomEntityRepository implements CustomEntityRepositoryInterface
      * Save a custom entity.
      *
      * @param CustomEntityInterface|null $entity Saved entity.
-     *
-     * @return  CustomEntityInterface|null
-     *
      * @throws InputException
      * @throws StateException
      * @throws CouldNotSaveException
@@ -159,15 +129,12 @@ class CustomEntityRepository implements CustomEntityRepositoryInterface
      * @param int|string $entityId Entity Id.
      * @param int|null $storeId Store Id.
      * @param bool $forceReload Force reload the entity..
-     *
-     * @return CustomEntityInterface|null
-     *
      * @throws NoSuchEntityException
      * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
      */
     public function get($entityId, ?int $storeId = null, bool $forceReload = false): ?CustomEntityInterface
     {
-        $cacheKey = null !== $storeId ? $storeId : 'all';
+        $cacheKey = $storeId ?? 'all';
 
         if (!isset($this->instances[$entityId][$cacheKey]) || $forceReload === true) {
             $entity = $this->customEntityFactory->create();
@@ -188,9 +155,7 @@ class CustomEntityRepository implements CustomEntityRepositoryInterface
      * Delete custom entity.
      *
      * @param CustomEntityInterface $entity Deleted entity.
-     *
      * @return bool Will returned True if deleted
-     *
      * @throws StateException
      */
     public function delete(CustomEntityInterface $entity): bool
@@ -211,9 +176,7 @@ class CustomEntityRepository implements CustomEntityRepositoryInterface
      * Delete custom entity by id.
      *
      * @param int $entityId Deleted entity id.
-     *
      * @return bool Will returned True if deleted
-     *
      * @throws NoSuchEntityException
      * @throws StateException
      */
@@ -228,7 +191,6 @@ class CustomEntityRepository implements CustomEntityRepositoryInterface
      * Get custom entity list.
      *
      * @param SearchCriteriaInterface $searchCriteria Search criteria.
-     *
      * @return CustomEntitySearchResultsInterface|SearchResults
      */
     public function getList(SearchCriteriaInterface $searchCriteria)

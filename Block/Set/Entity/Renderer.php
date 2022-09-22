@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Smile\CustomEntity\Block\Set\Entity;
 
-use Magento\Eav\Api\AttributeSetRepositoryInterface;
-use Magento\Framework\Filter\FilterManager;
 use Magento\Framework\View\Element\Template;
 use Smile\CustomEntity\Api\Data\CustomEntityInterface;
 use Smile\CustomEntity\Block\CustomEntity\ImageFactory;
@@ -18,10 +16,7 @@ use Smile\CustomEntity\Block\CustomEntity\ImageFactory;
  */
 class Renderer extends Template
 {
-    /**
-     * @var ImageFactory
-     */
-    private $imageFactory;
+    private ImageFactory $imageFactory;
 
     /**
      * Renderer constructor.
@@ -41,8 +36,6 @@ class Renderer extends Template
 
     /**
      * Return custom entity image.
-     *
-     * @return string|null
      */
     public function getImage(): ?string
     {
@@ -51,8 +44,6 @@ class Renderer extends Template
 
     /**
      * Return entity url.
-     *
-     * @return string|null
      */
     public function getEntityUrl(): ?string
     {

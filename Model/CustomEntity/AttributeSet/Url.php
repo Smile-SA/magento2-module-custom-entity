@@ -12,10 +12,7 @@ use Smile\CustomEntity\Model\ResourceModel\CustomEntity\AttributeSet\Url as UrlR
  */
 class Url
 {
-    /**
-     * @var UrlResourceModel
-     */
-    private $urlResourceModel;
+    private UrlResourceModel $urlResourceModel;
 
     /**
      * Url constructor.
@@ -32,8 +29,6 @@ class Url
      * Return attribute set id from url key.
      *
      * @param string $urlKey Attribute set url key.
-     *
-     * @return int|null
      * @throws NotFoundException
      */
     public function checkIdentifier(string $urlKey): ?int

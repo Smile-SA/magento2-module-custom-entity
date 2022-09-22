@@ -131,6 +131,7 @@ class CustomEntityRepository implements CustomEntityRepositoryInterface
      * @param bool $forceReload Force reload the entity..
      * @throws NoSuchEntityException
      * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
+     * @SuppressWarnings(PHPMD.StaticAccess)
      */
     public function get($entityId, ?int $storeId = null, bool $forceReload = false): ?CustomEntityInterface
     {

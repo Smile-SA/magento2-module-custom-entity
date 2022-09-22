@@ -10,6 +10,7 @@ use Magento\Eav\Model\Entity\TypeFactory;
 use Magento\Framework\DataObject;
 use Magento\Framework\EntityManager\EntityManager;
 use Magento\Store\Model\StoreManagerInterface;
+use Smile\CustomEntity\Api\Data\CustomEntityInterface;
 use Smile\ScopedEav\Model\Entity\Attribute\DefaultAttributes;
 use Smile\ScopedEav\Model\ResourceModel\AbstractResource;
 
@@ -52,7 +53,7 @@ class CustomEntity extends AbstractResource
     public function getEntityType()
     {
         if (empty($this->_type)) {
-            $this->setType(\Smile\CustomEntity\Model\CustomEntity::ENTITY);
+            $this->setType(CustomEntityInterface::ENTITY);
         }
 
         return parent::getEntityType();

@@ -4,9 +4,11 @@ declare(strict_types=1);
 
 namespace Smile\CustomEntity\Model\ResourceModel\CustomEntity\Attribute\Grid;
 
+use Magento\Eav\Model\ResourceModel\Entity\Attribute;
 use Magento\Framework\Api\Search\AggregationInterface;
 use Magento\Framework\Api\Search\SearchResultInterface;
 use Magento\Framework\Api\SearchCriteriaInterface;
+use Magento\Framework\View\Element\UiComponent\DataProvider\Document;
 use Smile\CustomEntity\Model\ResourceModel\CustomEntity\Attribute\Collection as AttributeCollection;
 
 /**
@@ -14,22 +16,28 @@ use Smile\CustomEntity\Model\ResourceModel\CustomEntity\Attribute\Collection as 
  */
 class Collection extends AttributeCollection implements SearchResultInterface
 {
+    /**
+     * Aggregation interface
+     */
     private AggregationInterface $aggregations;
 
     /**
      * @inheritDoc
      */
-    public function getAggregations()
+    protected function _construct()
     {
-        return $this->aggregations;
+        $this->_init(
+            Document::class,
+            Attribute::class
+        );
     }
 
     /**
      * @inheritDoc
      */
-    public function getSearchCriteria()
+    public function getAggregations(): AggregationInterface
     {
-        return null;
+        return $this->aggregations;
     }
 
     /**
@@ -43,7 +51,7 @@ class Collection extends AttributeCollection implements SearchResultInterface
     /**
      * @inheritDoc
      */
-    public function setSearchCriteria(?SearchCriteriaInterface $searchCriteria = null): self
+    public function setSearchCriteria(SearchCriteriaInterface $searchCriteria)
     {
         return $this;
     }
@@ -51,9 +59,10 @@ class Collection extends AttributeCollection implements SearchResultInterface
     /**
      * @inheritDoc
      */
-    public function setAggregations($aggregations)
+    public function setAggregations($aggregations): self
     {
         $this->aggregations = $aggregations;
+        return $this;
     }
 
     /**
@@ -75,11 +84,8 @@ class Collection extends AttributeCollection implements SearchResultInterface
     /**
      * @inheritDoc
      */
-    protected function _construct()
+    public function getSearchCriteria(): ?SearchCriteriaInterface
     {
-        $this->_init(
-            \Magento\Framework\View\Element\UiComponent\DataProvider\Document::class,
-            \Magento\Eav\Model\ResourceModel\Entity\Attribute::class
-        );
+        return null;
     }
 }

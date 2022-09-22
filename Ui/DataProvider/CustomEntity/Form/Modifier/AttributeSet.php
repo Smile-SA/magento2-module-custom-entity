@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Smile\CustomEntity\Ui\DataProvider\CustomEntity\Form\Modifier;
 
-use Magento\Framework\UrlInterface;
 use Magento\Ui\Component\Form\Field;
 use Smile\CustomEntity\Api\Data\CustomEntityInterface;
 use Smile\CustomEntity\Model\CustomEntity\AttributeSet\Options;
@@ -20,24 +19,19 @@ class AttributeSet extends AbstractModifier
 
     private Options $attributeSetOptions;
 
-    private UrlInterface $urlBuilder;
-
     private LocatorInterface $locator;
 
     /**
      * Constructor.
      *
      * @param LocatorInterface $locator Entity locator.
-     * @param UrlInterface $urlBuilder URL builder.
      * @param Options $attributeSetOptions Attribute set source model.
      */
     public function __construct(
         LocatorInterface $locator,
-        UrlInterface $urlBuilder,
         Options $attributeSetOptions
     ) {
         $this->attributeSetOptions = $attributeSetOptions;
-        $this->urlBuilder = $urlBuilder;
         $this->locator = $locator;
     }
 

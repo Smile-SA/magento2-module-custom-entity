@@ -18,9 +18,9 @@ class Output extends MagentoOutput implements ArgumentInterface
     /**
      * Prepare custom entity attribute html output
      *
-     * @param CustomEntityInterface $customEntity  Custom Entity.
-     * @param string                $attributeHtml Attribute html value.
-     * @param string                $attributeName Attribute name.
+     * @param CustomEntityInterface $customEntity Custom Entity.
+     * @param string $attributeHtml Attribute html value.
+     * @param string $attributeName Attribute name.
      * @throws LocalizedException
      * @SuppressWarnings(PHPMD.CyclomaticComplexity)
      */
@@ -31,7 +31,6 @@ class Output extends MagentoOutput implements ArgumentInterface
     ): ?string {
         $attribute = $this->_eavConfig->getAttribute(CustomEntity::ENTITY, $attributeName);
         if (
-            $attribute &&
             $attribute->getId() &&
             $attribute->getFrontendInput() != 'image' &&
             (!$attribute->getIsHtmlAllowedOnFront() &&

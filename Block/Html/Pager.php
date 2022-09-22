@@ -13,9 +13,9 @@ use Magento\Framework\Api\SearchResultsInterface;
 class Pager extends \Magento\Theme\Block\Html\Pager
 {
     /**
-     * Current template name
+     * @inheritdoc
      */
-    protected string $_template = 'Smile_CustomEntity::html/pager.phtml';
+    protected $_template = 'Smile_CustomEntity::html/pager.phtml';
 
     private SearchResultsInterface $searchResult;
 

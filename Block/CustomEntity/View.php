@@ -26,10 +26,10 @@ class View extends Template implements IdentityInterface
     /**
      * View constructor.
      *
-     * @param Template\Context $context      Context.
-     * @param Registry         $registry     Registry.
-     * @param ImageFactory     $imageFactory Image factory.
-     * @param array            $data         Data.
+     * @param Template\Context $context Context.
+     * @param Registry $registry Registry.
+     * @param ImageFactory $imageFactory Image factory.
+     * @param array $data Data.
      */
     public function __construct(
         Template\Context $context,

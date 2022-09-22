@@ -106,7 +106,7 @@ class View implements HttpGetActionInterface
      *
      * @param AttributeSetInterface $attributeSet Current attribute set.
      */
-    private function getAttributeSetCode(AttributeSetInterface $attributeSet): ?string
+    private function getAttributeSetCode(AttributeSetInterface $attributeSet): string
     {
         return $this->filterManager->translitUrl($attributeSet->getAttributeSetName());
     }

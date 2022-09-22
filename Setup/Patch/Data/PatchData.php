@@ -7,6 +7,8 @@ namespace Smile\CustomEntity\Setup\Patch\Data;
 use Magento\Framework\Setup\InstallDataInterface;
 use Magento\Framework\Setup\ModuleContextInterface;
 use Magento\Framework\Setup\ModuleDataSetupInterface;
+use Smile\CustomEntity\Setup\CustomEntitySetup;
+use Smile\CustomEntity\Setup\CustomEntitySetupFactory;
 
 /**
  * Custom entity data setup.

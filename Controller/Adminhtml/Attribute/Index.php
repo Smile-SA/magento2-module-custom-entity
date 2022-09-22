@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Smile\CustomEntity\Controller\Adminhtml\Attribute;
 
 use Magento\Backend\App\Action\Context;
+use Magento\Backend\Model\View\Result\ForwardFactory;
 use Smile\ScopedEav\ViewModel\Data as DataViewModel;
 
 /**
@@ -25,8 +26,9 @@ class Index extends \Smile\ScopedEav\Controller\Adminhtml\Attribute\Index
     public function __construct(
         Context $context,
         DataViewModel $dataViewModel,
-        Builder $attributeBuilder
+        Builder $attributeBuilder,
+        ForwardFactory $resultForwardFactory
     ) {
-        parent::__construct($context, $dataViewModel, $attributeBuilder);
+        parent::__construct($context, $dataViewModel, $attributeBuilder, $resultForwardFactory);
     }
 }

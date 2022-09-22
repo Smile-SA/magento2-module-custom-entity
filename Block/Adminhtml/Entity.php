@@ -13,7 +13,7 @@ use Smile\ScopedEav\Block\Adminhtml\AbstractEntity;
 class Entity extends AbstractEntity
 {
     /**
-     * {@inheritDoc}
+     * @inheritDoc
      */
     protected function getEntityTypeCode(): string
     {

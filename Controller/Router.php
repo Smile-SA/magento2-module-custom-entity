@@ -54,7 +54,10 @@ class Router implements RouterInterface
     {
         $requestPath = trim($request->getPathInfo(), '/');
         $requestPathArray = explode('/', $requestPath);
-        if (!$this->isValidPath($requestPathArray) || $request->getAlias(\Magento\Framework\Url::REWRITE_REQUEST_PATH_ALIAS)) {
+        if (
+            !$this->isValidPath($requestPathArray)
+            || $request->getAlias(\Magento\Framework\Url::REWRITE_REQUEST_PATH_ALIAS)
+        ) {
             // Continuing with processing of this URL.
             return null;
         }

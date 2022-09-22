@@ -39,8 +39,7 @@ class Front extends Generic
     }
 
     /**
-     * {@inheritdoc}
-     *
+     * @inheritdoc
      * @SuppressWarnings(PHPMD.CamelCaseMethodName)
      */
     protected function _prepareForm()

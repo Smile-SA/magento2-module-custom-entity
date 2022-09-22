@@ -25,7 +25,7 @@ class Options extends \Magento\Catalog\Model\Product\AttributeSet\Options
     }
 
     /**
-     * {@inheritDoc}
+     * @inheritdoc
      */
     public function toOptionArray()
     {

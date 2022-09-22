@@ -40,7 +40,16 @@ class Main extends \Smile\ScopedEav\Block\Adminhtml\Set\Main
         AttributeCollectionFactory $attributeCollectionFactory,
         array $data = []
     ) {
-        parent::__construct($context, $jsonEncoder, $typeFactory, $groupFactory, $collectionFactory, $registry, $attributeMapper, $data);
+        parent::__construct(
+            $context,
+            $jsonEncoder,
+            $typeFactory,
+            $groupFactory,
+            $collectionFactory,
+            $registry,
+            $attributeMapper,
+            $data
+        );
 
         $this->_collectionFactory = $attributeCollectionFactory;
     }

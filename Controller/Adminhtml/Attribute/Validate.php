@@ -14,7 +14,7 @@ use Smile\ScopedEav\ViewModel\Data as DataViewModel;
  */
 class Validate extends \Smile\ScopedEav\Controller\Adminhtml\Attribute\Validate
 {
-    const ADMIN_RESOURCE = 'Smile_CustomEntity::attributes_attributes';
+    public const ADMIN_RESOURCE = 'Smile_CustomEntity::attributes_attributes';
 
     /**
      * Constructor.

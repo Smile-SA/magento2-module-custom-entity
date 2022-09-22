@@ -4,7 +4,11 @@
  * Attribute set frontend view block
  */
 
-/** @var $block \Smile\CustomEntity\Block\CustomEntity\View */
+/**
+ * @var $block \Smile\CustomEntity\Block\CustomEntity\View
+ * @var $escaper Magento\Framework\Escaper
+ */
+
 $customEntity = $block->getEntity();
 
 /** @var $outputViewModel Smile\CustomEntity\ViewModel\Output */
@@ -13,15 +17,21 @@ $outputViewModel = $block->getData('output_view_model');
 <?php if ($customEntity->getDescription()): ?>
   <div class="custom_entity attribute description">
       <div class="value">
-          <?= $outputViewModel->customEntityAttribute($customEntity, (string) $customEntity->getDescription(), 'description') ?>
+          <?= $escaper->escapeHtml(
+              $outputViewModel->customEntityAttribute(
+                  $customEntity,
+                  (string) $customEntity->getDescription(),
+                  'description'
+              )
+          ) ?>
       </div>
   </div>
 <?php endif; ?>
 
 <div class="actions">
-    <a href="<?= $block->getUrl($customEntity->getAttributeSetUrlKey()) ?>"
-       title="<?= __('Back to %1', $customEntity->getAttributeSet()->getAttributeSetName()) ?>"
+    <a href="<?= $escaper->escapeUrl($block->getUrl($customEntity->getAttributeSetUrlKey())) ?>"
+       title="<?= $escaper->escapeHtml(__('Back to %1', $customEntity->getAttributeSet()->getAttributeSetName())) ?>"
        class="action">
-        <?= __('Back') ?>
+        <?= $escaper->escapeHtml(__('Back')) ?>
     </a>
 </div>

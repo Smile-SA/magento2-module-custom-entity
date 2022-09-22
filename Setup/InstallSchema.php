@@ -28,7 +28,7 @@ class InstallSchema implements InstallSchemaInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     // @codingStandardsIgnoreLine Context param not used (Generic.CodeAnalysis.UnusedFunctionParameter.Found)
     public function install(SchemaSetupInterface $setup, ModuleContextInterface $context)

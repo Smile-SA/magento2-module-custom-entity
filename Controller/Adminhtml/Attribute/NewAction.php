@@ -12,7 +12,7 @@ use Smile\ScopedEav\ViewModel\Data as DataViewModel;
  */
 class NewAction extends \Smile\ScopedEav\Controller\Adminhtml\Attribute\NewAction
 {
-    const ADMIN_RESOURCE = 'Smile_CustomEntity::attributes_attributes';
+    public const ADMIN_RESOURCE = 'Smile_CustomEntity::attributes_attributes';
 
     /**
      * Constructor.

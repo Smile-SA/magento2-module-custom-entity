@@ -12,7 +12,7 @@ use Smile\ScopedEav\ViewModel\Data as DataViewModel;
  */
 class Delete extends \Smile\ScopedEav\Controller\Adminhtml\Attribute\Delete
 {
-    const ADMIN_RESOURCE = 'Smile_CustomEntity::attributes_attributes';
+    public const ADMIN_RESOURCE = 'Smile_CustomEntity::attributes_attributes';
 
     /**
      * Constructor.

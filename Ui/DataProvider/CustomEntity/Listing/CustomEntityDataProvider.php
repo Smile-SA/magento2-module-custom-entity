@@ -37,7 +37,15 @@ class CustomEntityDataProvider extends EntityDataProvider
         array $meta = [],
         array $data = []
     ) {
-        parent::__construct($name, $primaryFieldName, $requestFieldName, $addFieldStrategies, $addFilterStrategies, $meta, $data);
+        parent::__construct(
+            $name,
+            $primaryFieldName,
+            $requestFieldName,
+            $addFieldStrategies,
+            $addFilterStrategies,
+            $meta,
+            $data
+        );
 
         $this->collection = $collectionFactory->create();
     }

@@ -26,7 +26,7 @@ class Collection extends AbstractCollection
      */
     public function addIsActiveFilter(): self
     {
-        $this->addAttributeToFilter('is_active', 1);
+        $this->addAttributeToFilter('is_active', '1');
         $this->_eventManager->dispatch($this->_eventPrefix . '_add_is_active_filter', [$this->_eventObject => $this]);
 
         return $this;

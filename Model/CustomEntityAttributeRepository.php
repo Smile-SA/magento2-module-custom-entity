@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Smile\CustomEntity\Model;
 
+use BadMethodCallException;
 use Magento\Eav\Api\AttributeRepositoryInterface;
 use Magento\Framework\Api\SearchCriteriaInterface;
 use Magento\Framework\Exception\InputException as InputExceptionAlias;
@@ -95,7 +96,7 @@ class CustomEntityAttributeRepository implements CustomEntityAttributeRepository
     public function getList(SearchCriteriaInterface $searchCriteria): ?CustomEntityAttributeSearchResultsInterface
     {
         // TODO: Implement getList() method.
-        throw new \BadMethodCallException('Not implemented');
+        throw new BadMethodCallException('Not implemented');
     }
 
     /**
@@ -104,7 +105,7 @@ class CustomEntityAttributeRepository implements CustomEntityAttributeRepository
     public function getCustomAttributesMetadata($dataObjectClassName = null)
     {
         // TODO: Implement getCustomAttributesMetadata() method.
-        throw new \BadMethodCallException('Not implemented');
+        throw new BadMethodCallException('Not implemented');
     }
 
     /**

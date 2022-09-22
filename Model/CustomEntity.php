@@ -30,15 +30,24 @@ class CustomEntity extends AbstractEntity implements IdentityInterface, CustomEn
     /**
      * Product cache tag
      */
-    protected const CACHE_TAG = 'smile_custom_entity';
+    public const CACHE_TAG = 'smile_custom_entity';
 
     public const CACHE_CUSTOM_ENTITY_SET_TAG = 'smile_custom_entity_set';
 
-    protected string $_cacheTag = self::CACHE_TAG;
+    /**
+     * @inheritdoc
+     */
+    protected $_cacheTag = self::CACHE_TAG;
 
-    protected string $_eventPrefix = 'smile_custom_entity';
+    /**
+     * @inheritdoc
+     */
+    protected $_eventPrefix = 'smile_custom_entity';
 
-    protected string $_eventObject = 'smile_custom_entity';
+    /**
+     * @inheritdoc
+     */
+    protected $_eventObject = 'smile_custom_entity';
 
     private MetadataServiceInterface $metadataService;
 

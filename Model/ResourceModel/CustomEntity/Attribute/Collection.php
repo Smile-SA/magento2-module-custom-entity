@@ -4,14 +4,6 @@ declare(strict_types=1);
 
 namespace Smile\CustomEntity\Model\ResourceModel\CustomEntity\Attribute;
 
-use Magento\Eav\Model\Config;
-use Magento\Eav\Model\EntityFactory;
-use Magento\Framework\Data\Collection\Db\FetchStrategyInterface;
-use Magento\Framework\Data\Collection\EntityFactoryInterface;
-use Magento\Framework\DB\Adapter\AdapterInterface;
-use Magento\Framework\Event\ManagerInterface;
-use Magento\Framework\Model\ResourceModel\Db\AbstractDb;
-use Psr\Log\LoggerInterface;
 use Smile\CustomEntity\Model\ResourceModel\CustomEntity\Attribute\Collection as SmileCustomEntityCollection;
 
 /**
@@ -19,34 +11,6 @@ use Smile\CustomEntity\Model\ResourceModel\CustomEntity\Attribute\Collection as 
  */
 class Collection extends \Magento\Eav\Model\ResourceModel\Entity\Attribute\Collection
 {
-    private EntityFactory $eavEntityFactory;
-
-    /**
-     * Constructor.
-     *
-     * @param EntityFactoryInterface $entityFactory Entity factory.
-     * @param LoggerInterface $logger Logger.
-     * @param FetchStrategyInterface $fetchStrategy Fetch strategy
-     * @param ManagerInterface $eventManager Event manager.
-     * @param Config $eavConfig EAV configuration .
-     * @param EntityFactory $eavEntityFactory EAV entity factory
-     * @param AdapterInterface|null $connection DB connection.
-     * @param AbstractDb|null $resource Resource model.
-     */
-    public function __construct(
-        EntityFactoryInterface $entityFactory,
-        LoggerInterface $logger,
-        FetchStrategyInterface $fetchStrategy,
-        ManagerInterface $eventManager,
-        Config $eavConfig,
-        EntityFactory $eavEntityFactory,
-        ?AdapterInterface $connection = null,
-        ?AbstractDb $resource = null
-    ) {
-        parent::__construct($entityFactory, $logger, $fetchStrategy, $eventManager, $eavConfig, $connection, $resource);
-        $this->eavEntityFactory = $eavEntityFactory;
-    }
-
     /**
      * @inheritdoc
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)

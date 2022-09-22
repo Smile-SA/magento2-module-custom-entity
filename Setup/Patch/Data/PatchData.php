@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Smile\CustomEntity\Setup;
+namespace Smile\CustomEntity\Setup\Patch\Data;
 
 use Magento\Framework\Setup\InstallDataInterface;
 use Magento\Framework\Setup\ModuleContextInterface;
@@ -11,7 +11,7 @@ use Magento\Framework\Setup\ModuleDataSetupInterface;
 /**
  * Custom entity data setup.
  */
-class InstallData implements InstallDataInterface
+class PatchData implements InstallDataInterface
 {
     /**
      * Custom entity EAV setup factory
@@ -34,9 +34,8 @@ class InstallData implements InstallDataInterface
     // @codingStandardsIgnoreLine Context param not used (Generic.CodeAnalysis.UnusedFunctionParameter.Found)
     public function install(ModuleDataSetupInterface $setup, ModuleContextInterface $context)
     {
-        /** @var CustomEntitySetup$categorySetup */
+        /** @var CustomEntitySetup $customEntitySetup */
         $customEntitySetup = $this->customEntitySetupFactory->create(['setup' => $setup]);
-
         $customEntitySetup->installEntities();
     }
 }

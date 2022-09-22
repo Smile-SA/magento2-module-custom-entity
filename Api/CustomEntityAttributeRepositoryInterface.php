@@ -23,9 +23,7 @@ interface CustomEntityAttributeRepositoryInterface extends MetadataServiceInterf
      * Retrieve specific attribute.
      *
      * @param string $attributeCode Attribute code.
-     *
      * @return CustomEntityAttributeInterface|null
-     *
      * @throws NoSuchEntityException
      */
     public function get(string $attributeCode): ?CustomEntityAttributeInterface;
@@ -34,9 +32,7 @@ interface CustomEntityAttributeRepositoryInterface extends MetadataServiceInterf
      * Save attribute data.
      *
      * @param CustomEntityAttributeInterface $attribute Attribute.
-     *
      * @return CustomEntityAttributeInterface|null
-     *
      * @throws NoSuchEntityException
      * @throws InputExceptionAlias
      * @throws StateException
@@ -47,9 +43,7 @@ interface CustomEntityAttributeRepositoryInterface extends MetadataServiceInterf
      * Delete Attribute.
      *
      * @param CustomEntityAttributeInterface $attribute Attribute.
-     *
      * @return bool True if the entity was deleted (always true)
-     *
      * @throws StateException
      * @throws NoSuchEntityException
      */
@@ -59,9 +53,7 @@ interface CustomEntityAttributeRepositoryInterface extends MetadataServiceInterf
      * Delete Attribute by id
      *
      * @param string $attributeCode Attribute code.
-     *
      * @return bool
-     *
      * @throws StateException
      * @throws NoSuchEntityException
      */
@@ -71,7 +63,6 @@ interface CustomEntityAttributeRepositoryInterface extends MetadataServiceInterf
      * Retrieve all attributes for entity type.
      *
      * @param SearchCriteriaInterface $searchCriteria Search criteria.
-     *
      * @return CustomEntityAttributeSearchResultsInterface|null
      */
     public function getList(SearchCriteriaInterface $searchCriteria): ?CustomEntityAttributeSearchResultsInterface;

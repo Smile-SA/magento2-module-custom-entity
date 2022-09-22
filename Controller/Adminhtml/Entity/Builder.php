@@ -19,25 +19,13 @@ use Smile\ScopedEav\Controller\Adminhtml\Entity\BuilderInterface;
  */
 class Builder implements BuilderInterface
 {
-    /**
-     * @var CustomEntityInterfaceFactory
-     */
-    private $customEntityFactory;
+    private CustomEntityInterfaceFactory $customEntityFactory;
 
-    /**
-     * @var StoreManagerInterface
-     */
-    private $storeManager;
+    private StoreManagerInterface $storeManager;
 
-    /**
-     * @var Config
-     */
-    private $wysiwygConfig;
+    private Config $wysiwygConfig;
 
-    /**
-     * @var Registry
-     */
-    private $registry;
+    private Registry $registry;
 
     /**
      * Constructor.
@@ -60,7 +48,6 @@ class Builder implements BuilderInterface
     }
 
     /**
-     * @param RequestInterface $request
      * @return CustomEntityInterface|EntityInterface
      * @throws NoSuchEntityException
      */

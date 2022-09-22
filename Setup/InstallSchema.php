@@ -15,10 +15,7 @@ use Smile\ScopedEav\Setup\SchemaSetupFactory;
  */
 class InstallSchema implements InstallSchemaInterface
 {
-    /**
-     * @var SchemaSetupFactory
-     */
-    private $schemaSetupFactory;
+    private SchemaSetupFactory $schemaSetupFactory;
 
     /**
      * Constructor.
@@ -89,8 +86,6 @@ class InstallSchema implements InstallSchemaInterface
      * Add custom entity attributes special config fields.
      *
      * @param Table $table Base table.
-     *
-     * @return Table|null
      */
     private function addAttributeConfigFields(Table $table): ?Table
     {
@@ -123,8 +118,6 @@ class InstallSchema implements InstallSchemaInterface
      * Append new configuration field custom_entity_attribute_set_id in catalog_eav_attribute table.
      *
      * @param SchemaSetupInterface $setup Setup
-     *
-     * @return void
      */
     private function addProductAttributeConfigFields(SchemaSetupInterface $setup): void
     {

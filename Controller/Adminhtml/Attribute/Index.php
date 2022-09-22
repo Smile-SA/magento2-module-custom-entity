@@ -12,9 +12,6 @@ use Smile\ScopedEav\ViewModel\Data as DataViewModel;
  */
 class Index extends \Smile\ScopedEav\Controller\Adminhtml\Attribute\Index
 {
-    /**
-     * @var string
-     */
     const ADMIN_RESOURCE = 'Smile_CustomEntity::attributes_attributes';
 
     /**

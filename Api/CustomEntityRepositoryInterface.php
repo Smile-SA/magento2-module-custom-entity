@@ -24,9 +24,7 @@ interface CustomEntityRepositoryInterface
      * Save a custom entity.
      *
      * @param CustomEntityInterface|null $entity Saved entity.
-     *
      * @return  CustomEntityInterface|null
-     *
      * @throws InputException
      * @throws StateException
      * @throws CouldNotSaveException
@@ -39,9 +37,7 @@ interface CustomEntityRepositoryInterface
      * @param int      $entityId    Entity Id.
      * @param int|null $storeId     Store Id.
      * @param bool     $forceReload Force reload the entity..
-     *
      * @return CustomEntityInterface|null
-     *
      * @throws NoSuchEntityException
      * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
      */
@@ -51,9 +47,7 @@ interface CustomEntityRepositoryInterface
      * Delete custom entity.
      *
      * @param CustomEntityInterface $entity Deleted entity.
-     *
      * @return bool Will returned True if deleted
-     *
      * @throws StateException
      */
     public function delete(CustomEntityInterface $entity): bool;
@@ -62,9 +56,7 @@ interface CustomEntityRepositoryInterface
      * Delete custom entity by id.
      *
      * @param int $entityId Deleted entity id.
-     *
      * @return bool Will returned True if deleted
-     *
      * @throws NoSuchEntityException
      * @throws StateException
      */
@@ -74,7 +66,6 @@ interface CustomEntityRepositoryInterface
      * Get custom entity list.
      *
      * @param SearchCriteriaInterface $searchCriteria Search criteria.
-     *
      * @return CustomEntitySearchResultsInterface|SearchResults
      */
     public function getList(SearchCriteriaInterface $searchCriteria);

@@ -14,11 +14,7 @@ use Smile\CustomEntity\Model\ResourceModel\CustomEntity\Attribute\Collection as 
  */
 class Collection extends AttributeCollection implements SearchResultInterface
 {
-
-    /**
-     * @var AggregationInterface
-     */
-    private $aggregations;
+    private AggregationInterface $aggregations;
 
     /**
      * {@inheritDoc}
@@ -48,7 +44,7 @@ class Collection extends AttributeCollection implements SearchResultInterface
      * {@inheritDoc}
      * Not implemented since useless.
      */
-    public function setSearchCriteria(SearchCriteriaInterface $searchCriteria = null): self
+    public function setSearchCriteria(?SearchCriteriaInterface $searchCriteria = null): self
     {
         return $this;
     }
@@ -74,7 +70,7 @@ class Collection extends AttributeCollection implements SearchResultInterface
      * {@inheritDoc}
      * Not implemented since useless.
      */
-    public function setItems(array $items = null): self
+    public function setItems(?array $items = null): self
     {
         return $this;
     }

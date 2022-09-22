@@ -21,8 +21,6 @@ class Output extends MagentoOutput implements ArgumentInterface
      * @param CustomEntityInterface $customEntity  Custom Entity.
      * @param string                $attributeHtml Attribute html value.
      * @param string                $attributeName Attribute name.
-     *
-     * @return string|null
      * @throws LocalizedException
      * @SuppressWarnings(PHPMD.CyclomaticComplexity)
      */
@@ -32,7 +30,8 @@ class Output extends MagentoOutput implements ArgumentInterface
         string $attributeName
     ): ?string {
         $attribute = $this->_eavConfig->getAttribute(CustomEntity::ENTITY, $attributeName);
-        if ($attribute &&
+        if (
+            $attribute &&
             $attribute->getId() &&
             $attribute->getFrontendInput() != 'image' &&
             (!$attribute->getIsHtmlAllowedOnFront() &&
@@ -42,7 +41,8 @@ class Output extends MagentoOutput implements ArgumentInterface
                 $attributeHtml = nl2br($attributeHtml);
             }
         }
-        if ($attributeHtml !== null
+        if (
+            $attributeHtml !== null
             && $attribute->getIsHtmlAllowedOnFront()
             && $attribute->getIsWysiwygEnabled()
             && $this->isDirectivesExists($attributeHtml)

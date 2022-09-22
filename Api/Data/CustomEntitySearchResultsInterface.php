@@ -24,7 +24,6 @@ interface CustomEntitySearchResultsInterface extends SearchResultsInterface
      * Set custom entities list.
      *
      * @param CustomEntityInterface[] $items Items.
-     *
      * @return $this
      */
     public function setItems(array $items): self;

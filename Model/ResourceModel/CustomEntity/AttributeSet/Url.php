@@ -14,10 +14,7 @@ use Magento\Framework\Model\ResourceModel\Db\Context;
  */
 class Url extends AbstractDb
 {
-    /**
-     * @var FilterManager
-     */
-    private $filterManager;
+    private FilterManager $filterManager;
 
     /**
      * Url constructor.
@@ -29,7 +26,7 @@ class Url extends AbstractDb
     public function __construct(
         Context $context,
         FilterManager $filterManager,
-        string $connectionName = null
+        ?string $connectionName = null
     ) {
         parent::__construct($context, $connectionName);
         $this->filterManager = $filterManager;
@@ -39,8 +36,6 @@ class Url extends AbstractDb
      * Find attribute set id from url key.
      *
      * @param string $urlKey Url key
-     *
-     * @return int|null
      * @throws NotFoundException
      */
     public function checkIdentifier(string $urlKey): ?int
@@ -64,8 +59,6 @@ class Url extends AbstractDb
 
     /**
      * Implementation of abstract construct
-     *
-     * @return void
      */
     // @codingStandardsIgnoreLine use like (MEQP1.CodeAnalysis.EmptyBlock.DetectedFunction)
     protected function _construct(): void

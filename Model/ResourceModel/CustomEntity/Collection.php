@@ -13,17 +13,13 @@ class Collection extends AbstractCollection
 {
     /**
      * Event prefix
-     *
-     * @var string
      */
-    protected $_eventPrefix = 'custom_entity_collection';
+    protected string $_eventPrefix = 'custom_entity_collection';
 
     /**
      * Event object name
-     *
-     * @var string
      */
-    protected $_eventObject = 'custom_entity_collection';
+    protected string $_eventObject = 'custom_entity_collection';
 
     /**
      * {@inheritDoc}
@@ -38,8 +34,6 @@ class Collection extends AbstractCollection
 
     /**
      * Init collection and determine table names
-     *
-     * @return void
      */
     protected function _construct(): void
     {

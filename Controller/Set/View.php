@@ -7,8 +7,8 @@ namespace Smile\CustomEntity\Controller\Set;
 use Magento\Eav\Api\AttributeSetRepositoryInterface;
 use Magento\Eav\Api\Data\AttributeSetInterface;
 use Magento\Framework\App\Action\HttpGetActionInterface;
-use Magento\Framework\App\ResponseInterface;
 use Magento\Framework\App\RequestInterface;
+use Magento\Framework\App\ResponseInterface;
 use Magento\Framework\Controller\Result\ForwardFactory;
 use Magento\Framework\Controller\ResultInterface;
 use Magento\Framework\Exception\NoSuchEntityException;
@@ -21,35 +21,17 @@ use Magento\Framework\View\Result\PageFactory;
  */
 class View implements HttpGetActionInterface
 {
-    /**
-     * @var AttributeSetRepositoryInterface
-     */
-    private $attributeSetRepository;
+    private AttributeSetRepositoryInterface $attributeSetRepository;
 
-    /**
-     * @var Registry
-     */
-    private $registry;
+    private Registry $registry;
 
-    /**
-     * @var PageFactory
-     */
-    private $resultPageFactory;
+    private PageFactory $resultPageFactory;
 
-    /**
-     * @var ForwardFactory
-     */
-    private $resultForwardFactory;
+    private ForwardFactory $resultForwardFactory;
 
-    /**
-     * @var FilterManager
-     */
-    private $filterManager;
+    private FilterManager $filterManager;
 
-    /**
-     * @var RequestInterface
-     */
-    private $request;
+    private RequestInterface $request;
 
     /**
      * View constructor.
@@ -59,7 +41,6 @@ class View implements HttpGetActionInterface
      * @param PageFactory $resultPageFactory Result page factory.
      * @param ForwardFactory $resultForwardFactory Result forward factory.
      * @param FilterManager $filterManager Filter manager.
-     * @param RequestInterface $request
      */
     public function __construct(
         AttributeSetRepositoryInterface $attributeSetRepository,
@@ -124,8 +105,6 @@ class View implements HttpGetActionInterface
      * Return attribute set code.
      *
      * @param AttributeSetInterface $attributeSet Current attribute set.
-     *
-     * @return string|null
      */
     private function getAttributeSetCode(AttributeSetInterface $attributeSet): ?string
     {

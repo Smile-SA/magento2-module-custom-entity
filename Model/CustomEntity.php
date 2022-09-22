@@ -34,32 +34,20 @@ class CustomEntity extends AbstractEntity implements IdentityInterface, CustomEn
 
     const CACHE_CUSTOM_ENTITY_SET_TAG = 'smile_custom_entity_set';
 
-    /**
-     * @var string
-     */
-    protected $_cacheTag = self::CACHE_TAG;
+    protected string $_cacheTag = self::CACHE_TAG;
 
-    /**
-     * @var string
-     */
-    protected $_eventPrefix = 'smile_custom_entity';
+    protected string $_eventPrefix = 'smile_custom_entity';
 
-    /**
-     * @var string
-     */
-    protected $_eventObject = 'smile_custom_entity';
+    protected string $_eventObject = 'smile_custom_entity';
 
-    /**
-     * @var MetadataServiceInterface
-     */
-    private $metadataService;
+    private MetadataServiceInterface $metadataService;
 
     /**
      * List of attributes defined in the interface.
      *
      * @var string[]
      */
-    private $interfaceAttributes = [
+    private array $interfaceAttributes = [
         self::ATTRIBUTE_SET_ID,
         self::CREATED_AT,
         self::UPDATED_AT,
@@ -67,20 +55,11 @@ class CustomEntity extends AbstractEntity implements IdentityInterface, CustomEn
         self::IS_ACTIVE,
     ];
 
-    /**
-     * @var FilterManager
-     */
-    private $filterManager;
+    private FilterManager $filterManager;
 
-    /**
-     * @var AttributeSetRepositoryInterface
-     */
-    private $attributeSetRepository;
+    private AttributeSetRepositoryInterface $attributeSetRepository;
 
-    /**
-     * @var AttributeSetInterface
-     */
-    private $attributeSet;
+    private AttributeSetInterface $attributeSet;
 
     /**
      * Constructor.
@@ -96,7 +75,6 @@ class CustomEntity extends AbstractEntity implements IdentityInterface, CustomEn
      * @param AbstractResource|null $resource Resource model.
      * @param AbstractDb|null $resourceCollection Collection.
      * @param array $data Additional data.
-     *
      * @SuppressWarnings(PHPMD.ExcessiveParameterList)
      */
     public function __construct(
@@ -108,8 +86,8 @@ class CustomEntity extends AbstractEntity implements IdentityInterface, CustomEn
         MetadataServiceInterface $metadataService,
         FilterManager $filterManager,
         AttributeSetRepositoryInterface $attributeSetRepository,
-        AbstractResource $resource = null,
-        AbstractDb $resourceCollection = null,
+        ?AbstractResource $resource = null,
+        ?AbstractDb $resourceCollection = null,
         array $data = []
     ) {
         parent::__construct(
@@ -144,8 +122,6 @@ class CustomEntity extends AbstractEntity implements IdentityInterface, CustomEn
 
     /**
      * Get url key
-     *
-     * @return string|null
      */
     public function getUrlKey(): ?string
     {
@@ -161,7 +137,6 @@ class CustomEntity extends AbstractEntity implements IdentityInterface, CustomEn
      * Set url key.
      *
      * @param string $urlKey Url key
-     *
      * @return $this
      */
     public function setUrlKey(string $urlKey): self
@@ -171,8 +146,6 @@ class CustomEntity extends AbstractEntity implements IdentityInterface, CustomEn
 
     /**
      * Get url path.
-     *
-     * @return string
      */
     public function getUrlPath(): string
     {
@@ -182,7 +155,6 @@ class CustomEntity extends AbstractEntity implements IdentityInterface, CustomEn
     /**
      * Return attribute set.
      *
-     * @return AttributeSetInterface|null
      * @throws NoSuchEntityException
      */
     public function getAttributeSet(): ?AttributeSetInterface
@@ -197,7 +169,6 @@ class CustomEntity extends AbstractEntity implements IdentityInterface, CustomEn
     /**
      * Return attribute set url key.
      *
-     * @return string|null
      * @throws NoSuchEntityException
      */
     public function getAttributeSetUrlKey(): ?string
@@ -272,8 +243,6 @@ class CustomEntity extends AbstractEntity implements IdentityInterface, CustomEn
 
     /**
      * Retrieve existing extension attributes object or create a new one.
-     *
-     * @return \Smile\CustomEntity\Api\Data\CustomEntityExtensionInterface|null
      */
     public function getExtensionAttributes(): ?\Smile\CustomEntity\Api\Data\CustomEntityExtensionInterface
     {
@@ -300,8 +269,7 @@ class CustomEntity extends AbstractEntity implements IdentityInterface, CustomEn
      * Returns custom entity ids match with url key and attribute set id.
      *
      * @param string   $urlKey         Url key.
-     * @param null|int $attributeSetId Attribute set id.
-     *
+     * @param int|null $attributeSetId Attribute set id.
      * @return mixed
      * @throws NoSuchEntityException
      * @SuppressWarnings(PHPMD.StaticAccess)

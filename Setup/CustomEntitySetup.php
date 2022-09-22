@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace Smile\CustomEntity\Setup;
 
-use Magento\Eav\Setup\EavSetup;
-use Smile\ScopedEav\Model\Entity\Attribute\Backend\Image;
 use Magento\Eav\Model\Entity\Attribute\ScopedAttributeInterface;
 use Magento\Eav\Model\Entity\Attribute\Source\Boolean;
+use Magento\Eav\Setup\EavSetup;
 use Smile\CustomEntity\Model\CustomEntity;
 use Smile\CustomEntity\Model\CustomEntity\Attribute;
 use Smile\CustomEntity\Model\ResourceModel\CustomEntity\Attribute\Collection;
+use Smile\ScopedEav\Model\Entity\Attribute\Backend\Image;
 
 /**
  * Custom Entity EAV Setup.

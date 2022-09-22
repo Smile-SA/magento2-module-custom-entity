@@ -18,15 +18,9 @@ use Smile\ScopedEav\Model\ResourceModel\AbstractResource;
  */
 class CustomEntity extends AbstractResource
 {
-    /**
-     * @var string
-     */
-    protected $customEntityWebsiteTable;
+    protected string $customEntityWebsiteTable;
 
-    /**
-     * @var StoreManagerInterface
-     */
-    private $storeManager;
+    private StoreManagerInterface $storeManager;
 
     /**
      * CustomEntity constructor.
@@ -67,8 +61,6 @@ class CustomEntity extends AbstractResource
 
     /**
      * Custom entity website table name getter.
-     *
-     * @return string|null
      */
     public function getCustomEntityWebsiteTable(): ?string
     {
@@ -83,7 +75,6 @@ class CustomEntity extends AbstractResource
      * Retrieve custom entity website identifiers
      *
      * @param \Smile\CustomEntity\Model\CustomEntity|int $entity Custom entity.
-     *
      * @return array|null
      */
     public function getWebsiteIds($entity): ?array
@@ -121,10 +112,9 @@ class CustomEntity extends AbstractResource
      * Save entity website relations
      *
      * @param \Smile\CustomEntity\Model\CustomEntity $entity Entity.
-     *
      * @return $this
      */
-    protected function saveWebsiteIds($entity): self
+    protected function saveWebsiteIds(\Smile\CustomEntity\Model\CustomEntity $entity): self
     {
         if ($this->storeManager->isSingleStoreMode()) {
             $websiteId = $this->storeManager->getDefaultStoreView()->getWebsiteId();

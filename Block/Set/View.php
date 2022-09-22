@@ -5,13 +5,13 @@ declare(strict_types=1);
 namespace Smile\CustomEntity\Block\Set;
 
 use Magento\Eav\Api\Data\AttributeSetInterface;
+use Magento\Framework\Api\SearchCriteriaBuilder;
 use Magento\Framework\Api\SearchCriteriaBuilderFactory;
 use Magento\Framework\DataObject\IdentityInterface;
+use Magento\Framework\Registry;
 use Magento\Framework\View\Element\RendererList;
 use Magento\Framework\View\Element\Template;
-use Magento\Framework\Registry;
 use Smile\CustomEntity\Api\CustomEntityRepositoryInterface;
-use Magento\Framework\Api\SearchCriteriaBuilder;
 use Smile\CustomEntity\Api\Data\CustomEntityInterface;
 use Smile\CustomEntity\Block\Html\Pager;
 use Smile\CustomEntity\Model\CustomEntity;
@@ -21,25 +21,16 @@ use Smile\CustomEntity\Model\CustomEntity;
  */
 class View extends Template implements IdentityInterface
 {
-    /**
-     * @var Registry
-     */
-    private $registry;
+    private Registry $registry;
 
-    /**
-     * @var SearchCriteriaBuilderFactory
-     */
-    private $searchCriteriaBuilderFactory;
+    private SearchCriteriaBuilderFactory $searchCriteriaBuilderFactory;
 
-    /**
-     * @var CustomEntityRepositoryInterface
-     */
-    private $customEntityRepository;
+    private CustomEntityRepositoryInterface $customEntityRepository;
 
     /**
      * @var CustomEntityInterface[]|null
      */
-    private $entities;
+    private ?array $entities = null;
 
     /**
      * View constructor.
@@ -95,8 +86,6 @@ class View extends Template implements IdentityInterface
      * Return custom entity html.
      *
      * @param CustomEntityInterface $entity Custom entity.
-     *
-     * @return string|null
      */
     public function getEntityHtml(CustomEntityInterface $entity): ?string
     {
@@ -105,8 +94,6 @@ class View extends Template implements IdentityInterface
 
     /**
      * Return current attribute set.
-     *
-     * @return AttributeSetInterface|null
      */
     public function getAttributeSet(): ?AttributeSetInterface
     {
@@ -118,23 +105,21 @@ class View extends Template implements IdentityInterface
      *
      * @return array|string[]
      */
-    public function getIdentities()
+    public function getIdentities(): array
     {
         $identities = [];
         foreach ($this->getEntities() as $entity) {
             $identities = array_merge($identities, $entity->getIdentities());
         }
-        $identities[] = CustomEntity::CACHE_CUSTOM_ENTITY_SET_TAG.'_'.$this->getAttributeSet()->getAttributeSetId();
+        $identities[] = CustomEntity::CACHE_CUSTOM_ENTITY_SET_TAG . '_' . $this->getAttributeSet()->getAttributeSetId();
 
         return $identities;
     }
 
     /**
      * Return pager.
-     *
-     * @return Pager
      */
-    public function getPager()
+    public function getPager(): Pager
     {
         return $this->getChildBlock('pager');
     }
@@ -206,10 +191,9 @@ class View extends Template implements IdentityInterface
      * Return custom entity renderer.
      *
      * @param string|null $attributeSetCode Attribute set code.
-     *
      * @return bool|\Magento\Framework\View\Element\AbstractBlock
      */
-    private function getEntityRenderer($attributeSetCode = null)
+    private function getEntityRenderer(?string $attributeSetCode = null)
     {
         if ($attributeSetCode === null) {
             $attributeSetCode = 'default';

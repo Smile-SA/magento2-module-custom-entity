@@ -24,7 +24,6 @@ interface CustomEntityAttributeSearchResultsInterface extends SearchResultsInter
      * Set attributes list.
      *
      * @param CustomEntityAttributeInterface[] $items Items.
-     *
      * @return $this
      */
     public function setItems(array $items): self;

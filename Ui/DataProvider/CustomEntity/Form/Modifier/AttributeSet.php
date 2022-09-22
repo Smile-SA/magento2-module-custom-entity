@@ -16,7 +16,7 @@ use Smile\ScopedEav\Ui\DataProvider\Entity\Form\Modifier\AbstractModifier;
  */
 class AttributeSet extends AbstractModifier
 {
-    const ATTRIBUTE_SET_FIELD_ORDER = 30;
+    private const ATTRIBUTE_SET_FIELD_ORDER = 30;
 
     private Options $attributeSetOptions;
 
@@ -42,11 +42,12 @@ class AttributeSet extends AbstractModifier
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function modifyMeta(array $meta)
     {
-        if (($name = $this->getFirstPanelCode($meta)) && $this->locator->getEntity()->getId() == null) {
+        $name = $this->getFirstPanelCode($meta);
+        if ($name && $this->locator->getEntity()->getId() == null) {
             $meta[$name]['children']['attribute_set_id']['arguments']['data']['config'] = [
                 'component' => 'Magento_Catalog/js/components/attribute-set-select',
                 'disableLabel' => true,
@@ -61,7 +62,11 @@ class AttributeSet extends AbstractModifier
                 'source' => $name,
                 'dataScope' => 'attribute_set_id',
                 'multiple' => false,
-                'sortOrder' => $this->getNextAttributeSortOrder($meta, [CustomEntityInterface::IS_ACTIVE], self::ATTRIBUTE_SET_FIELD_ORDER),
+                'sortOrder' => $this->getNextAttributeSortOrder(
+                    $meta,
+                    [CustomEntityInterface::IS_ACTIVE],
+                    self::ATTRIBUTE_SET_FIELD_ORDER
+                ),
             ];
         }
 
@@ -69,7 +74,7 @@ class AttributeSet extends AbstractModifier
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function modifyData(array $data)
     {

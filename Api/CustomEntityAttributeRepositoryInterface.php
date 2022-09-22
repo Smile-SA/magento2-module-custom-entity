@@ -12,11 +12,6 @@ use Magento\Framework\Exception\StateException;
 use Smile\CustomEntity\Api\Data\CustomEntityAttributeInterface;
 use Smile\CustomEntity\Api\Data\CustomEntityAttributeSearchResultsInterface;
 
-/**
- * Custom entity attribute repository interface.
- *
- * @api
- */
 interface CustomEntityAttributeRepositoryInterface extends MetadataServiceInterface
 {
     /**

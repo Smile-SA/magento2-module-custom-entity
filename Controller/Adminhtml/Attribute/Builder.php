@@ -41,7 +41,7 @@ class Builder extends AbstractBuilder
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     protected function getAttributeFactory(): CustomEntityAttributeInterfaceFactory
     {
@@ -49,7 +49,7 @@ class Builder extends AbstractBuilder
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     protected function getAttributeRepository(): CustomEntityAttributeRepositoryInterface
     {
@@ -57,7 +57,7 @@ class Builder extends AbstractBuilder
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     protected function getEntityTypeCode(): string
     {

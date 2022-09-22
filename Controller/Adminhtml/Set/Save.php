@@ -11,7 +11,7 @@ use Smile\CustomEntity\Api\Data\CustomEntityAttributeInterface;
  */
 class Save extends \Smile\ScopedEav\Controller\Adminhtml\Set\Save
 {
-    const ADMIN_RESOURCE = 'Smile_CustomEntity::attributes_set';
+    public const ADMIN_RESOURCE = 'Smile_CustomEntity::attributes_set';
 
     protected string $entityTypeCode = CustomEntityAttributeInterface::ENTITY_TYPE_CODE;
 }

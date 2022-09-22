@@ -12,8 +12,11 @@ use Smile\ScopedEav\Controller\Adminhtml\AbstractEntity;
  */
 class Index extends AbstractEntity
 {
-    const ADMIN_RESOURCE = 'Smile_CustomEntity::entity';
+    public const ADMIN_RESOURCE = 'Smile_CustomEntity::entity';
 
+    /**
+     * Execute
+     */
     public function execute(): Page
     {
         return $this->createActionPage(__('Custom Entities'));

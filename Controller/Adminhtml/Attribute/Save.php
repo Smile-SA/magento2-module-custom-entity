@@ -13,7 +13,7 @@ use Zend\Validator\RegexFactory;
  */
 class Save extends \Smile\ScopedEav\Controller\Adminhtml\Attribute\Save
 {
-    const ADMIN_RESOURCE = 'Smile_CustomEntity::attributes_attributes';
+    public const ADMIN_RESOURCE = 'Smile_CustomEntity::attributes_attributes';
 
     /**
      * Constructor.

@@ -30,9 +30,9 @@ class CustomEntity extends AbstractEntity implements IdentityInterface, CustomEn
     /**
      * Product cache tag
      */
-    const CACHE_TAG = 'smile_custom_entity';
+    protected const CACHE_TAG = 'smile_custom_entity';
 
-    const CACHE_CUSTOM_ENTITY_SET_TAG = 'smile_custom_entity_set';
+    public const CACHE_CUSTOM_ENTITY_SET_TAG = 'smile_custom_entity_set';
 
     protected string $_cacheTag = self::CACHE_TAG;
 
@@ -179,7 +179,7 @@ class CustomEntity extends AbstractEntity implements IdentityInterface, CustomEn
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function beforeSave()
     {
@@ -229,9 +229,11 @@ class CustomEntity extends AbstractEntity implements IdentityInterface, CustomEn
     {
         if (!$this->hasStoreIds()) {
             $storeIds = [];
-            if ($websiteIds = $this->getWebsiteIds()) {
+            $websiteIds = $this->getWebsiteIds();
+            if ($websiteIds) {
                 foreach ($websiteIds as $websiteId) {
                     $websiteStores = $this->_storeManager->getWebsite($websiteId)->getStoreIds();
+                    // @codingStandardsIgnoreLine
                     $storeIds = array_merge($storeIds, $websiteStores);
                 }
             }
@@ -260,8 +262,9 @@ class CustomEntity extends AbstractEntity implements IdentityInterface, CustomEn
      * @param \Smile\CustomEntity\Api\Data\CustomEntityExtensionInterface $extensionAttributes Extension attributes.
      * @return $this
      */
-    public function setExtensionAttributes(\Smile\CustomEntity\Api\Data\CustomEntityExtensionInterface $extensionAttributes): self
-    {
+    public function setExtensionAttributes(
+        \Smile\CustomEntity\Api\Data\CustomEntityExtensionInterface $extensionAttributes
+    ): self {
         return $this->_setExtensionAttributes($extensionAttributes);
     }
 
@@ -293,8 +296,7 @@ class CustomEntity extends AbstractEntity implements IdentityInterface, CustomEn
     }
 
     /**
-     * {@inheritdoc}
-     *
+     * @inheritdoc
      * @SuppressWarnings(PHPMD.CamelCaseMethodName)
      */
     protected function _construct(): void
@@ -303,7 +305,7 @@ class CustomEntity extends AbstractEntity implements IdentityInterface, CustomEn
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     protected function getCustomAttributesCodes()
     {

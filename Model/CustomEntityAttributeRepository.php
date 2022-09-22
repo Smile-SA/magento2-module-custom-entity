@@ -65,7 +65,10 @@ class CustomEntityAttributeRepository implements CustomEntityAttributeRepository
     public function deleteById(string $attributeCode): bool
     {
         if (!is_numeric($attributeCode)) {
-            $attributeCode = $this->eavAttributeRepository->get($this->getEntityTypeCode(), $attributeCode)->getAttributeId();
+            $attributeCode = $this->eavAttributeRepository->get(
+                $this->getEntityTypeCode(),
+                $attributeCode
+            )->getAttributeId();
         }
 
         return $this->eavAttributeRepository->deleteById($attributeCode);
@@ -96,7 +99,7 @@ class CustomEntityAttributeRepository implements CustomEntityAttributeRepository
     }
 
     /**
-     * {@inheritDoc}
+     * @inheritdoc
      */
     public function getCustomAttributesMetadata($dataObjectClassName = null)
     {

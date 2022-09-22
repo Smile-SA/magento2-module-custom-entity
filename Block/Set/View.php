@@ -109,6 +109,7 @@ class View extends Template implements IdentityInterface
     {
         $identities = [];
         foreach ($this->getEntities() as $entity) {
+            // @codingStandardsIgnoreLine
             $identities = array_merge($identities, $entity->getIdentities());
         }
         $identities[] = CustomEntity::CACHE_CUSTOM_ENTITY_SET_TAG . '_' . $this->getAttributeSet()->getAttributeSetId();

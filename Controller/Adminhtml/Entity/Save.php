@@ -9,5 +9,5 @@ namespace Smile\CustomEntity\Controller\Adminhtml\Entity;
  */
 class Save extends \Smile\ScopedEav\Controller\Adminhtml\Entity\Save
 {
-    const ADMIN_RESOURCE = 'Smile_CustomEntity::entities';
+    public const ADMIN_RESOURCE = 'Smile_CustomEntity::entities';
 }

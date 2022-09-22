@@ -6,11 +6,6 @@ namespace Smile\CustomEntity\Api\Data;
 
 use Magento\Framework\Api\SearchResultsInterface;
 
-/**
- * Custom entity search results interface.
- *
- * @api
- */
 interface CustomEntitySearchResultsInterface extends SearchResultsInterface
 {
     /**

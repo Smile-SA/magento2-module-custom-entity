@@ -48,8 +48,7 @@ class Collection extends \Magento\Eav\Model\ResourceModel\Entity\Attribute\Colle
     }
 
     /**
-     * {@inheritdoc}
-     *
+     * @inheritdoc
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function setEntityTypeFilter($typeId): self
@@ -59,6 +58,7 @@ class Collection extends \Magento\Eav\Model\ResourceModel\Entity\Attribute\Colle
 
     /**
      * Method implemented to allow attribute set management through standard blocks.
+     *
      * Does nothing. Allow to be compatible with product attribute collection.
      */
     public function addVisibleFilter(): ?SmileCustomEntityCollection
@@ -67,8 +67,7 @@ class Collection extends \Magento\Eav\Model\ResourceModel\Entity\Attribute\Colle
     }
 
     /**
-     * {@inheritdoc}
-     *
+     * @inheritdoc
      * @SuppressWarnings(PHPMD.CamelCaseMethodName)
      */
     protected function _construct()
@@ -80,8 +79,7 @@ class Collection extends \Magento\Eav\Model\ResourceModel\Entity\Attribute\Colle
     }
 
     /**
-     * {@inheritdoc}
-     *
+     * @inheritdoc
      * @SuppressWarnings(PHPMD.CamelCaseMethodName)
      */
     protected function _initSelect(): self

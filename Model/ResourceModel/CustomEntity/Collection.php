@@ -22,7 +22,7 @@ class Collection extends AbstractCollection
     protected string $_eventObject = 'custom_entity_collection';
 
     /**
-     * {@inheritDoc}
+     * @inheritdoc
      */
     public function addIsActiveFilter(): self
     {
@@ -38,8 +38,8 @@ class Collection extends AbstractCollection
     protected function _construct(): void
     {
         $this->_init(
-            'Smile\CustomEntity\Model\CustomEntity',
-            'Smile\CustomEntity\Model\ResourceModel\CustomEntity'
+            \Smile\CustomEntity\Model\CustomEntity::class,
+            \Smile\CustomEntity\Model\ResourceModel\CustomEntity::class
         );
     }
 }

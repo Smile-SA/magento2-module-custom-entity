@@ -13,11 +13,6 @@ use Magento\Framework\Exception\StateException;
 use Smile\CustomEntity\Api\Data\CustomEntityInterface;
 use Smile\CustomEntity\Api\Data\CustomEntitySearchResultsInterface;
 
-/**
- * Custom entity repository interface.
- *
- * @api
- */
 interface CustomEntityRepositoryInterface
 {
     /**

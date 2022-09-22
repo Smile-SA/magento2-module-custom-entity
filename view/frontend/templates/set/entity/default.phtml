@@ -11,16 +11,20 @@ $entity = $block->getEntity();
 ?>
 <div class="product-item-info">
     <a href="<?= $escaper->escapeUrl($block->getEntityUrl()); ?>"?>
-        <?= /* @escapeNotVerified */ $block->getImage(); ?>
+        <?= $escaper->escapeHtml($block->getImage()); ?>
     </a>
     <div class="product details product-item-details">
         <strong class="product name product-item-name">
-            <a href="<?= $escaper->escapeUrl($block->getEntityUrl()); ?>"><?= $escaper->escapeHtml($entity->getName()) ?></a>
+            <a href="<?= $escaper->escapeUrl($block->getEntityUrl()); ?>">
+                <?= $escaper->escapeHtml($entity->getName()) ?>
+            </a>
         </strong>
         <div class="product-item-inner">
             <div class="product actions product-item-actions">
                 <div class="actions-primary">
-                    <a class="action primary" href="<?= $escaper->escapeUrl($block->getEntityUrl()); ?>"><span><?= $escaper->escapeHtml(__('Show detail')) ?></span></a>
+                    <a class="action primary" href="<?= $escaper->escapeUrl($block->getEntityUrl()); ?>">
+                        <span><?= $escaper->escapeHtml(__('Show detail')) ?></span>
+                    </a>
                 </div>
             </div>
         </div>

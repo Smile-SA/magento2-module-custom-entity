@@ -46,9 +46,8 @@ class CustomEntity extends AbstractResource
         $this->storeManager = $storeManager;
     }
 
-
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function getEntityType()
     {
@@ -99,7 +98,7 @@ class CustomEntity extends AbstractResource
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     protected function _afterSave(DataObject $entity)
     {

@@ -9,5 +9,5 @@ namespace Smile\CustomEntity\Controller\Adminhtml\Entity;
  */
 class Reload extends \Smile\ScopedEav\Controller\Adminhtml\Entity\Reload
 {
-    const ADMIN_RESOURCE = 'Smile_CustomEntity::entities';
+    public const ADMIN_RESOURCE = 'Smile_CustomEntity::entities';
 }

@@ -48,6 +48,8 @@ class Builder implements BuilderInterface
     }
 
     /**
+     * Build
+     *
      * @return CustomEntityInterface|EntityInterface
      * @throws NoSuchEntityException
      */

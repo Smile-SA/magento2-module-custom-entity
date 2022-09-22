@@ -63,7 +63,7 @@ class CustomEntityRepository implements CustomEntityRepositoryInterface
      * @param CustomEntityCollectionFactory $customEntityCollectionFactory Custom entity collection factory.
      * @param CollectionProcessorInterface $collectionProcessor Search criteria collection processor.
      * @param JoinProcessorInterface $joinProcessor Extension attriubute join processor.
-     * @param CustomEntitySearchResultsInterfaceFactory $customEntitySearchResultsFactory Custom entity search results factory.
+     * @param CustomEntitySearchResultsInterfaceFactory $customEntitySearchResultsFactory Custom entity search.
      */
     public function __construct(
         CustomEntityFactory $customEntityFactory,

@@ -17,7 +17,7 @@ class Collection extends AttributeCollection implements SearchResultInterface
     private AggregationInterface $aggregations;
 
     /**
-     * {@inheritDoc}
+     * @inheritDoc
      */
     public function getAggregations()
     {
@@ -25,7 +25,7 @@ class Collection extends AttributeCollection implements SearchResultInterface
     }
 
     /**
-     * {@inheritDoc}
+     * @inheritDoc
      */
     public function getSearchCriteria()
     {
@@ -33,7 +33,7 @@ class Collection extends AttributeCollection implements SearchResultInterface
     }
 
     /**
-     * {@inheritDoc}
+     * @inheritDoc
      */
     public function getTotalCount()
     {
@@ -41,8 +41,7 @@ class Collection extends AttributeCollection implements SearchResultInterface
     }
 
     /**
-     * {@inheritDoc}
-     * Not implemented since useless.
+     * @inheritDoc
      */
     public function setSearchCriteria(?SearchCriteriaInterface $searchCriteria = null): self
     {
@@ -50,7 +49,7 @@ class Collection extends AttributeCollection implements SearchResultInterface
     }
 
     /**
-     * {@inheritDoc}
+     * @inheritDoc
      */
     public function setAggregations($aggregations)
     {
@@ -58,8 +57,7 @@ class Collection extends AttributeCollection implements SearchResultInterface
     }
 
     /**
-     * {@inheritDoc}
-     * Not implemented since useless.
+     * @inheritDoc
      */
     public function setTotalCount($totalCount): self
     {
@@ -67,8 +65,7 @@ class Collection extends AttributeCollection implements SearchResultInterface
     }
 
     /**
-     * {@inheritDoc}
-     * Not implemented since useless.
+     * @inheritDoc
      */
     public function setItems(?array $items = null): self
     {
@@ -76,7 +73,7 @@ class Collection extends AttributeCollection implements SearchResultInterface
     }
 
     /**
-     * {@inheritDoc}
+     * @inheritDoc
      */
     protected function _construct()
     {

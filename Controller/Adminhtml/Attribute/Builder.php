@@ -6,6 +6,7 @@ namespace Smile\CustomEntity\Controller\Adminhtml\Attribute;
 
 use Magento\Eav\Model\Config;
 use Magento\Framework\Registry;
+use Psr\Log\LoggerInterface;
 use Smile\CustomEntity\Api\CustomEntityAttributeRepositoryInterface;
 use Smile\CustomEntity\Api\Data\CustomEntityAttributeInterface;
 use Smile\CustomEntity\Api\Data\CustomEntityAttributeInterfaceFactory;
@@ -23,18 +24,20 @@ class Builder extends AbstractBuilder
     /**
      * Constructor.
      *
+     * @param LoggerInterface $logger Logger.
      * @param Registry $registry Registry.
      * @param Config $eavConfig EAV config.
      * @param CustomEntityAttributeInterfaceFactory $attributeFactory Attribute factory.
      * @param CustomEntityAttributeRepositoryInterface $attributeRepository Attribute repository.
      */
     public function __construct(
+        LoggerInterface $logger,
         Registry $registry,
         Config $eavConfig,
         CustomEntityAttributeInterfaceFactory $attributeFactory,
         CustomEntityAttributeRepositoryInterface $attributeRepository
     ) {
-        parent::__construct($registry, $eavConfig);
+        parent::__construct($logger, $registry, $eavConfig);
 
         $this->attributeFactory    = $attributeFactory;
         $this->attributeRepository = $attributeRepository;

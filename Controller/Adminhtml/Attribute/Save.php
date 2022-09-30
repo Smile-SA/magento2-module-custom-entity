@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Smile\CustomEntity\Controller\Adminhtml\Attribute;
 
 use Magento\Backend\App\Action\Context;
+use Magento\Backend\Model\View\Result\ForwardFactory;
 use Magento\Framework\Serialize\Serializer\FormData;
 use Smile\ScopedEav\ViewModel\Data as DataViewModel;
 use Zend\Validator\RegexFactory;
@@ -29,8 +30,16 @@ class Save extends \Smile\ScopedEav\Controller\Adminhtml\Attribute\Save
         DataViewModel $dataViewModel,
         Builder $attributeBuilder,
         RegexFactory $regexFactory,
-        FormData $formDataSerializer
+        FormData $formDataSerializer,
+        ForwardFactory $resultForwardFactory
     ) {
-        parent::__construct($context, $dataViewModel, $attributeBuilder, $regexFactory, $formDataSerializer);
+        parent::__construct(
+            $context,
+            $dataViewModel,
+            $attributeBuilder,
+            $regexFactory,
+            $formDataSerializer,
+            $resultForwardFactory
+        );
     }
 }

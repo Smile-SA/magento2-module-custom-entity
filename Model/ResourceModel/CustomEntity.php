@@ -11,6 +11,7 @@ use Magento\Framework\DataObject;
 use Magento\Framework\EntityManager\EntityManager;
 use Magento\Store\Model\StoreManagerInterface;
 use Smile\CustomEntity\Api\Data\CustomEntityInterface;
+use Smile\CustomEntity\Model\CustomEntity as CustomEntityModel;
 use Smile\ScopedEav\Model\Entity\Attribute\DefaultAttributes;
 use Smile\ScopedEav\Model\ResourceModel\AbstractResource;
 
@@ -52,10 +53,7 @@ class CustomEntity extends AbstractResource
      */
     public function getEntityType()
     {
-        if (empty($this->_type)) {
-            $this->setType(CustomEntityInterface::ENTITY);
-        }
-
+        $this->setType(CustomEntityInterface::ENTITY);
         return parent::getEntityType();
     }
 
@@ -74,7 +72,7 @@ class CustomEntity extends AbstractResource
     /**
      * Retrieve custom entity website identifiers
      *
-     * @param \Smile\CustomEntity\Model\CustomEntity|int $entity Custom entity.
+     * @param CustomEntityModel|int $entity Custom entity.
      * @return array|null
      */
     public function getWebsiteIds($entity): ?array
@@ -83,7 +81,7 @@ class CustomEntity extends AbstractResource
 
         $entityId = $entity;
 
-        if ($entity instanceof \Smile\CustomEntity\Model\CustomEntity) {
+        if ($entity instanceof CustomEntityModel) {
             $entityId = $entity->getEntityId();
         }
 
@@ -103,18 +101,19 @@ class CustomEntity extends AbstractResource
      */
     protected function _afterSave(DataObject $entity)
     {
+        /** @var CustomEntity $this */
+        /** @var CustomEntityModel $entity */
         $this->saveWebsiteIds($entity);
-
         return parent::_afterSave($entity);
     }
 
     /**
      * Save entity website relations
      *
-     * @param \Smile\CustomEntity\Model\CustomEntity $entity Entity.
+     * @param CustomEntityModel $entity Entity.
      * @return $this
      */
-    protected function saveWebsiteIds(\Smile\CustomEntity\Model\CustomEntity $entity): self
+    protected function saveWebsiteIds(CustomEntityModel $entity): self
     {
         if ($this->storeManager->isSingleStoreMode()) {
             $websiteId = $this->storeManager->getDefaultStoreView()->getWebsiteId();

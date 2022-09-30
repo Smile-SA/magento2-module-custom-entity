@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Smile\CustomEntity\Ui\DataProvider\CustomEntity\Listing;
 
+use Magento\Framework\Model\ResourceModel\Db\Collection\AbstractCollection;
 use Magento\Ui\DataProvider\AddFieldToCollectionInterface;
 use Magento\Ui\DataProvider\AddFilterToCollectionInterface;
 use Smile\CustomEntity\Model\ResourceModel\CustomEntity\CollectionFactory;
@@ -31,7 +32,7 @@ class CustomEntityDataProvider extends EntityDataProvider
         $name,
         $primaryFieldName,
         $requestFieldName,
-        \Smile\CustomEntity\Model\ResourceModel\CustomEntity\CollectionFactory $collectionFactory,
+        CollectionFactory $collectionFactory,
         array $addFieldStrategies = [],
         array $addFilterStrategies = [],
         array $meta = [],
@@ -47,6 +48,8 @@ class CustomEntityDataProvider extends EntityDataProvider
             $data
         );
 
-        $this->collection = $collectionFactory->create();
+        /** @var AbstractCollection $collectionFactory */
+        $collectionFactory = $collectionFactory->create();
+        $this->collection = $collectionFactory;
     }
 }

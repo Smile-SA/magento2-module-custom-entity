@@ -51,6 +51,7 @@ class Main extends \Smile\ScopedEav\Block\Adminhtml\Set\Main
             $data
         );
 
+        /** @var CollectionFactory $attributeCollectionFactory */
         $this->_collectionFactory = $attributeCollectionFactory;
     }
 }

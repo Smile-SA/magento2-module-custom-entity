@@ -112,12 +112,10 @@ class View implements HttpGetActionInterface
      * Return attribute set code.
      *
      * @param CustomEntityInterface $entity Custom entity.
-     * @throws NoSuchEntityException
      */
-    private function getAttributeSetCode(CustomEntityInterface $entity): ?string
+    private function getAttributeSetCode(CustomEntityInterface $entity): string
     {
         $attributeSet = $this->attributeSetRepository->get($entity->getAttributeSetId());
-
         return $this->filterManager->translitUrl($attributeSet->getAttributeSetName());
     }
 }

@@ -9,14 +9,17 @@ use Magento\Framework\Api\ExtensionAttribute\JoinProcessorInterface;
 use Magento\Framework\Api\SearchCriteria\CollectionProcessorInterface;
 use Magento\Framework\Api\SearchCriteriaInterface;
 use Magento\Framework\Api\SearchResults;
+use Magento\Framework\DataObject;
 use Magento\Framework\EntityManager\MetadataPool;
 use Magento\Framework\Exception\CouldNotSaveException;
 use Magento\Framework\Exception\InputException;
 use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Framework\Exception\StateException;
+use Magento\Framework\Model\AbstractModel;
 use Magento\Store\Model\StoreManagerInterface;
 use Smile\CustomEntity\Api\CustomEntityRepositoryInterface;
 use Smile\CustomEntity\Api\Data\CustomEntityInterface;
+use Smile\CustomEntity\Api\Data\CustomEntityInterface as CustomEntityInterfaceData;
 use Smile\CustomEntity\Api\Data\CustomEntitySearchResultsInterface;
 use Smile\CustomEntity\Api\Data\CustomEntitySearchResultsInterfaceFactory;
 use Smile\CustomEntity\Model\ResourceModel\CustomEntity as CustomEntityResource;
@@ -108,14 +111,16 @@ class CustomEntityRepository implements CustomEntityRepositoryInterface
         if ($entity->getId()) {
             $metadata = $this->metadataPool->getMetadata(CustomEntityInterface::class);
 
+            /** @var DataObject $entity */
             $entity = $this->get($entity->getId(), $storeId);
             $existingData[$metadata->getLinkField()] = $entity->getData($metadata->getLinkField());
         }
         $entity->addData($existingData);
 
         try {
+            /** @var AbstractModel $entity */
             $this->customEntityResource->save($entity);
-        } catch (\Exception $e) {
+        } catch (CouldNotSaveException $e) {
             throw new CouldNotSaveException(__('Could not save entity: %1', $e->getMessage()), $e);
         }
         unset($this->instances[$entity->getId()]);
@@ -163,7 +168,7 @@ class CustomEntityRepository implements CustomEntityRepositoryInterface
     {
         try {
             $entityId = $entity->getId();
-            $this->customEntityResource->delete($entity);
+            $this->customEntityResource->delete($entityId);
         } catch (\Exception $e) {
             throw new StateException(__('Cannot delete entity with id %1', $entity->getId()), $e);
         }
@@ -205,7 +210,9 @@ class CustomEntityRepository implements CustomEntityRepositoryInterface
         /** @var CustomEntitySearchResultsInterface $searchResults */
         $searchResults = $this->customEntitySearchResultsFactory->create();
         $searchResults->setSearchCriteria($searchCriteria);
-        $searchResults->setItems($collection->getItems());
+        /** @var CustomEntityInterfaceData[] $collectionItems */
+        $collectionItems = $collection->getItems();
+        $searchResults->setItems($collectionItems);
         $searchResults->setTotalCount($collection->getSize());
 
         return $searchResults;

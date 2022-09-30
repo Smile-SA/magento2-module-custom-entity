@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Smile\CustomEntity\Ui\DataProvider\CustomEntity\Form;
 
+use Magento\Framework\Model\ResourceModel\Db\Collection\AbstractCollection;
 use Magento\Ui\DataProvider\Modifier\PoolInterface;
 use Smile\CustomEntity\Model\ResourceModel\CustomEntity\CollectionFactory;
 use Smile\ScopedEav\Ui\DataProvider\Entity\Form\EntityDataProvider;
@@ -36,6 +37,8 @@ class CustomEntityDataProvider extends EntityDataProvider
     ) {
         parent::__construct($name, $primaryFieldName, $requestFieldName, $pool, $meta, $data);
 
-        $this->collection = $collectionFactory->create();
+        /** @var AbstractCollection $collection */
+        $collection = $collectionFactory->create();
+        $this->collection = $collection;
     }
 }

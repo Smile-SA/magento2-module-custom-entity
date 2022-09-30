@@ -8,9 +8,13 @@ use Magento\Eav\Api\Data\AttributeSetInterface;
 use Magento\Framework\Api\SearchCriteriaBuilder;
 use Magento\Framework\Api\SearchCriteriaBuilderFactory;
 use Magento\Framework\DataObject\IdentityInterface;
+use Magento\Framework\Exception\LocalizedException;
+use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Framework\Registry;
 use Magento\Framework\View\Element\RendererList;
 use Magento\Framework\View\Element\Template;
+use Magento\Theme\Block\Html\Breadcrumbs;
+use Magento\Theme\Block\Html\Title;
 use Smile\CustomEntity\Api\CustomEntityRepositoryInterface;
 use Smile\CustomEntity\Api\Data\CustomEntityInterface;
 use Smile\CustomEntity\Block\Html\Pager;
@@ -122,15 +126,17 @@ class View extends Template implements IdentityInterface
      */
     public function getPager(): Pager
     {
-        return $this->getChildBlock('pager');
+        /** @var Pager $pager */
+        $pager = $this->getChildBlock('pager');
+        return $pager;
     }
 
     /**
      * Prepare layout: add title and breadcrumbs.
      *
      * @return $this|Template
-     * @throws \Magento\Framework\Exception\LocalizedException
-     * @throws \Magento\Framework\Exception\NoSuchEntityException
+     * @throws LocalizedException
+     * @throws NoSuchEntityException
      */
     protected function _prepareLayout()
     {
@@ -147,17 +153,17 @@ class View extends Template implements IdentityInterface
      * Set the current page title.
      *
      * @return $this
-     * @throws \Magento\Framework\Exception\LocalizedException
+     * @throws LocalizedException
      */
     private function setPageTitle()
     {
         $attributeSet = $this->getAttributeSet();
+
+        /** @var Title $titleBlock */
         $titleBlock = $this->getLayout()->getBlock('page.main.title');
         $pageTitle = $attributeSet->getAttributeSetName();
-        if ($titleBlock) {
-            $titleBlock->setPageTitle($pageTitle);
-        }
-        $this->pageConfig->getTitle()->set(__($pageTitle));
+        $titleBlock->setPageTitle($pageTitle);
+        $this->pageConfig->getTitle()->set((string) __($pageTitle));
 
         return $this;
     }
@@ -166,24 +172,27 @@ class View extends Template implements IdentityInterface
      * Build breadcrumbs for the current page.
      *
      * @return $this
-     * @throws \Magento\Framework\Exception\LocalizedException
-     * @throws \Magento\Framework\Exception\NoSuchEntityException
+     * @throws LocalizedException
+     * @throws NoSuchEntityException
      */
     private function setBreadcrumbs()
     {
+        /** @var Breadcrumbs $breadcrumbsBlock */
         $breadcrumbsBlock = $this->getLayout()->getBlock('breadcrumbs');
-        if ($breadcrumbsBlock) {
-            $attributeSet = $this->getAttributeSet();
-            $homeUrl = $this->_storeManager->getStore()->getBaseUrl();
-            $breadcrumbsBlock->addCrumb(
-                'home',
-                ['label' => __('Home'), 'title' => __('Go to Home Page'), 'link' => $homeUrl]
-            );
-            $breadcrumbsBlock->addCrumb(
-                'attribute_set',
-                ['label' => $attributeSet->getAttributeSetName(), 'title' => $attributeSet->getAttributeSetName()]
-            );
-        }
+        $attributeSet = $this->getAttributeSet();
+
+        /** @var \Magento\Store\Model\Store $store */
+        $store = $this->_storeManager->getStore();
+        $homeUrl = $store->getBaseUrl();
+
+        $breadcrumbsBlock->addCrumb(
+            'home',
+            ['label' => __('Home'), 'title' => __('Go to Home Page'), 'link' => $homeUrl]
+        );
+        $breadcrumbsBlock->addCrumb(
+            'attribute_set',
+            ['label' => $attributeSet->getAttributeSetName(), 'title' => $attributeSet->getAttributeSetName()]
+        );
 
         return $this;
     }

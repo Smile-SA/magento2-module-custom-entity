@@ -82,9 +82,9 @@ class Pager extends \Magento\Theme\Block\Html\Pager
     /**
      * Retrieve number of last page
      */
-    public function getLastPageNum(): ?float
+    public function getLastPageNum(): int
     {
-        return ceil($this->searchResult->getTotalCount() / $this->getLimit());
+        return (int) ceil($this->searchResult->getTotalCount() / $this->getLimit());
     }
 
     /**
@@ -110,25 +110,28 @@ class Pager extends \Magento\Theme\Block\Html\Pager
     /**
      * Return previous page url.
      */
-    public function getPreviousPageUrl(): ?string
+    public function getPreviousPageUrl(): string
     {
-        return $this->getPageUrl($this->getCurrentPage() - 1);
+        $page = (string) ($this->getCurrentPage() - 1);
+        return $this->getPageUrl($page);
     }
 
     /**
      * Return next page url.
      */
-    public function getNextPageUrl(): ?string
+    public function getNextPageUrl(): string
     {
-        return $this->getPageUrl($this->getCurrentPage() + 1);
+        $page = (string) ($this->getCurrentPage() + 1);
+        return $this->getPageUrl($page);
     }
 
     /**
      * Retrieve last page URL.
      */
-    public function getLastPageUrl(): ?string
+    public function getLastPageUrl(): string
     {
-        return $this->getPageUrl($this->getLastPageNum());
+        $lastNumPage = (string) $this->getLastPageNum();
+        return $this->getPageUrl($lastNumPage);
     }
 
     /**
@@ -151,9 +154,9 @@ class Pager extends \Magento\Theme\Block\Html\Pager
     /**
      * Return start and end pages number.
      *
-     * @return array|null
+     * @return array
      */
-    private function getPagesInterval(): ?array
+    private function getPagesInterval(): array
     {
         if ($this->getLastPageNum() <= $this->_displayPages) {
             return [1, $this->getLastPageNum()];

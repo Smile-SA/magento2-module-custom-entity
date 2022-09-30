@@ -37,6 +37,8 @@ class ImageFactory
      */
     public function create(CustomEntityInterface $entity): ?Image
     {
+
+        /** @var \Smile\ScopedEav\Model\AbstractEntity $entity */
         $data = [
             'data' => [
                 'template' => 'Smile_CustomEntity::custom_entity/image.phtml',

@@ -17,6 +17,8 @@ use Magento\Framework\Model\Context;
 use Magento\Framework\Model\ResourceModel\AbstractResource;
 use Magento\Framework\Registry;
 use Magento\Store\Model\StoreManagerInterface;
+use Magento\Store\Model\Website;
+use Smile\CustomEntity\Api\Data\CustomEntityExtensionInterface;
 use Smile\CustomEntity\Api\Data\CustomEntityInterface;
 use Smile\ScopedEav\Model\AbstractEntity;
 
@@ -168,7 +170,7 @@ class CustomEntity extends AbstractEntity implements IdentityInterface, CustomEn
      */
     public function getAttributeSet(): ?AttributeSetInterface
     {
-        if (!$this->attributeSet) {
+        if (empty($this->attributeSet)) {
             $this->attributeSet = $this->attributeSetRepository->get($this->getAttributeSetId());
         }
 
@@ -208,7 +210,9 @@ class CustomEntity extends AbstractEntity implements IdentityInterface, CustomEn
     public function validate()
     {
         $this->_eventManager->dispatch($this->_eventPrefix . '_validate_before', $this->_getEventData());
-        $result = $this->_getResource()->validate($this);
+        /** @var \Smile\ScopedEav\Model\ResourceModel\AbstractResource $resource */
+        $resource = $this->_getResource();
+        $result = $resource->validate($this);
         $this->_eventManager->dispatch($this->_eventPrefix . '_validate_after', $this->_getEventData());
 
         return $result;
@@ -222,7 +226,9 @@ class CustomEntity extends AbstractEntity implements IdentityInterface, CustomEn
     public function getWebsiteIds(): ?array
     {
         if (!$this->hasWebsiteIds()) {
-            $ids = $this->_getResource()->getWebsiteIds($this);
+            /** @var \Smile\CustomEntity\Model\ResourceModel\CustomEntity $resource */
+            $resource = $this->_getResource();
+            $ids = $resource->getWebsiteIds($this);
             $this->setWebsiteIds($ids);
         }
 
@@ -241,7 +247,9 @@ class CustomEntity extends AbstractEntity implements IdentityInterface, CustomEn
             $websiteIds = $this->getWebsiteIds();
             if ($websiteIds) {
                 foreach ($websiteIds as $websiteId) {
-                    $websiteStores = $this->_storeManager->getWebsite($websiteId)->getStoreIds();
+                    /** @var Website $website */
+                    $website = $this->_storeManager->getWebsite($websiteId);
+                    $websiteStores = $website->getStoreIds();
                     // @codingStandardsIgnoreLine
                     $storeIds = array_merge($storeIds, $websiteStores);
                 }
@@ -255,24 +263,21 @@ class CustomEntity extends AbstractEntity implements IdentityInterface, CustomEn
     /**
      * Retrieve existing extension attributes object or create a new one.
      */
-    public function getExtensionAttributes(): ?\Smile\CustomEntity\Api\Data\CustomEntityExtensionInterface
+    public function getExtensionAttributes(): ?CustomEntityExtensionInterface
     {
+        /** @var CustomEntityExtensionInterface $extensionAttributes */
         $extensionAttributes = $this->_getExtensionAttributes();
-        if (!$extensionAttributes) {
-            return $this->extensionAttributesFactory->create(CustomEntityInterface::class);
-        }
-
         return $extensionAttributes;
     }
 
     /**
      * Set an extension attributes object.
      *
-     * @param \Smile\CustomEntity\Api\Data\CustomEntityExtensionInterface $extensionAttributes Extension attributes.
+     * @param CustomEntityExtensionInterface $extensionAttributes Extension attributes.
      * @return $this
      */
     public function setExtensionAttributes(
-        \Smile\CustomEntity\Api\Data\CustomEntityExtensionInterface $extensionAttributes
+        CustomEntityExtensionInterface $extensionAttributes
     ): self {
         return $this->_setExtensionAttributes($extensionAttributes);
     }
@@ -291,9 +296,10 @@ class CustomEntity extends AbstractEntity implements IdentityInterface, CustomEn
         $collection = $this->getCollection()
             ->addFieldToSelect('entity_id')
             ->addFieldToFilter('url_key', $urlKey)
-            ->addFieldToFilter('is_active', 1)
+            ->addFieldToFilter('is_active', '1')
             ->setPageSize(1);
         if ($attributeSetId !== null) {
+            /** @var string $attributeSetId */
             $collection->addFieldToFilter('attribute_set_id', $attributeSetId);
         }
         if (!$collection->getSize()) {

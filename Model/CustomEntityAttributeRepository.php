@@ -40,7 +40,9 @@ class CustomEntityAttributeRepository implements CustomEntityAttributeRepository
      */
     public function get(string $attributeCode): ?CustomEntityAttributeInterface
     {
-        return $this->eavAttributeRepository->get($this->getEntityTypeCode(), $attributeCode);
+        /** @var CustomEntityAttributeInterface $customEntityAttribute */
+        $customEntityAttribute = $this->eavAttributeRepository->get($this->getEntityTypeCode(), $attributeCode);
+        return $customEntityAttribute;
     }
 
     /**
@@ -85,7 +87,9 @@ class CustomEntityAttributeRepository implements CustomEntityAttributeRepository
      */
     public function save(CustomEntityAttributeInterface $attribute): ?CustomEntityAttributeInterface
     {
-        return $this->eavAttributeRepository->save($attribute);
+        /** @var CustomEntityAttributeInterface $customEntityAttribute */
+        $customEntityAttribute = $this->eavAttributeRepository->save($attribute);
+        return $customEntityAttribute;
     }
 
     /**
@@ -111,7 +115,7 @@ class CustomEntityAttributeRepository implements CustomEntityAttributeRepository
     /**
      * Get the custom entity type code.
      */
-    private function getEntityTypeCode(): ?string
+    private function getEntityTypeCode(): string
     {
         return CustomEntityAttributeInterface::ENTITY_TYPE_CODE;
     }

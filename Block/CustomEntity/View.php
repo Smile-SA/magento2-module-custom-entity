@@ -9,6 +9,8 @@ use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Framework\Registry;
 use Magento\Framework\View\Element\Template;
+use Magento\Theme\Block\Html\Breadcrumbs;
+use Magento\Theme\Block\Html\Title;
 use Smile\CustomEntity\Api\Data\CustomEntityInterface;
 use Smile\CustomEntity\Model\CustomEntity;
 
@@ -47,7 +49,7 @@ class View extends Template implements IdentityInterface
      */
     public function getEntity(): ?CustomEntityInterface
     {
-        if (!$this->customEntity) {
+        if (empty($this->customEntity)) {
             $this->customEntity = $this->registry->registry('current_custom_entity');
         }
 
@@ -99,12 +101,12 @@ class View extends Template implements IdentityInterface
     private function setPageTitle(): self
     {
         $customEntity = $this->getEntity();
+
+        /** @var Title $titleBlock */
         $titleBlock = $this->getLayout()->getBlock('page.main.title');
         $pageTitle = $customEntity->getName();
-        if ($titleBlock) {
-            $titleBlock->setPageTitle($pageTitle);
-        }
-        $this->pageConfig->getTitle()->set(__($pageTitle));
+        $titleBlock->setPageTitle($pageTitle);
+        $this->pageConfig->getTitle()->set((string) __($pageTitle));
 
         return $this;
     }
@@ -118,28 +120,32 @@ class View extends Template implements IdentityInterface
      */
     private function setBreadcrumbs(): self
     {
+        /** @var Breadcrumbs $breadcrumbsBlock */
         $breadcrumbsBlock = $this->getLayout()->getBlock('breadcrumbs');
-        if ($breadcrumbsBlock) {
-            /** @var CustomEntity $customEntity */
-            $customEntity = $this->getEntity();
-            $homeUrl = $this->_storeManager->getStore()->getBaseUrl();
-            $breadcrumbsBlock->addCrumb(
-                'home',
-                ['label' => __('Home'), 'title' => __('Go to Home Page'), 'link' => $homeUrl]
-            );
-            $breadcrumbsBlock->addCrumb(
-                'set',
-                [
-                    'label' => $customEntity->getAttributeSet()->getAttributeSetName(),
-                    'title' => $customEntity->getAttributeSet()->getAttributeSetName(),
-                    'link' => $this->_urlBuilder->getDirectUrl($customEntity->getAttributeSetUrlKey()),
-                ]
-            );
-            $breadcrumbsBlock->addCrumb(
-                'custom_entity',
-                ['label' => $customEntity->getName(), 'title' => $customEntity->getName()]
-            );
-        }
+
+        /** @var CustomEntity $customEntity */
+        $customEntity = $this->getEntity();
+
+        /** @var \Magento\Store\Model\Store $store */
+        $store = $this->_storeManager->getStore();
+        $homeUrl = $store->getBaseUrl();
+
+        $breadcrumbsBlock->addCrumb(
+            'home',
+            ['label' => __('Home'), 'title' => __('Go to Home Page'), 'link' => $homeUrl]
+        );
+        $breadcrumbsBlock->addCrumb(
+            'set',
+            [
+                'label' => $customEntity->getAttributeSet()->getAttributeSetName(),
+                'title' => $customEntity->getAttributeSet()->getAttributeSetName(),
+                'link' => $this->_urlBuilder->getDirectUrl($customEntity->getAttributeSetUrlKey()),
+            ]
+        );
+        $breadcrumbsBlock->addCrumb(
+            'custom_entity',
+            ['label' => $customEntity->getName(), 'title' => $customEntity->getName()]
+        );
 
         return $this;
     }

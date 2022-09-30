@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Smile\CustomEntity\Controller\Adminhtml\Attribute;
 
 use Magento\Backend\App\Action\Context;
+use Magento\Backend\Model\View\Result\ForwardFactory;
 use Magento\Framework\Controller\Result\JsonFactory;
 use Magento\Framework\DataObjectFactory;
 use Smile\ScopedEav\ViewModel\Data as DataViewModel;
@@ -29,8 +30,16 @@ class Validate extends \Smile\ScopedEav\Controller\Adminhtml\Attribute\Validate
         DataViewModel $dataViewModel,
         Builder $attributeBuilder,
         JsonFactory $resultJsonFactory,
-        DataObjectFactory $dataObjectFactory
+        DataObjectFactory $dataObjectFactory,
+        ForwardFactory $resultForwardFactory
     ) {
-        parent::__construct($context, $dataViewModel, $attributeBuilder, $resultJsonFactory, $dataObjectFactory);
+        parent::__construct(
+            $context,
+            $dataViewModel,
+            $attributeBuilder,
+            $resultJsonFactory,
+            $dataObjectFactory,
+            $resultForwardFactory
+        );
     }
 }

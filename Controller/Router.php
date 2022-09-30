@@ -11,7 +11,6 @@ use Magento\Framework\App\RequestInterface;
 use Magento\Framework\App\RouterInterface;
 use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Framework\Exception\NotFoundException;
-use Smile\CustomEntity\Api\Data\CustomEntityInterface;
 use Smile\CustomEntity\Model\CustomEntity;
 use Smile\CustomEntity\Model\CustomEntity\AttributeSet\Url;
 
@@ -31,12 +30,12 @@ class Router implements RouterInterface
      *
      * @param ActionFactory $actionFactory Action factory.
      * @param Url $urlSetModel Attribute set url model.
-     * @param CustomEntityInterface $customEntity Custom entity model.
+     * @param CustomEntity $customEntity Custom entity model.
      */
     public function __construct(
         ActionFactory $actionFactory,
         Url $urlSetModel,
-        CustomEntityInterface $customEntity
+        CustomEntity $customEntity
     ) {
         $this->urlSetModel = $urlSetModel;
         $this->actionFactory = $actionFactory;
@@ -52,6 +51,7 @@ class Router implements RouterInterface
     // @codingStandardsIgnoreLine Match function is allow in router (MEQP2.Classes.PublicNonInterfaceMethods.PublicMethodFound)
     public function match(RequestInterface $request)
     {
+        /** @var HttpRequest $request */
         $requestPath = trim($request->getPathInfo(), '/');
         $requestPathArray = explode('/', $requestPath);
         if (
@@ -102,7 +102,7 @@ class Router implements RouterInterface
      *
      * @param array $requestPathArray Request path array.
      */
-    private function getControllerName(array $requestPathArray): ?string
+    private function getControllerName(array $requestPathArray): string
     {
         return $this->isCustomEntitySet($requestPathArray) ? 'set' : 'entity';
     }

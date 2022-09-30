@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.3.6] - 2022-10-19
+[1.3.6]: https://github.com/Smile-SA/magento2-module-custom-entity/compare/1.3.5...1.3.6
+
+- Add Smile Lab Quality Suite
+- Analyse code style with phpcs / phpmd / phpstan command
+- Add db_schema.xml instead InstallSchema
+
 ## [1.3.5] - 2022-09-14
 [1.3.5]: https://github.com/Smile-SA/magento2-module-custom-entity/compare/1.3.4...1.3.5
 

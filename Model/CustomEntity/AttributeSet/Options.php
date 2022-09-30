@@ -31,7 +31,6 @@ class Options extends \Magento\Catalog\Model\Product\AttributeSet\Options
     {
         $entityType = $this->eavConfig->getEntityType(CustomEntityInterface::ENTITY);
         $attributeSetCollection = $entityType->getAttributeSetCollection();
-
         return $attributeSetCollection->toOptionArray();
     }
 }

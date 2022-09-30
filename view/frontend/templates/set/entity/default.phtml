@@ -11,7 +11,7 @@ $entity = $block->getEntity();
 ?>
 <div class="product-item-info">
     <a href="<?= $escaper->escapeUrl($block->getEntityUrl()); ?>"?>
-        <?= $escaper->escapeHtml($block->getImage()); ?>
+        <?= /* @noEscape */ $block->getImage(); ?>
     </a>
     <div class="product details product-item-details">
         <strong class="product name product-item-name">

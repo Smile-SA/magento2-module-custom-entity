@@ -6,6 +6,7 @@ namespace Smile\CustomEntity\Controller\Adminhtml\Entity;
 
 use Magento\Cms\Model\Wysiwyg\Config;
 use Magento\Framework\App\RequestInterface;
+use Magento\Framework\DataObject;
 use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Framework\Registry;
 use Magento\Store\Model\StoreManagerInterface;
@@ -57,13 +58,15 @@ class Builder implements BuilderInterface
     public function build(RequestInterface $request): ?EntityInterface
     {
         $entityId = (int) $request->getParam('id');
-        $entity   = $this->customEntityFactory->create();
-        $store    = $this->storeManager->getStore((int) $request->getParam('store', 0));
-
+        $entity = $this->customEntityFactory->create();
+        $store = $this->storeManager->getStore((int) $request->getParam('store', 0));
         $entity->setStoreId($store->getId());
+
+        /** @var DataObject $entity */
         $entity->setData('_edit_mode', true);
 
         if ($entityId) {
+            // @phpstan-ignore-next-line
             $entity->load($entityId);
         }
 
@@ -80,6 +83,7 @@ class Builder implements BuilderInterface
         $this->registry->register('current_store', $store);
         $this->wysiwygConfig->setStoreId($request->getParam('store'));
 
+        /** @var EntityInterface $entity */
         return $entity;
     }
 }

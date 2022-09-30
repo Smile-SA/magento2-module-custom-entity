@@ -17,13 +17,12 @@ $outputViewModel = $block->getData('output_view_model');
 <?php if ($customEntity->getDescription()): ?>
   <div class="custom_entity attribute description">
       <div class="value">
-          <?= $escaper->escapeHtml(
+          <?= /* @noEscape */
               $outputViewModel->customEntityAttribute(
                   $customEntity,
                   (string) $customEntity->getDescription(),
                   'description'
-              )
-          ) ?>
+              ) ?>
       </div>
   </div>
 <?php endif; ?>

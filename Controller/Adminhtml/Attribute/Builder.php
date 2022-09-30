@@ -46,7 +46,7 @@ class Builder extends AbstractBuilder
     /**
      * @inheritdoc
      */
-    protected function getAttributeFactory(): CustomEntityAttributeInterfaceFactory
+    protected function getAttributeFactory()
     {
         return $this->attributeFactory;
     }
@@ -54,7 +54,7 @@ class Builder extends AbstractBuilder
     /**
      * @inheritdoc
      */
-    protected function getAttributeRepository(): CustomEntityAttributeRepositoryInterface
+    protected function getAttributeRepository()
     {
         return $this->attributeRepository;
     }

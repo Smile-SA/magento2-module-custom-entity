@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Smile\CustomEntity\Controller\Adminhtml\Attribute;
 
 use Magento\Backend\App\Action\Context;
-use Magento\Backend\Model\View\Result\ForwardFactory;
+use Magento\Framework\Controller\Result\ForwardFactory;
 use Smile\ScopedEav\ViewModel\Data as DataViewModel;
 
 /**
@@ -29,6 +29,11 @@ class Edit extends \Smile\ScopedEav\Controller\Adminhtml\Attribute\Edit
         Builder $attributeBuilder,
         ForwardFactory $resultForwardFactory
     ) {
-        parent::__construct($context, $dataViewModel, $attributeBuilder, $resultForwardFactory);
+        parent::__construct(
+            $context,
+            $dataViewModel,
+            $attributeBuilder,
+            $resultForwardFactory
+        );
     }
 }

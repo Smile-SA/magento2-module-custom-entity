@@ -8,7 +8,6 @@ use Magento\Catalog\Helper\Output as MagentoOutput;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\View\Element\Block\ArgumentInterface;
 use Smile\CustomEntity\Api\Data\CustomEntityInterface;
-use Smile\CustomEntity\Model\CustomEntity;
 
 /**
  * Custom entity output helper.
@@ -29,7 +28,7 @@ class Output extends MagentoOutput implements ArgumentInterface
         string $attributeHtml,
         string $attributeName
     ): ?string {
-        $attribute = $this->_eavConfig->getAttribute(CustomEntity::ENTITY, $attributeName);
+        $attribute = $this->_eavConfig->getAttribute(CustomEntityInterface::ENTITY, $attributeName);
         if (
             $attribute->getId() &&
             $attribute->getFrontendInput() != 'image' &&

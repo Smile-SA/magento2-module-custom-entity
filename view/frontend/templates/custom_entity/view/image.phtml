@@ -7,4 +7,4 @@
  * @var $escaper Magento\Framework\Escaper
  */
 ?>
-<?= $escaper->escapeHtml($block->getImage()) ?>
+<?= /* @noEscape */ $block->getImage() ?>

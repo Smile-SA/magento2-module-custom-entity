@@ -46,6 +46,7 @@ class CustomEntity extends AbstractResource
     ) {
         parent::__construct($context, $entityManager, $typeFactory, $setFactory, $defaultAttributes, $data);
         $this->storeManager = $storeManager;
+        $this->customEntityWebsiteTable = CustomEntityInterface::ENTITY;
     }
 
     /**
@@ -62,7 +63,7 @@ class CustomEntity extends AbstractResource
      */
     public function getCustomEntityWebsiteTable(): ?string
     {
-        if (!$this->customEntityWebsiteTable) {
+        if (!empty($this->customEntityWebsiteTable)) {
             $this->customEntityWebsiteTable = $this->getTable('smile_custom_entity_website');
         }
 

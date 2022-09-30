@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<ruleset name="SmileLabMerge">
-    <description>Merge SmileLab and MEQP2 coding standard</description>
-
-    <rule ref="MEQP2">
-        <exclude name="MEQP2.PHP.ProtectedClassMember.FoundProtected" />
-    </rule>
-    <rule ref="SmileLab" />
-</ruleset>

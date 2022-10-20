@@ -11,7 +11,6 @@ use Magento\Framework\Registry;
 use Magento\Framework\View\Element\Template;
 use Magento\Theme\Block\Html\Breadcrumbs;
 use Magento\Theme\Block\Html\Title;
-use Smile\CustomEntity\Api\Data\CustomEntityInterface;
 use Smile\CustomEntity\Model\CustomEntity;
 
 /**
@@ -23,7 +22,7 @@ class View extends Template implements IdentityInterface
 
     private ImageFactory $imageFactory;
 
-    private CustomEntityInterface $customEntity;
+    private ?CustomEntity $customEntity;
 
     /**
      * View constructor.
@@ -31,25 +30,28 @@ class View extends Template implements IdentityInterface
      * @param Template\Context $context Context.
      * @param Registry $registry Registry.
      * @param ImageFactory $imageFactory Image factory.
+     * @param ?CustomEntity $customEntity Custom entity.
      * @param array $data Data.
      */
     public function __construct(
         Template\Context $context,
         Registry $registry,
         ImageFactory $imageFactory,
+        ?CustomEntity $customEntity,
         array $data = []
     ) {
         parent::__construct($context, $data);
         $this->registry = $registry;
+        $this->customEntity = $customEntity;
         $this->imageFactory = $imageFactory;
     }
 
     /**
      * Return current custom entity.
      */
-    public function getEntity(): ?CustomEntityInterface
+    public function getEntity(): ?CustomEntity
     {
-        if (empty($this->customEntity)) {
+        if (empty($this->customEntity->getId())) {
             $this->customEntity = $this->registry->registry('current_custom_entity');
         }
 

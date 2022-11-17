@@ -3,6 +3,29 @@
     "type": "magento2-module",
     "description": "Smile - Custom Entity Module",
     "keywords": ["magento2", "custom", "entity"],
+    "authors": [
+        {
+            "name": "Aurélien FOUCRET",
+            "email": "aurelien.foucret@smile.fr"
+        },
+        {
+            "name": "Maxime LECLERCQ",
+            "email": "maxime.leclercq@smile.fr"
+        },
+        {
+            "name": "Cédric MAGREZ",
+            "email": "cedric.magrez@smile.fr"
+        }
+    ],
+    "license": "OSL-3.0",
+    "config": {
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true,
+            "magento/composer-dependency-version-audit-plugin": true,
+            "magento/magento-composer-installer": false
+        },
+        "sort-packages": true
+    },
     "repositories": [
         {
             "type": "composer",
@@ -16,21 +39,6 @@
     "require-dev": {
         "smile/magento2-smilelab-quality-suite": "^3.0"
     },
-    "suggest": {
-        "smile/module-custom-entity-product-link": "Possibility to add product attribute for link product to custom entities",
-        "smile/module-custom-entity-import-export": "Possibility to import custom entities"
-    },
-    "license": "OSL-3.0",
-    "authors": [
-        {
-            "name": "Aurélien FOUCRET",
-            "email": "aurelien.foucret@smile.fr"
-        },
-        {
-            "name": "Maxime LECLERCQ",
-            "email": "maxime.leclercq@smile.fr"
-        }
-    ],
     "autoload": {
         "files": [
             "registration.php"
@@ -38,6 +46,10 @@
         "psr-4": {
             "Smile\\CustomEntity\\" : ""
         }
+    },
+    "suggest": {
+        "smile/module-custom-entity-product-link": "Possibility to add product attribute for link product to custom entities",
+        "smile/module-custom-entity-import-export": "Possibility to import custom entities"
     },
     "minimum-stability": "dev",
     "prefer-stable": true

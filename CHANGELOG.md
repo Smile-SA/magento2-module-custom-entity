@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.3.7] - 2022-11-21
+[1.3.7]: https://github.com/Smile-SA/magento2-module-custom-entity/compare/1.3.6...1.3.7
+
+- Add github actions workflow
+
 ## [1.3.6] - 2022-10-19
 [1.3.6]: https://github.com/Smile-SA/magento2-module-custom-entity/compare/1.3.5...1.3.6
 

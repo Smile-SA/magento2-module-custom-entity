@@ -8,7 +8,6 @@ use Magento\Backend\App\Action\Context;
 use Magento\Framework\Controller\Result\ForwardFactory;
 use Magento\Framework\Serialize\Serializer\FormData;
 use Smile\ScopedEav\ViewModel\Data as DataViewModel;
-use Zend\Validator\RegexFactory;
 
 /**
  * Custom entity attribute save controller.
@@ -29,7 +28,6 @@ class Save extends \Smile\ScopedEav\Controller\Adminhtml\Attribute\Save
         Context $context,
         DataViewModel $dataViewModel,
         Builder $attributeBuilder,
-        RegexFactory $regexFactory,
         ?FormData $formDataSerializer,
         ForwardFactory $resultForwardFactory
     ) {
@@ -37,7 +35,6 @@ class Save extends \Smile\ScopedEav\Controller\Adminhtml\Attribute\Save
             $context,
             $dataViewModel,
             $attributeBuilder,
-            $regexFactory,
             $formDataSerializer,
             $resultForwardFactory
         );

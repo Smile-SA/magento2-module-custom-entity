@@ -167,13 +167,12 @@ class CustomEntityRepository implements CustomEntityRepositoryInterface
     public function delete(CustomEntityInterface $entity): bool
     {
         try {
-            $entityId = $entity->getId();
-            $this->customEntityResource->delete($entityId);
+            $this->customEntityResource->delete($entity);
         } catch (\Exception $e) {
             throw new StateException(__('Cannot delete entity with id %1', $entity->getId()), $e);
         }
 
-        unset($this->instances[$entityId]);
+        unset($this->instances[$entity->getId()]);
 
         return true;
     }

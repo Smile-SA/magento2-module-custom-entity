@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.3.9] - 2023-01-30
+[1.3.9]: https://github.com/Smile-SA/magento2-module-custom-entity/compare/1.3.8...1.3.9
+
+- Update parameter on delete custom entity
+
 ## [1.3.8] - 2022-12-02
 [1.3.8]: https://github.com/Smile-SA/magento2-module-custom-entity/compare/1.3.7...1.3.8
 

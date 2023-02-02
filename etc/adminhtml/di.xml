@@ -76,4 +76,15 @@
         </arguments>
     </type>
 
+    <type name="Magento\Catalog\Ui\DataProvider\Product\ProductDataProvider">
+        <arguments>
+            <argument name="addFieldStrategies" xsi:type="array">
+                <item name="smile_custom_entity_name" xsi:type="object">Smile\CustomEntity\Ui\DataProvider\CustomEntity\Listing\AddCustomEntityNameFieldToCollection</item>
+            </argument>
+            <argument name="addFilterStrategies" xsi:type="array">
+                <item name="smile_custom_entity_name" xsi:type="object">Smile\CustomEntity\Ui\DataProvider\CustomEntity\Listing\AddCustomEntityNameFilterToCollection</item>
+            </argument>
+        </arguments>
+    </type>
+
 </config>

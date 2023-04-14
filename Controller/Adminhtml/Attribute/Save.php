@@ -7,7 +7,7 @@ namespace Smile\CustomEntity\Controller\Adminhtml\Attribute;
 use Magento\Backend\App\Action\Context;
 use Magento\Framework\Controller\Result\ForwardFactory;
 use Magento\Framework\Serialize\Serializer\FormData;
-use Smile\ScopedEav\ViewModel\Data as DataViewModel;
+use Smile\CustomEntity\ViewModel\Attribute\Data as DataViewModel;
 
 /**
  * Custom entity attribute save controller.
@@ -26,10 +26,10 @@ class Save extends \Smile\ScopedEav\Controller\Adminhtml\Attribute\Save
     // @codingStandardsIgnoreLine Override builder attribute (Generic.CodeAnalysis.UselessOverridingMethod.Found)
     public function __construct(
         Context $context,
-        DataViewModel $dataViewModel,
         Builder $attributeBuilder,
-        ?FormData $formDataSerializer,
-        ForwardFactory $resultForwardFactory
+        ForwardFactory $resultForwardFactory,
+        DataViewModel $dataViewModel,
+        ?FormData $formDataSerializer
     ) {
         parent::__construct(
             $context,

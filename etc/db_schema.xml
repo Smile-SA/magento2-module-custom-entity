@@ -156,8 +156,8 @@
       <column name="website_id"/>
     </index>
   </table>
-  <table name="catalog_eav_attribute" resource="default">
-    <column xsi:type="smallint" name="custom_entity_attribute_set_id" padding="5" unsigned="true" nullable="true" identity="false" comment="Additional swatch attributes data"/>
-    <constraint xsi:type="foreign" referenceId="CAT_EAV_ATTR_CUSTOM_ENTT_ATTR_SET_ID_EAV_ATTR_SET_ATTR_SET_ID" table="catalog_eav_attribute" column="custom_entity_attribute_set_id" referenceTable="eav_attribute_set" referenceColumn="attribute_set_id" onDelete="CASCADE"/>
-  </table>
+    <table name="eav_attribute" resource="default">
+        <column xsi:type="smallint" name="custom_entity_attribute_set_id" padding="5" unsigned="true" nullable="true" identity="false" comment="Custom entity type id"/>
+        <constraint xsi:type="foreign" referenceId="EAV_ATTR_CUSTOM_ENTT_ATTR_SET_ID_EAV_ATTR_SET_ATTR_SET_ID" table="eav_attribute" column="custom_entity_attribute_set_id" referenceTable="eav_attribute_set" referenceColumn="attribute_set_id" onDelete="CASCADE"/>
+    </table>
 </schema>

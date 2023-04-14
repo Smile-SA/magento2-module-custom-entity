@@ -4,7 +4,8 @@
             "attribute_id": true,
             "is_global": true,
             "is_wysiwyg_enabled": true,
-            "is_html_allowed_on_front": true
+            "is_html_allowed_on_front": true,
+            "custom_entity_attribute_set_id": true
         },
         "constraint": {
             "PRIMARY": true,
@@ -140,12 +141,12 @@
             "SMILE_CUSTOM_ENTT_WS_ENTT_ID_SMILE_CUSTOM_ENTT_ENTT_ID": true
         }
     },
-    "catalog_eav_attribute": {
+    "eav_attribute": {
         "column": {
             "custom_entity_attribute_set_id": true
         },
         "constraint": {
-            "CAT_EAV_ATTR_CUSTOM_ENTT_ATTR_SET_ID_EAV_ATTR_SET_ATTR_SET_ID": true
+            "EAV_ATTR_CUSTOM_ENTT_ATTR_SET_ID_EAV_ATTR_SET_ATTR_SET_ID": true
         }
     }
 }

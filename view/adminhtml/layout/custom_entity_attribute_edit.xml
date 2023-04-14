@@ -10,7 +10,8 @@
     <body>
         <referenceContainer name="main">
             <!-- Append custom entity specifics fields. -->
-            <block class="Smile\CustomEntity\Block\Adminhtml\Attribute\Edit\Tab\Front" as="front" />
+            <block class="Smile\CustomEntity\Block\Adminhtml\Attribute\Edit\Tab\Front" name="main.front" />
+            <referenceBlock name="main.base" class="Smile\CustomEntity\Block\Adminhtml\Attribute\Edit\Tab\Main"/>
         </referenceContainer>
     </body>
 

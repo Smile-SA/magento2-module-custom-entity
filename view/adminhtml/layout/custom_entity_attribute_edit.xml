@@ -8,6 +8,13 @@
     <update handle="scoped_eav_attribute_edit_form" />
 
     <body>
+        <referenceContainer name="left">
+            <referenceContainer name="attribute_edit_tabs">
+                <container name="main">
+                    <block class="Smile\CustomEntity\Block\Adminhtml\Attribute\Edit\Tab\Main" as="base" />
+                </container>
+            </referenceContainer>
+        </referenceContainer>
         <referenceContainer name="main">
             <!-- Append custom entity specifics fields. -->
             <block class="Smile\CustomEntity\Block\Adminhtml\Attribute\Edit\Tab\Front" as="front" />

@@ -61,19 +61,42 @@
             <argument name="entityBuilder" xsi:type="object">Smile\CustomEntity\Controller\Adminhtml\Entity\Builder</argument>
         </arguments>
     </type>
-
     <type name="Smile\CustomEntity\Controller\Adminhtml\Entity\Save">
         <arguments>
             <argument name="entityBuilder" xsi:type="object">Smile\CustomEntity\Controller\Adminhtml\Entity\Builder</argument>
         </arguments>
     </type>
-
     <type name="Magento\Ui\DataProvider\Mapper\FormElement">
         <arguments>
             <argument name="mappings" xsi:type="array">
                 <item name="smile_custom_entity" xsi:type="string">input</item>
+                <item name="smile_custom_entity_select" xsi:type="string">select</item>
+                <item name="smile_custom_entity_multiselect" xsi:type="string">multiselect</item>
             </argument>
         </arguments>
     </type>
-
+    <virtualType name="Smile\CustomEntity\Model\Adminhtml\System\Config\Source\InputtypeFactory" type="Smile\ScopedEav\Model\Adminhtml\System\Config\Source\InputtypeFactory">
+        <arguments>
+            <argument name="instanceName" xsi:type="string">Smile\CustomEntity\Model\Adminhtml\System\Config\Source\Inputtype</argument>
+        </arguments>
+    </virtualType>
+    <type name="Smile\CustomEntity\Block\Adminhtml\Attribute\Edit\Tab\Main">
+        <arguments>
+            <argument name="inputTypeFactory" xsi:type="object">Smile\CustomEntity\Model\Adminhtml\System\Config\Source\InputtypeFactory</argument>
+        </arguments>
+    </type>
+    <type name="Smile\CustomEntity\Model\Adminhtml\System\Config\Source\Inputtype">
+        <arguments>
+            <argument name="optionsArray" xsi:type="array">
+                <item name="900" xsi:type="array">
+                    <item name="value" xsi:type="string">smile_custom_entity_select</item>
+                    <item name="label" xsi:type="string" translate="true">Smile custom entity select</item>
+                </item>
+                <item name="910" xsi:type="array">
+                    <item name="value" xsi:type="string">smile_custom_entity_multiselect</item>
+                    <item name="label" xsi:type="string" translate="true">Smile custom entity multiple select</item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
 </config>

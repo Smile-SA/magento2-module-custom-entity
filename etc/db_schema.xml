@@ -5,6 +5,7 @@
     <column xsi:type="smallint" name="is_global" padding="5" unsigned="true" nullable="false" identity="false" default="1" comment="Is Global"/>
     <column xsi:type="smallint" name="is_wysiwyg_enabled" padding="5" unsigned="true" nullable="false" identity="false" default="0" comment="Is WYSIWYG Enabled"/>
     <column xsi:type="smallint" name="is_html_allowed_on_front" padding="5" unsigned="true" nullable="false" identity="false" default="0" comment="Is HTML Allowed On Front"/>
+    <column xsi:type="smallint" name="custom_entity_attribute_set_id" unsigned="true" nullable="true" default="null" comment="Custom entity attribute set id"/>
     <constraint xsi:type="primary" referenceId="PRIMARY">
       <column name="attribute_id"/>
     </constraint>

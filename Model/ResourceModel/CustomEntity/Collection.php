@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace Smile\CustomEntity\Model\ResourceModel\CustomEntity;
 
 use Magento\Catalog\Model\ResourceModel\Collection\AbstractCollection;
+use Smile\CustomEntity\Model\CustomEntity;
+use Smile\CustomEntity\Model\ResourceModel\CustomEntity as CustomEntityResource;
 
 /**
  * Custom entity collection model.
@@ -37,9 +39,6 @@ class Collection extends AbstractCollection
      */
     protected function _construct(): void
     {
-        $this->_init(
-            \Smile\CustomEntity\Model\CustomEntity::class,
-            \Smile\CustomEntity\Model\ResourceModel\CustomEntity::class
-        );
+        $this->_init(CustomEntity::class, CustomEntityResource::class);
     }
 }

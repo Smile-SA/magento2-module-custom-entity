@@ -14,11 +14,10 @@ interface CustomEntityInterface extends EntityInterface, IdentityInterface
      */
     public const ENTITY = 'smile_custom_entity';
 
-    /**#@+
+    /**
      * Constants defined for keys of data array
      */
     public const URL_KEY = 'url_key';
-    /**#@-*/
 
     /**
      * Returns custom entity url key.
@@ -45,17 +44,15 @@ interface CustomEntityInterface extends EntityInterface, IdentityInterface
     /**
      * Retrieve existing extension attributes object or create a new one.
      *
-     * @return \Smile\CustomEntity\Api\Data\CustomEntityExtensionInterface|null
+     * @return CustomEntityExtensionInterface|null
      */
-    public function getExtensionAttributes(): ?\Smile\CustomEntity\Api\Data\CustomEntityExtensionInterface;
+    public function getExtensionAttributes(): ?CustomEntityExtensionInterface;
 
     /**
      * Set an extension attributes object.
      *
-     * @param \Smile\CustomEntity\Api\Data\CustomEntityExtensionInterface $extensionAttributes Extension attributes.
+     * @param CustomEntityExtensionInterface $extensionAttributes Extension attributes.
      * @return $this
      */
-    public function setExtensionAttributes(
-        \Smile\CustomEntity\Api\Data\CustomEntityExtensionInterface $extensionAttributes
-    ): self;
+    public function setExtensionAttributes(CustomEntityExtensionInterface $extensionAttributes): self;
 }

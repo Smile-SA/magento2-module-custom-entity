@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace Smile\CustomEntity\Model\ResourceModel\CustomEntity\Attribute;
 
+use Magento\Eav\Model\ResourceModel\Entity\Attribute;
+use Magento\Framework\DB\Ddl\Table;
+use Smile\CustomEntity\Model\CustomEntity\Attribute as CustomEntityAttribute;
 use Smile\CustomEntity\Model\ResourceModel\CustomEntity\Attribute\Collection as SmileCustomEntityCollection;
 
 /**
@@ -36,10 +39,7 @@ class Collection extends \Magento\Eav\Model\ResourceModel\Entity\Attribute\Colle
      */
     protected function _construct()
     {
-        $this->_init(
-            \Smile\CustomEntity\Model\CustomEntity\Attribute::class,
-            \Magento\Eav\Model\ResourceModel\Entity\Attribute::class
-        );
+        $this->_init(CustomEntityAttribute::class, Attribute::class);
     }
 
     /**
@@ -49,7 +49,7 @@ class Collection extends \Magento\Eav\Model\ResourceModel\Entity\Attribute\Colle
     protected function _initSelect(): self
     {
         $entityTypeId = $this->eavConfig->getEntityType(
-            \Smile\CustomEntity\Model\CustomEntity\Attribute::ENTITY_TYPE_CODE
+            CustomEntityAttribute::ENTITY_TYPE_CODE
         )->getEntityTypeId();
 
         $columns = $this->getConnection()->describeTable($this->getResource()->getMainTable());
@@ -58,7 +58,7 @@ class Collection extends \Magento\Eav\Model\ResourceModel\Entity\Attribute\Colle
 
         foreach ($columns as $labelColumn => $columnData) {
             $retColumns[$labelColumn] = $labelColumn;
-            if ($columnData['DATA_TYPE'] == \Magento\Framework\DB\Ddl\Table::TYPE_TEXT) {
+            if ($columnData['DATA_TYPE'] == Table::TYPE_TEXT) {
                 $retColumns[$labelColumn] = 'main_table.' . $labelColumn;
             }
         }

@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Smile\CustomEntity\Controller;
 
+use Exception;
+use Magento\Framework\App\Action\Forward;
 use Magento\Framework\App\ActionFactory;
 use Magento\Framework\App\ActionInterface;
 use Magento\Framework\App\Request\Http as HttpRequest;
@@ -11,6 +13,7 @@ use Magento\Framework\App\RequestInterface;
 use Magento\Framework\App\RouterInterface;
 use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Framework\Exception\NotFoundException;
+use Magento\Framework\UrlInterface;
 use Smile\CustomEntity\Model\CustomEntity;
 use Smile\CustomEntity\Model\CustomEntity\AttributeSet\Url;
 
@@ -56,7 +59,7 @@ class Router implements RouterInterface
         $requestPathArray = explode('/', $requestPath);
         if (
             !$this->isValidPath($requestPathArray)
-            || $request->getAlias(\Magento\Framework\Url::REWRITE_REQUEST_PATH_ALIAS)
+            || $request->getAlias(UrlInterface::REWRITE_REQUEST_PATH_ALIAS)
         ) {
             // Continuing with processing of this URL.
             return null;
@@ -64,18 +67,18 @@ class Router implements RouterInterface
 
         try {
             $entityId = $this->matchCustomEntity($requestPathArray);
-            $request->setAlias(\Magento\Framework\Url::REWRITE_REQUEST_PATH_ALIAS, $requestPath)
+            $request->setAlias(UrlInterface::REWRITE_REQUEST_PATH_ALIAS, $requestPath)
                 ->setModuleName('custom_entity')
                 ->setControllerName($this->getControllerName($requestPathArray))
                 ->setActionName('view')
                 ->setParam('entity_id', $entityId);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             // Continuing with processing of this URL.
             return null;
         }
 
         return $this->actionFactory->create(
-            \Magento\Framework\App\Action\Forward::class
+            Forward::class
         );
     }
 

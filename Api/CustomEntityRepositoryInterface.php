@@ -6,6 +6,7 @@ namespace Smile\CustomEntity\Api;
 
 use Magento\Framework\Api\SearchCriteriaInterface;
 use Magento\Framework\Api\SearchResults;
+use Magento\Framework\DataObject;
 use Magento\Framework\Exception\CouldNotSaveException;
 use Magento\Framework\Exception\InputException;
 use Magento\Framework\Exception\NoSuchEntityException;
@@ -41,11 +42,11 @@ interface CustomEntityRepositoryInterface
     /**
      * Delete custom entity.
      *
-     * @param CustomEntityInterface $entity Deleted entity.
+     * @param CustomEntityInterface|DataObject $entity Deleted entity.
      * @return bool Will returned True if deleted
      * @throws StateException
      */
-    public function delete(CustomEntityInterface $entity): bool;
+    public function delete($entity): bool;
 
     /**
      * Delete custom entity by id.

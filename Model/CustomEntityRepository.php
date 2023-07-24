@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Smile\CustomEntity\Model;
 
+use Exception;
 use Magento\Framework\Api\ExtensibleDataObjectConverter;
 use Magento\Framework\Api\ExtensionAttribute\JoinProcessorInterface;
 use Magento\Framework\Api\SearchCriteria\CollectionProcessorInterface;
@@ -160,15 +161,15 @@ class CustomEntityRepository implements CustomEntityRepositoryInterface
     /**
      * Delete custom entity.
      *
-     * @param CustomEntityInterface $entity Deleted entity.
+     * @param CustomEntityInterface|DataObject $entity Deleted entity.
      * @return bool Will returned True if deleted
      * @throws StateException
      */
-    public function delete(CustomEntityInterface $entity): bool
+    public function delete($entity): bool
     {
         try {
             $this->customEntityResource->delete($entity);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             throw new StateException(__('Cannot delete entity with id %1', $entity->getId()), $e);
         }
 

@@ -10,13 +10,18 @@ use Smile\ScopedEav\Ui\DataProvider\Entity\Form\Modifier\Helper\Eav as EavHelper
 
 class CustomEntityAttribute extends AbstractModifier
 {
+    protected LocatorInterface $locator;
+    protected EavHelper $eavHelper;
+
     /**
      * Constructor.
      */
     public function __construct(
-        protected LocatorInterface $locator,
-        protected EavHelper $eavHelper
+        LocatorInterface $locator,
+        EavHelper $eavHelper
     ) {
+        $this->locator = $locator;
+        $this->eavHelper = $eavHelper;
     }
 
     /**

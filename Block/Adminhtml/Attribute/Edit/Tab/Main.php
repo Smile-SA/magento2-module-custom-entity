@@ -16,9 +16,13 @@ use Smile\CustomEntity\Model\CustomEntity\AttributeSet\Options;
 
 /**
  * Custom entity attribute edit main form.
+ *
+ * @SuppressWarnings(PHPMD.ExcessiveParameterList)
  */
 class Main extends \Smile\ScopedEav\Block\Adminhtml\Attribute\Edit\Tab\Main
 {
+    protected Options $attributeSetOptions;
+
     public function __construct(
         Context $context,
         Registry $registry,
@@ -27,7 +31,7 @@ class Main extends \Smile\ScopedEav\Block\Adminhtml\Attribute\Edit\Tab\Main
         YesnoFactory $yesnoFactory,
         InputtypeFactory $inputTypeFactory,
         PropertyLocker $propertyLocker,
-        protected Options $attributeSetOptions,
+        Options $attributeSetOptions,
         array $disableScopeChangeList = [],
         array $data = []
     ) {
@@ -42,6 +46,7 @@ class Main extends \Smile\ScopedEav\Block\Adminhtml\Attribute\Edit\Tab\Main
             $disableScopeChangeList,
             $data
         );
+        $this->attributeSetOptions = $attributeSetOptions;
     }
 
     /**
@@ -72,23 +77,23 @@ class Main extends \Smile\ScopedEav\Block\Adminhtml\Attribute\Edit\Tab\Main
             'frontend_input'
         );
 
-        //Added dependency between 'Custom entity type' and 'Input Type'.
-        $this->setChild(
-            'form_after',
-            $this->getLayout()->createBlock(
-                Dependence::class
-            )->addFieldMap(
-                "frontend_input",
-                'frontend_input_type'
-            )->addFieldMap(
-                "custom_entity_attribute_set_id",
-                'custom_entity_attribute_set_id'
-            )->addFieldDependence(
-                'custom_entity_attribute_set_id',
-                'frontend_input_type',
-                'smile_custom_entity_select'
-            )
+        /** @var Dependence $block */
+        $block = $this->getLayout()->createBlock(Dependence::class);
+
+        $block->addFieldMap(
+            "frontend_input",
+            'frontend_input_type'
+        )->addFieldMap(
+            "custom_entity_attribute_set_id",
+            'custom_entity_attribute_set_id'
+        )->addFieldDependence(
+            'custom_entity_attribute_set_id',
+            'frontend_input_type',
+            'smile_custom_entity_select'
         );
+
+        //Added dependency between 'Custom entity type' and 'Input Type'.
+        $this->setChild('form_after', $block);
 
         // Disable 'Custom entity type' input if the attribute is already created.
         if ($this->getAttributeObject() && $this->getAttributeObject()->getAttributeId()) {

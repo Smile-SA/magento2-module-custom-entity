@@ -13,10 +13,15 @@ use Smile\CustomEntity\Api\CustomEntityRepositoryInterface;
  */
 class CustomEntity extends AbstractSource
 {
+    protected CustomEntityRepositoryInterface $customEntityRepository;
+    protected SearchCriteriaBuilder $searchCriteriaBuilder;
+
     public function __construct(
-        protected CustomEntityRepositoryInterface $customEntityRepository,
-        protected SearchCriteriaBuilder $searchCriteriaBuilder,
+        CustomEntityRepositoryInterface $customEntityRepository,
+        SearchCriteriaBuilder $searchCriteriaBuilder
     ) {
+        $this->customEntityRepository = $customEntityRepository;
+        $this->searchCriteriaBuilder = $searchCriteriaBuilder;
     }
 
     /**

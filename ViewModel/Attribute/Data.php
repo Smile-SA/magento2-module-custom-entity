@@ -17,10 +17,9 @@ class Data extends \Smile\ScopedEav\ViewModel\Data
      */
     public function getAttributeSourceModelByInputType(string $inputType): ?string
     {
-        return match ($inputType) {
-            'smile_custom_entity_select' => CustomEntitySource::class,
-            default => parent::getAttributeSourceModelByInputType($inputType),
-        };
+        return $inputType === 'smile_custom_entity_select'
+            ? CustomEntitySource::class
+            : parent::getAttributeSourceModelByInputType($inputType);
     }
 
     /**
@@ -28,10 +27,9 @@ class Data extends \Smile\ScopedEav\ViewModel\Data
      */
     public function getAttributeBackendModelByInputType(string $inputType): ?string
     {
-        return match ($inputType) {
-            'smile_custom_entity_select' => ArrayBackend::class,
-            default => parent::getAttributeBackendModelByInputType($inputType),
-        };
+        return $inputType === 'smile_custom_entity_select'
+            ? ArrayBackend::class
+            : parent::getAttributeBackendModelByInputType($inputType);
     }
 
     /**
@@ -39,9 +37,8 @@ class Data extends \Smile\ScopedEav\ViewModel\Data
      */
     public function getAttributeBackendTypeByInput(string $inputType): ?string
     {
-        return match ($inputType) {
-            'smile_custom_entity_select' => 'varchar',
-            default => parent::getAttributeBackendTypeByInput($inputType),
-        };
+        return $inputType === 'smile_custom_entity_select'
+            ? 'varchar'
+            : parent::getAttributeBackendTypeByInput($inputType);
     }
 }

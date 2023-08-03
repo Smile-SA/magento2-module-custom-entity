@@ -44,14 +44,14 @@ interface CustomEntityInterface extends EntityInterface, IdentityInterface
     /**
      * Retrieve existing extension attributes object or create a new one.
      *
-     * @return CustomEntityExtensionInterface|null
+     * @return \Smile\CustomEntity\Api\Data\CustomEntityExtensionInterface|null
      */
     public function getExtensionAttributes(): ?CustomEntityExtensionInterface;
 
     /**
      * Set an extension attributes object.
      *
-     * @param CustomEntityExtensionInterface $extensionAttributes Extension attributes.
+     * @param \Smile\CustomEntity\Api\Data\CustomEntityExtensionInterface $extensionAttributes Extension attributes.
      * @return $this
      */
     public function setExtensionAttributes(CustomEntityExtensionInterface $extensionAttributes): self;

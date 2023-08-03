@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.3.12] - 2023-08-03
+[1.3.12]: https://github.com/Smile-SA/magento2-module-custom-entity/compare/1.3.11...1.3.12
+
+- Update for di compile complete on CustomEntityInterface
+
+## [1.3.11] - 2023-07-25
+[1.3.11]: https://github.com/Smile-SA/magento2-module-custom-entity/compare/1.3.10...1.3.11
+
+- Fixed custom_entity_attribute_set_id column migration
+
+## [1.3.10] - 2023-07-25
+[1.3.10]: https://github.com/Smile-SA/magento2-module-custom-entity/compare/1.3.9...1.3.10
+
+- Added custom entity attribute type to custom entity
+- Implement new quality standard
+
 ## [1.3.9] - 2023-01-30
 [1.3.9]: https://github.com/Smile-SA/magento2-module-custom-entity/compare/1.3.8...1.3.9
 

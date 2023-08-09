@@ -35,6 +35,7 @@ class CustomEntity extends AbstractSource
         }
 
         if ($this->_options === null) {
+            $this->_options = [];
             $searchCriteria = $this->searchCriteriaBuilder->addFilter(
                 'attribute_set_id',
                 $customEntityTypeId

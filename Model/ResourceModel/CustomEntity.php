@@ -12,6 +12,7 @@ use Magento\Framework\EntityManager\EntityManager;
 use Magento\Store\Model\StoreManagerInterface;
 use Smile\CustomEntity\Api\Data\CustomEntityInterface;
 use Smile\CustomEntity\Model\CustomEntity as CustomEntityModel;
+use Smile\CustomEntity\Model\ResourceModel\CustomEntity\MediaImageDeleteProcessor;
 use Smile\ScopedEav\Model\Entity\Attribute\DefaultAttributes;
 use Smile\ScopedEav\Model\ResourceModel\AbstractResource;
 
@@ -24,6 +25,8 @@ class CustomEntity extends AbstractResource
 
     private StoreManagerInterface $storeManager;
 
+    protected MediaImageDeleteProcessor $mediaImageDeleteProcessor;
+
     /**
      * CustomEntity constructor.
      *
@@ -33,6 +36,7 @@ class CustomEntity extends AbstractResource
      * @param SetFactory $setFactory Attribute set factory.
      * @param DefaultAttributes $defaultAttributes Default attributes.
      * @param StoreManagerInterface $storeManager Store manager.
+     * @param MediaImageDeleteProcessor $mediaImageDeleteProcessor Media image delete processor
      * @param array $data Data.
      */
     public function __construct(
@@ -42,11 +46,13 @@ class CustomEntity extends AbstractResource
         SetFactory $setFactory,
         DefaultAttributes $defaultAttributes,
         StoreManagerInterface $storeManager,
+        MediaImageDeleteProcessor $mediaImageDeleteProcessor,
         array $data = []
     ) {
         parent::__construct($context, $entityManager, $typeFactory, $setFactory, $defaultAttributes, $data);
         $this->storeManager = $storeManager;
         $this->customEntityWebsiteTable = CustomEntityInterface::ENTITY;
+        $this->mediaImageDeleteProcessor = $mediaImageDeleteProcessor;
     }
 
     /**
@@ -153,5 +159,15 @@ class CustomEntity extends AbstractResource
         }
 
         return $this;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    protected function _afterDelete(DataObject $object)
+    {
+        $this->mediaImageDeleteProcessor->execute($object);
+
+        return parent::_afterDelete($object);
     }
 }

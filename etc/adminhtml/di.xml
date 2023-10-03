@@ -36,6 +36,14 @@
         </arguments>
     </type>
 
+    <type name="Smile\CustomEntity\Ui\DataProvider\CustomEntity\Listing\CustomEntityDataProvider">
+        <arguments>
+            <argument name="addFilterStrategies" xsi:type="array">
+                <item name="store_id" xsi:type="object">Smile\CustomEntity\Ui\DataProvider\CustomEntity\Listing\AddStoreFieldToCollection</item>
+            </argument>
+        </arguments>
+    </type>
+
     <type name="Smile\CustomEntity\Controller\Adminhtml\Entity\Index">
         <arguments>
             <argument name="entityBuilder" xsi:type="object">Smile\CustomEntity\Controller\Adminhtml\Entity\Builder</argument>
@@ -98,5 +106,4 @@
             <argument name="inputTypeFactory" xsi:type="object">Smile\CustomEntity\Model\Adminhtml\System\Config\Source\InputtypeFactory</argument>
         </arguments>
     </type>
-
 </config>

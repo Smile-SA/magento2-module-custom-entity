@@ -13,7 +13,7 @@ use Smile\ScopedEav\Controller\Adminhtml\AbstractEntity;
  */
 class Index extends AbstractEntity implements HttpGetActionInterface
 {
-    public const ADMIN_RESOURCE = 'Smile_CustomEntity::entity';
+    public const ADMIN_RESOURCE = 'Smile_CustomEntity::entities';
 
     /**
      * Execute

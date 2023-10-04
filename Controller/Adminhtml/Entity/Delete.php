@@ -9,5 +9,5 @@ namespace Smile\CustomEntity\Controller\Adminhtml\Entity;
  */
 class Delete extends \Smile\ScopedEav\Controller\Adminhtml\Entity\Delete
 {
-    public const ADMIN_RESOURCE = 'Smile_CustomEntity::entity';
+    public const ADMIN_RESOURCE = 'Smile_CustomEntity::entities';
 }

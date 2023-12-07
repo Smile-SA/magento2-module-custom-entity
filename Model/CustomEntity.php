@@ -32,9 +32,9 @@ class CustomEntity extends AbstractEntity implements IdentityInterface, CustomEn
     /**
      * Product cache tag
      */
-    public const CACHE_TAG = 'smile_custom_entity';
+    public const CACHE_TAG = 'sce';
 
-    public const CACHE_CUSTOM_ENTITY_SET_TAG = 'smile_custom_entity_set';
+    public const CACHE_CUSTOM_ENTITY_SET_TAG = 'sces';
 
     /**
      * @inheritdoc

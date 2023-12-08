@@ -9,6 +9,7 @@ use Magento\Eav\Api\Data\AttributeSetInterface;
 use Magento\Framework\Api\AttributeValueFactory;
 use Magento\Framework\Api\ExtensionAttributesFactory;
 use Magento\Framework\Api\MetadataServiceInterface;
+use Magento\Framework\App\Request\Http;
 use Magento\Framework\Data\Collection\AbstractDb;
 use Magento\Framework\DataObject\IdentityInterface;
 use Magento\Framework\Exception\NoSuchEntityException;
@@ -70,6 +71,8 @@ class CustomEntity extends AbstractEntity implements IdentityInterface, CustomEn
 
     private AttributeSetRepositoryInterface $attributeSetRepository;
 
+    private Http $request;
+
     private AttributeSetInterface $attributeSet;
 
     /**
@@ -83,6 +86,7 @@ class CustomEntity extends AbstractEntity implements IdentityInterface, CustomEn
      * @param MetadataServiceInterface $metadataService Metadata service.
      * @param FilterManager $filterManager Filter Manager.
      * @param AttributeSetRepositoryInterface $attributeSetRepository Attribute set repository.
+     * @param Http $request Request.
      * @param AbstractResource|null $resource Resource model.
      * @param AbstractDb|null $resourceCollection Collection.
      * @param array $data Additional data.
@@ -97,6 +101,7 @@ class CustomEntity extends AbstractEntity implements IdentityInterface, CustomEn
         MetadataServiceInterface $metadataService,
         FilterManager $filterManager,
         AttributeSetRepositoryInterface $attributeSetRepository,
+        Http $request,
         ?AbstractResource $resource = null,
         ?AbstractDb $resourceCollection = null,
         array $data = []
@@ -114,6 +119,7 @@ class CustomEntity extends AbstractEntity implements IdentityInterface, CustomEn
         $this->metadataService = $metadataService;
         $this->filterManager = $filterManager;
         $this->attributeSetRepository = $attributeSetRepository;
+        $this->request = $request;
     }
 
     /**
@@ -195,8 +201,14 @@ class CustomEntity extends AbstractEntity implements IdentityInterface, CustomEn
     public function beforeSave()
     {
         $urlKey = $this->getData(self::URL_KEY);
-        if ($urlKey === '' || $urlKey === null) {
-            $this->setUrlKey($this->filterManager->translitUrl($this->getName()));
+        $useDefault = $this->request->getParam('use_default');
+        if (($urlKey === '' || $urlKey === null) &&
+            ($useDefault === null || (isset($useDefault['url_key']) && $useDefault['url_key'] == 0))) {
+            $this->setUrlKey(
+                $this->filterManager->translitUrl(
+                    $this->getName() ? $this->getName() : $this->getOrigData('name')
+                )
+            );
         }
 
         return parent::beforeSave();

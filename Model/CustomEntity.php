@@ -194,9 +194,19 @@ class CustomEntity extends AbstractEntity implements IdentityInterface, CustomEn
      */
     public function beforeSave()
     {
-        $urlKey = $this->getData(self::URL_KEY);
-        if ($urlKey === '' || $urlKey === null) {
-            $this->setUrlKey($this->filterManager->translitUrl($this->getName()));
+        $urlKey = (string) $this->getData(self::URL_KEY);
+
+        if ($urlKey === '') {
+            $storeId = (int) $this->getStoreId();
+            $useDefaults = $this->getData('use_default');
+
+            if (
+                $storeId === 0
+                || $useDefaults === null
+                || isset($useDefaults['url_key']) && !$useDefaults['url_key']
+            ) {
+                $this->setUrlKey($this->filterManager->translitUrl($this->getName() ?: $this->getOrigData('name')));
+            }
         }
 
         return parent::beforeSave();

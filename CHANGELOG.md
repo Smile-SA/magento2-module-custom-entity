@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.3.13] - 2023-08-03
+[1.3.13]: https://github.com/Smile-SA/magento2-module-custom-entity/compare/1.3.12...1.3.13
+
+- Add handler for removing images when deleting an entity
+- Optimize cache tags ("smile_custom_entity" -> "sce", "smile_custom_entity_set" -> "sces")
+- Fix resource/ACL declaration for display menu Content > Custom Entities > Entities
+- Fix url_key generation when store_id > 0 in beforeSave
+
 ## [1.3.12] - 2023-08-03
 [1.3.12]: https://github.com/Smile-SA/magento2-module-custom-entity/compare/1.3.11...1.3.12
 

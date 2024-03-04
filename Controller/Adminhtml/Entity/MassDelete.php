@@ -16,8 +16,14 @@ use Smile\CustomEntity\Model\ResourceModel\CustomEntity\CollectionFactory;
  */
 class MassDelete extends Action implements HttpPostActionInterface
 {
+    /**
+     * @var Filter
+     */
     protected $filter;
 
+    /**
+     * @var CollectionFactory
+     */
     protected $collectionFactory;
 
     /**

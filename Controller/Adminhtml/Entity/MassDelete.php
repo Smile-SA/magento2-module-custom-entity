@@ -7,6 +7,7 @@ namespace Smile\CustomEntity\Controller\Adminhtml\Entity;
 use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
 use Magento\Framework\App\Action\HttpPostActionInterface;
+use Magento\Framework\Controller\Result\Redirect;
 use Magento\Framework\Controller\ResultFactory;
 use Magento\Ui\Component\MassAction\Filter;
 use Smile\CustomEntity\Model\ResourceModel\CustomEntity\CollectionFactory;
@@ -16,23 +17,9 @@ use Smile\CustomEntity\Model\ResourceModel\CustomEntity\CollectionFactory;
  */
 class MassDelete extends Action implements HttpPostActionInterface
 {
-    /**
-     * @var Filter
-     */
-    protected $filter;
+    protected Filter $filter;
+    protected CollectionFactory $collectionFactory;
 
-    /**
-     * @var CollectionFactory
-     */
-    protected $collectionFactory;
-
-    /**
-     * Constructor.
-     *
-     * @param Context $context
-     * @param Filter $filter
-     * @param CollectionFactory $collectionFactory
-     */
     public function __construct(
         Context $context,
         Filter $filter,
@@ -59,6 +46,7 @@ class MassDelete extends Action implements HttpPostActionInterface
             __('A total of %1 record(s) have been deleted.', $collectionSize)
         );
 
+        /** @var Redirect $resultRedirect */
         $resultRedirect = $this->resultFactory->create(ResultFactory::TYPE_REDIRECT);
 
         return $resultRedirect->setPath('*/*/');

@@ -8,5 +8,13 @@
                 </input_types>
             </validator_data>
         </general>
+        <sitemap>
+            <smile_custom_entity>
+                <include_in_sitemap>0</include_in_sitemap>
+                <include_image>0</include_image>
+                <changefreq>daily</changefreq>
+                <priority>0.5</priority>
+            </smile_custom_entity>
+        </sitemap>
     </default>
 </config>

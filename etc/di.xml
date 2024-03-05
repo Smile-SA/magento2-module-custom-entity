@@ -118,4 +118,11 @@
             <argument name="collectionProcessor" xsi:type="object">Smile\CustomEntity\Model\Api\SearchCriteria\CustomEntityCollectionProcessor</argument>
         </arguments>
     </type>
+    <type name="Magento\Sitemap\Model\ItemProvider\Composite">
+        <arguments>
+            <argument name="itemProviders" xsi:type="array">
+                <item name="smileCustomEntityProvider" xsi:type="object">Smile\CustomEntity\Model\Sitemap\CustomEntityProvider</item>
+            </argument>
+        </arguments>
+    </type>
 </config>

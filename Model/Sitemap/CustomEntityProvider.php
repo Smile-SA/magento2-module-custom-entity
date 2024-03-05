@@ -11,8 +11,8 @@ use Magento\Sitemap\Model\ItemProvider\ItemProviderInterface;
 use Magento\Sitemap\Model\SitemapItemInterfaceFactory;
 use Smile\CustomEntity\Api\CustomEntityRepositoryInterface;
 use Smile\CustomEntity\Api\Data\CustomEntityInterface;
-use Smile\CustomEntity\Model\Sitemap\ConfigReader;
 use Smile\ScopedEav\Api\Data\EntityInterface;
+use Smile\ScopedEav\Model\AbstractEntity;
 
 /**
  * Sitemap custom entity items provider.
@@ -81,6 +81,7 @@ class CustomEntityProvider implements ItemProviderInterface
      */
     protected function getImages(CustomEntityInterface $entity): ?DataObject
     {
+        /** @var AbstractEntity $entity */
         $image = $entity->getImageUrl(EntityInterface::IMAGE);
 
         if (!$image) {

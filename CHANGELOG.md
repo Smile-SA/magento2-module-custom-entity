@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.3.14] - 2024-03-05
+[1.3.14]: https://github.com/Smile-SA/magento2-module-custom-entity/compare/1.3.13...1.3.14
+
+- Add mass delete action to entity listing
+
 ## [1.3.13] - 2024-01-09
 [1.3.13]: https://github.com/Smile-SA/magento2-module-custom-entity/compare/1.3.12...1.3.13
 

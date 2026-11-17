@@ -112,10 +112,11 @@ class CustomEntityRepository implements CustomEntityRepositoryInterface
         if ($entity->getId()) {
             $metadata = $this->metadataPool->getMetadata(CustomEntityInterface::class);
 
-            /** @var DataObject $entity */
+            /** @var \Smile\CustomEntity\Model\CustomEntity $entity */
             $entity = $this->get($entity->getId(), $storeId);
             $existingData[$metadata->getLinkField()] = $entity->getData($metadata->getLinkField());
         }
+        /** @var \Smile\CustomEntity\Model\CustomEntity $entity */
         $entity->addData($existingData);
 
         try {

@@ -153,8 +153,6 @@ class Pager extends \Magento\Theme\Block\Html\Pager
 
     /**
      * Return start and end pages number.
-     *
-     * @return array
      */
     private function getPagesInterval(): array
     {

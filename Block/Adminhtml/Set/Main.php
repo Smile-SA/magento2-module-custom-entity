@@ -51,7 +51,7 @@ class Main extends \Smile\ScopedEav\Block\Adminhtml\Set\Main
             $data
         );
 
-        /** @var CollectionFactory $attributeCollectionFactory */
+        // @phpstan-ignore assign.propertyType (intentional: parent only calls create() on this factory)
         $this->_collectionFactory = $attributeCollectionFactory;
     }
 }

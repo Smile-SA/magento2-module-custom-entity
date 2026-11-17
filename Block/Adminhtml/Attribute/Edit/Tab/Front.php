@@ -8,7 +8,6 @@ use Magento\Backend\Block\Template\Context;
 use Magento\Backend\Block\Widget\Form\Generic;
 use Magento\Config\Model\Config\Source\Yesno;
 use Magento\Framework\Data\FormFactory;
-use Magento\Framework\DataObject;
 use Magento\Framework\Registry;
 use Smile\CustomEntity\Api\Data\CustomEntityAttributeInterface;
 
@@ -45,7 +44,7 @@ class Front extends Generic
      */
     protected function _prepareForm()
     {
-        /** @var DataObject $attributeObject */
+        /** @var \Smile\CustomEntity\Model\CustomEntity\Attribute $attributeObject */
         $attributeObject = $this->getAttributeObject();
 
         /** @var \Magento\Framework\Data\Form $form */

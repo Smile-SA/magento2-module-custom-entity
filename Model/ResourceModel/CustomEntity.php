@@ -108,7 +108,6 @@ class CustomEntity extends AbstractResource
      */
     protected function _afterSave(DataObject $entity)
     {
-        /** @var CustomEntity $this */
         /** @var CustomEntityModel $entity */
         $this->saveWebsiteIds($entity);
         return parent::_afterSave($entity);

@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.3.16] - 2026-11-24
+[1.3.16]: https://github.com/Smile-SA/magento2-module-custom-entity/compare/1.3.15...1.3.16
+
+- Security: entity mass delete controller checks the `Smile_CustomEntity::entities` ACL resource
+- Security: entity image upload controller checks the `Smile_CustomEntity::entities` ACL resource
+- Require `smile/module-scoped-eav` 1.3.10 or later
+
+## [1.3.15] - 2024-03-05
+[1.3.15]: https://github.com/Smile-SA/magento2-module-custom-entity/compare/1.3.14...1.3.15
+
+- Add custom entities to sitemap
+
 ## [1.3.14] - 2024-03-05
 [1.3.14]: https://github.com/Smile-SA/magento2-module-custom-entity/compare/1.3.13...1.3.14
 

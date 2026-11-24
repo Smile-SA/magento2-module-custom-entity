@@ -17,6 +17,8 @@ use Smile\CustomEntity\Model\ResourceModel\CustomEntity\CollectionFactory;
  */
 class MassDelete extends Action implements HttpPostActionInterface
 {
+    public const ADMIN_RESOURCE = 'Smile_CustomEntity::entities';
+
     protected Filter $filter;
     protected CollectionFactory $collectionFactory;
 

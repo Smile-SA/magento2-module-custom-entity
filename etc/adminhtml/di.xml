@@ -106,4 +106,9 @@
             <argument name="inputTypeFactory" xsi:type="object">Smile\CustomEntity\Model\Adminhtml\System\Config\Source\InputtypeFactory</argument>
         </arguments>
     </type>
+    <type name="Smile\ScopedEav\Controller\Adminhtml\Entity\Image\Upload">
+        <arguments>
+            <argument name="aclResource" xsi:type="string">Smile_CustomEntity::entities</argument>
+        </arguments>
+    </type>
 </config>

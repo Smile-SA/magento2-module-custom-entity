@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.3.17] - Unreleased
+[1.3.17]: https://github.com/Smile-SA/magento2-module-custom-entity/compare/1.3.16...1.3.17
+
+- Supported platforms: Magento 2.4.4 and 2.4.5 only, PHP 8.1
+- `composer.json` now states it: `php ^8.1` and `magento/framework >=103.0.4 <103.0.6` (previously `php ^7.4 || ^8.1` and any `magento/framework` version)
+- Magento 2.4.6 and later and Mage-OS are supported by the 1.4.x line
+- Require the Smile modules of the same line: `smile/module-custom-entity-product-link ~1.4.5`, `smile/module-scoped-eav ~1.3.11`
+- CI: static analysis on Magento 2.4.5, `setup:di:compile` on Magento 2.4.4 and 2.4.5
+
 ## [1.3.16] - 2026-11-24
 [1.3.16]: https://github.com/Smile-SA/magento2-module-custom-entity/compare/1.3.15...1.3.16
 

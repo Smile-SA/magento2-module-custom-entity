@@ -24,7 +24,10 @@
             "magento/composer-dependency-version-audit-plugin": true,
             "magento/magento-composer-installer": false
         },
-        "sort-packages": true
+        "sort-packages": true,
+        "audit": {
+            "abandoned": "report"
+        }
     },
     "repositories": [
         {
@@ -33,8 +36,9 @@
         }
     ],
     "require": {
-        "php": "^7.4 || ^8.1",
-        "smile/module-scoped-eav": "^1.3.10",
+        "php": "^8.1",
+        "magento/framework": ">=103.0.4 <103.0.6",
+        "smile/module-scoped-eav": "~1.3.11",
         "magento/module-sitemap": ">=100.3.0"
     },
     "require-dev": {
@@ -49,7 +53,7 @@
         }
     },
     "suggest": {
-        "smile/module-custom-entity-product-link": "Possibility to add product attribute for link product to custom entities",
+        "smile/module-custom-entity-product-link": "~1.4.5",
         "smile/module-custom-entity-import-export": "Possibility to import custom entities"
     },
     "minimum-stability": "dev",

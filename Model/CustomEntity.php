@@ -309,7 +309,7 @@ class CustomEntity extends AbstractEntity implements IdentityInterface, CustomEn
             ->addFieldToFilter('is_active', '1')
             ->setPageSize(1);
         if ($attributeSetId !== null) {
-            /** @var string $attributeSetId */
+            // @phpstan-ignore argument.type (Magento PHPDoc is too narrow, int condition is supported)
             $collection->addFieldToFilter('attribute_set_id', $attributeSetId);
         }
         if (!$collection->getSize()) {

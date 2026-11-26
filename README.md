@@ -5,6 +5,15 @@ Custom Entity Management
 
 This module allow possibility to create and manage custom enities like Brand, Pictogram, ... and  to display them in front  
 
+## Compatibility
+
+| Module version | Magento | Mage-OS | PHP |
+| --- | --- | --- | --- |
+| 1.4.x | 2.4.6 and later (tested up to 2.4.9) | 1.0.0 and later (tested up to 4.0) | 8.1 to 8.5, as supported by the platform |
+| 1.3.x, from 1.3.17 | 2.4.4 and 2.4.5 | not available | 8.1 |
+
+Releases up to 1.3.16 are not covered by this table: they declared `php ^7.4 || ^8.1` and any `magento/framework` version.
+
 ## Who is developing this module ? 
 
 ![Smile](doc/static/smile.png)

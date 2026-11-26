@@ -40,8 +40,7 @@ class Output extends MagentoOutput implements ArgumentInterface
             }
         }
         if (
-            $attributeHtml !== null
-            && $attribute->getIsHtmlAllowedOnFront()
+            $attribute->getIsHtmlAllowedOnFront()
             && $attribute->getIsWysiwygEnabled()
             && $this->isDirectivesExists($attributeHtml)
         ) {
